@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2016 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Material Components Catalog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="/images/logo_components_color_2x_web_48dp.png" />
+    <script src="assets/material-components-web.css.js" charset="utf-8"></script>
+    <script src="assets/demo-styles.css.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+      .toolbar-icons {
+        /* TODO(advorak): Move this to .mdc-toolbar__section--align-end */
+        /* Don't be greedy; take up only as much width as needed for contents. */
+        flex: initial;
+      }
+
+      .row-label {
+        display: inline-block;
+        margin-right: 10px;
+      }
+
+      .radio-wrap {
+        display: inline-block;
+        vertical-align: middle;
+        margin: 5px;
+      }
+
+      #mdc-dialog-theme .mdc-radio__background {
+        /* Allow the component to be resized arbitrarily. */
+        position: unset;
+      }
+
+      #mdc-dialog-theme .mdc-radio__outer-circle {
+        border-width: 4px;
+      }
+
+      #mdc-dialog-theme .mdc-radio__native-control:checked + .mdc-radio__background .mdc-radio__inner-circle {
+        transform: scale(0.6);
+      }
+
+      #mdc-dialog-theme .mdc-radio__native-control:focus + .mdc-radio__background::before {
+        transform: scale(1.2);
+      }
+    </style>
+    <style>
+      [data-theme-primary="grey900"] {
+        --mdc-theme-primary: #212121;
+        --mdc-theme-text-secondary-on-light: #212121;
+        --mdc-theme-text-secondary-on-dark: #212121;
+      }
+      [data-theme-primary="grey500"] {
+        --mdc-theme-primary: #9E9E9E;
+        --mdc-theme-text-secondary-on-light: #9E9E9E;
+        --mdc-theme-text-secondary-on-dark: #9E9E9E;
+      }
+      [data-theme-primary="grey100"] {
+        --mdc-theme-primary: #F5F5F5;
+        --mdc-theme-text-secondary-on-light: #F5F5F5;
+        --mdc-theme-text-secondary-on-dark: #F5F5F5;
+      }
+
+      [data-theme-primary="red900"] {
+        --mdc-theme-primary: #B71C1C;
+        --mdc-theme-text-secondary-on-light: #B71C1C;
+        --mdc-theme-text-secondary-on-dark: #B71C1C;
+      }
+      [data-theme-primary="red500"] {
+        --mdc-theme-primary: #F44336;
+        --mdc-theme-text-secondary-on-light: #F44336;
+        --mdc-theme-text-secondary-on-dark: #F44336;
+      }
+      [data-theme-primary="red100"] {
+        --mdc-theme-primary: #FFCDD2;
+        --mdc-theme-text-secondary-on-light: #FFCDD2;
+        --mdc-theme-text-secondary-on-dark: #FFCDD2;
+      }
+
+      [data-theme-primary="purple900"] {
+        --mdc-theme-primary: #4A148C;
+        --mdc-theme-text-secondary-on-light: #4A148C;
+        --mdc-theme-text-secondary-on-dark: #4A148C;
+      }
+      [data-theme-primary="purple500"] {
+        --mdc-theme-primary: #9C27B0;
+        --mdc-theme-text-secondary-on-light: #9C27B0;
+        --mdc-theme-text-secondary-on-dark: #9C27B0;
+      }
+      [data-theme-primary="purple100"] {
+        --mdc-theme-primary: #E1BEE7;
+        --mdc-theme-text-secondary-on-light: #E1BEE7;
+        --mdc-theme-text-secondary-on-dark: #E1BEE7;
+      }
+
+      [data-theme-primary="blue900"] {
+        --mdc-theme-primary: #0D47A1;
+        --mdc-theme-text-secondary-on-light: #0D47A1;
+        --mdc-theme-text-secondary-on-dark: #0D47A1;
+      }
+      [data-theme-primary="blue500"] {
+        --mdc-theme-primary: #2196F3;
+        --mdc-theme-text-secondary-on-light: #2196F3;
+        --mdc-theme-text-secondary-on-dark: #2196F3;
+      }
+      [data-theme-primary="blue100"] {
+        --mdc-theme-primary: #BBDEFB;
+        --mdc-theme-text-secondary-on-light: #BBDEFB;
+        --mdc-theme-text-secondary-on-dark: #BBDEFB;
+      }
+
+      [data-theme-primary="green900"] {
+        --mdc-theme-primary: #1B5E20;
+        --mdc-theme-text-secondary-on-light: #1B5E20;
+        --mdc-theme-text-secondary-on-dark: #1B5E20;
+      }
+      [data-theme-primary="green500"] {
+        --mdc-theme-primary: #4CAF50;
+        --mdc-theme-text-secondary-on-light: #4CAF50;
+        --mdc-theme-text-secondary-on-dark: #4CAF50;
+      }
+      [data-theme-primary="green100"] {
+        --mdc-theme-primary: #C8E6C9;
+        --mdc-theme-text-secondary-on-light: #C8E6C9;
+        --mdc-theme-text-secondary-on-dark: #C8E6C9;
+      }
+
+      [data-theme-primary="lime900"] {
+        --mdc-theme-primary: #827717;
+        --mdc-theme-text-secondary-on-light: #827717;
+        --mdc-theme-text-secondary-on-dark: #827717;
+      }
+      [data-theme-primary="lime500"] {
+        --mdc-theme-primary: #CDDC39;
+        --mdc-theme-text-secondary-on-light: #CDDC39;
+        --mdc-theme-text-secondary-on-dark: #CDDC39;
+      }
+      [data-theme-primary="lime100"] {
+        --mdc-theme-primary: #F0F4C3;
+        --mdc-theme-text-secondary-on-light: #F0F4C3;
+        --mdc-theme-text-secondary-on-dark: #F0F4C3;
+      }
+
+      [data-theme-primary="yellow900"] {
+        --mdc-theme-primary: #F57F17;
+        --mdc-theme-text-secondary-on-light: #F57F17;
+        --mdc-theme-text-secondary-on-dark: #F57F17;
+      }
+      [data-theme-primary="yellow500"] {
+        --mdc-theme-primary: #FFEB3B;
+        --mdc-theme-text-secondary-on-light: #FFEB3B;
+        --mdc-theme-text-secondary-on-dark: #FFEB3B;
+      }
+      [data-theme-primary="yellow100"] {
+        --mdc-theme-primary: #FFF9C4;
+        --mdc-theme-text-secondary-on-light: #FFF9C4;
+        --mdc-theme-text-secondary-on-dark: #FFF9C4;
+      }
+
+      [data-theme-primary="orange900"] {
+        --mdc-theme-primary: #E65100;
+        --mdc-theme-text-secondary-on-light: #E65100;
+        --mdc-theme-text-secondary-on-dark: #E65100;
+      }
+      [data-theme-primary="orange500"] {
+        --mdc-theme-primary: #FF9800;
+        --mdc-theme-text-secondary-on-light: #FF9800;
+        --mdc-theme-text-secondary-on-dark: #FF9800;
+      }
+      [data-theme-primary="orange100"] {
+        --mdc-theme-primary: #FFE0B2;
+        --mdc-theme-text-secondary-on-light: #FFE0B2;
+        --mdc-theme-text-secondary-on-dark: #FFE0B2;
+      }
+
+      [data-theme-primary="brown900"] {
+        --mdc-theme-primary: #3E2723;
+        --mdc-theme-text-secondary-on-light: #3E2723;
+        --mdc-theme-text-secondary-on-dark: #3E2723;
+      }
+      [data-theme-primary="brown500"] {
+        --mdc-theme-primary: #795548;
+        --mdc-theme-text-secondary-on-light: #795548;
+        --mdc-theme-text-secondary-on-dark: #795548;
+      }
+      [data-theme-primary="brown100"] {
+        --mdc-theme-primary: #D7CCC8;
+        --mdc-theme-text-secondary-on-light: #D7CCC8;
+        --mdc-theme-text-secondary-on-dark: #D7CCC8;
+      }
+
+    </style>
+  </head>
+  <body>
+    <header class="mdc-toolbar mdc-toolbar--fixed">
+      <div class="mdc-toolbar__row">
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+          <span class="catalog-logo mdc-toolbar__icon--menu">
+            <img src="/images/ic_component_24px_white.svg">
+          </span>
+          <span class="mdc-toolbar__title catalog-title">Material Components Catalog</span>
+        </section>
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-end toolbar-icons" role="toolbar">
+          <a id="theme-dialog-action" href="javascript:" class="material-icons mdc-toolbar__icon" aria-label="Change color theme" alt="Change color theme">palette</a>
+        </section>
+      </div>
+    </header>
+    <main>
+      <nav class="mdc-toolbar-fixed-adjust">
+        <ul class="catalog-list mdc-list mdc-list--two-line">
+          <li class="mdc-list-item">
+            <span class="catalog-list-icon mdc-list-item__start-detail"><img class="catalog-component-icon" src="/images/ic_button_24px.svg" /></span>
+            <a href="button.html" class="mdc-list-item__text">
+              Button
+              <span class="mdc-list-item__text__secondary">Raised and flat buttons</span>
+            </a>
+          </li>
+          <li class="mdc-list-item">
+            <span class="catalog-list-icon mdc-list-item__start-detail"><img class="catalog-component-icon" src="/images/ic_card_24px.svg" /></span>
+            <a href="card.html" class="mdc-list-item__text">
+              Card
+              <span class="mdc-list-item__text__secondary">Various card layout styles</span>
+            </a>
+          </li>
+          <li class="mdc-list-item">
+            <span class="catalog-list-icon mdc-list-item__start-detail"><img class="catalog-component-icon" src="/images/ic_selection_control_24px.svg" /></span>
+            <a href="checkbox.html" class="mdc-list-item__text">
+              Checkbox
+              <span class="mdc-list-item__text__secondary">Multi-selection controls</span>
+            </a>
+          </li>
+          <li class="mdc-list-item">
+            <span class="catalog-list-icon mdc-list-item__start-detail"><img class="catalog-component-icon" src="/images/ic_dialog_24px.svg" /></span>
+            <a href="dialog.html" class="mdc-list-item__text">
+              Dialog
+              <span class="mdc-list-item__text__secondary">Secondary text</span>
+            </a>
+          </li>
+          <li class="mdc-list-item">
+            <span class="catalog-list-icon mdc-list-item__start-detail"><img class="catalog-component-icon" src="/images/ic_side_navigation_24px.svg" /></span>
+            <a href="drawer/temporary-drawer.html" class="mdc-list-item__text">
+              Drawer
+              <span class="mdc-list-item__text__secondary">Temporary</span>
+            </a>
+          </li>
+          <li class="mdc-list-item">
+            <span class="catalog-list-icon mdc-list-item__start-detail"><img class="catalog-component-icon" src="/images/ic_side_navigation_24px.svg" /></span>
+            <a href="drawer/persistent-drawer.html" class="mdc-list-item__text">
+              Drawer
+              <span class="mdc-list-item__text__secondary">Persistent</span>
+            </a>
+          </li>
+          <li class="mdc-list-item">
+            <span class="catalog-list-icon mdc-list-item__start-detail"><img class="catalog-component-icon" src="/images/ic_side_navigation_24px.svg" /></span>
+            <a href="drawer/permanent-drawer-above-toolbar.html" class="mdc-list-item__text">
+              Drawer
+              <span class="mdc-list-item__text__secondary">Permanent drawer above toolbar</span>
+            </a>
+          </li>
+          <li class="mdc-list-item">
+            <span class="catalog-list-icon mdc-list-item__start-detail"><img class="catalog-component-icon" src="/images/ic_side_navigation_24px.svg" /></span>
+            <a href="drawer/permanent-drawer-below-toolbar.html" class="mdc-list-item__text">
+              Drawer
+              <span class="mdc-list-item__text__secondary">Permanent drawer below toolbar</span>
+            </a>
+          </li>
+          <li class="mdc-list-item">
+            <span class="catalog-list-icon mdc-list-item__start-detail"><img class="catalog-component-icon" src="/images/ic_shadow_24px.svg" /></span>
+            <a href="elevation.html" class="mdc-list-item__text">
+              Elevation
+              <span class="mdc-list-item__text__secondary">Shadow for different elevations</span>
+            </a>
+          </li>
+
+          <li class="mdc-list-item">
+            <span class="catalog-list-icon mdc-list-item__start-detail"><img class="catalog-component-icon" src="/images/ic_button_24px.svg" /></span>
+            <a href="fab.html" class="mdc-list-item__text">
+              Floating action button
+              <span class="mdc-list-item__text__secondary">The primary action in an application</span>
+            </a>
+          </li>
+
+          <li class="mdc-list-item">
+            <span class="catalog-list-icon mdc-list-item__start-detail"><img class="catalog-component-icon" src="/images/ic_card_24px.svg" /></span>
+            <a href="grid-list.html" class="mdc-list-item__text">
+              Grid list
+              <span class="mdc-list-item__text__secondary">2D grid layouts</span>
+            </a>
+          </li>
+
+          <li class="mdc-list-item">
+            <span class="catalog-list-icon mdc-list-item__start-detail"><img class="catalog-component-icon" src="/images/ic_component_24px.svg" /></span>
+            <a href="icon-toggle.html" class="mdc-list-item__text">
+              Icon toggle
+              <span class="mdc-list-item__text__secondary">Toggling icon states</span>
+            </a>
+          </li>
+
+          <li class="mdc-list-item">
+            <span class="catalog-list-icon mdc-list-item__start-detail"><img class="catalog-component-icon" src="/images/ic_card_24px.svg" /></span>
+            <a href="layout-grid.html" class="mdc-list-item__text">
+              Layout grid
+              <span class="mdc-list-item__text__secondary">Grid and gutter support</span>
+            </a>
+          </li>
+
+          <li class="mdc-list-item">
+            <span class="catalog-list-icon mdc-list-item__start-detail"><img class="catalog-component-icon" src="/images/ic_progress_activity.svg" /></span>
+            <a href="linear-progress.html" class="mdc-list-item__text">
+              Linear progress
+              <span class="mdc-list-item__text__secondary">Fills from 0% to 100%, represented by bars</span>
+            </a>
+          </li>
+
+          <li class="mdc-list-item">
+            <span class="catalog-list-icon mdc-list-item__start-detail"><img class="catalog-component-icon" src="/images/ic_list_24px.svg" /></span>
+            <a href="list.html" class="mdc-list-item__text">
+              List
+              <span class="mdc-list-item__text__secondary">Item layouts in lists</span>
+            </a>
+          </li>
+
+          <li class="mdc-list-item">
+            <span class="catalog-list-icon mdc-list-item__start-detail"><img class="catalog-component-icon" src="/images/ic_radio_button_24px.svg" /></span>
+            <a href="radio.html" class="mdc-list-item__text">
+              Radio buttons
+              <span class="mdc-list-item__text__secondary">Single selection controls</span>
+            </a>
+          </li>
+
+          <li class="mdc-list-item">
+            <span class="catalog-list-icon mdc-list-item__start-detail"><img class="catalog-component-icon" src="/images/ic_ripple_24px.svg" /></span>
+            <a href="ripple.html" class="mdc-list-item__text">
+              Ripple
+              <span class="mdc-list-item__text__secondary">Touch ripple</span>
+            </a>
+          </li>
+
+          <li class="mdc-list-item">
+            <span class="catalog-list-icon mdc-list-item__start-detail"><img class="catalog-component-icon" src="/images/ic_menu_24px.svg" /></span>
+            <a href="select.html" class="mdc-list-item__text">
+              Select
+              <span class="mdc-list-item__text__secondary">Popover selection menus</span>
+            </a>
+          </li>
+
+          <li class="mdc-list-item">
+            <span class="catalog-list-icon mdc-list-item__start-detail"><img class="catalog-component-icon" src="/images/ic_menu_24px.svg" /></span>
+            <a href="simple-menu.html" class="mdc-list-item__text">
+              Simple Menu
+              <span class="mdc-list-item__text__secondary">Pop over menus</span>
+            </a>
+          </li>
+
+          <li class="mdc-list-item">
+            <span class="catalog-list-icon mdc-list-item__start-detail"><img class="catalog-component-icon" src="/images/slider.svg" /></span>
+            <a href="slider.html" class="mdc-list-item__text">
+              Slider
+              <span class="mdc-list-item__text__secondary">Range Controls</span>
+            </a>
+          </li>
+
+          <li class="mdc-list-item">
+            <span class="catalog-list-icon mdc-list-item__start-detail"><img class="catalog-component-icon" src="/images/ic_toast_24px.svg" /></span>
+            <a href="snackbar.html" class="mdc-list-item__text">
+              Snackbar
+              <span class="mdc-list-item__text__secondary">Transient messages</span>
+            </a>
+          </li>
+
+          <li class="mdc-list-item">
+            <span class="catalog-list-icon mdc-list-item__start-detail"><img class="catalog-component-icon" src="/images/ic_switch_24px.svg" /></span>
+            <a href="switch.html" class="mdc-list-item__text">
+              Switch
+              <span class="mdc-list-item__text__secondary">On off switches</span>
+            </a>
+          </li>
+
+          <li class="mdc-list-item">
+            <span class="catalog-list-icon mdc-list-item__start-detail"><img class="catalog-component-icon" src="/images/ic_tabs_24px.svg" /></span>
+            <a href="tabs.html" class="mdc-list-item__text">
+              Tabs
+              <span class="mdc-list-item__text__secondary">Tabs with support for icon and text labels</span>
+            </a>
+          </li>
+
+          <li class="mdc-list-item">
+            <span class="catalog-list-icon mdc-list-item__start-detail"><img class="catalog-component-icon" src="/images/ic_text_field_24px.svg" /></span>
+            <a href="textfield.html" class="mdc-list-item__text">
+              Text field
+              <span class="mdc-list-item__text__secondary">Single and multiline text fields</span>
+            </a>
+          </li>
+
+          <li class="mdc-list-item">
+            <span class="catalog-list-icon mdc-list-item__start-detail"><img class="catalog-component-icon" src="/images/ic_theme_24px.svg" /></span>
+            <a href="theme.html" class="mdc-list-item__text">
+              Theme
+              <span class="mdc-list-item__text__secondary">Using primary and accent colors</span>
+            </a>
+          </li>
+
+          <li class="mdc-list-item">
+            <span class="catalog-list-icon mdc-list-item__start-detail"><img class="catalog-component-icon" src="/images/ic_toolbar_24px.svg" /></span>
+            <a href="toolbar/index.html" class="mdc-list-item__text">
+              Toolbar
+              <span class="mdc-list-item__text__secondary">Header and footers</span>
+            </a>
+          </li>
+
+          <li class="mdc-list-item">
+            <span class="catalog-list-icon mdc-list-item__start-detail"><img class="catalog-component-icon" src="/images/ic_typography_24px.svg" /></span>
+            <a href="typography.html" class="mdc-list-item__text">
+              Typography
+              <span class="mdc-list-item__text__secondary">Type hierarchy</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <aside id="mdc-dialog-theme"
+             class="mdc-dialog"
+             role="alertdialog"
+             aria-hidden="true"
+             aria-labelledby="mdc-dialog-theme-label"
+             aria-describedby="mdc-dialog-theme-description">
+        <div class="mdc-dialog__surface">
+          <header class="mdc-dialog__header">
+            <h2 id="mdc-dialog-theme-label" class="mdc-dialog__header__title">
+              Theme Colors
+            </h2>
+          </header>
+          <section id="mdc-dialog-theme-description" class="mdc-dialog__body">
+            <div id="theme-primary-colors">
+              <h3>Primary</h3>
+
+              <div>
+                <div class="row-label">900</div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="grey900">
+                    <input class="mdc-radio__native-control" type="radio" name="primary" value="grey900" checked>
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="red900">
+                    <input class="mdc-radio__native-control" type="radio" name="primary" value="red900">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="purple900">
+                    <input class="mdc-radio__native-control" type="radio" name="primary" value="purple900">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="blue900">
+                    <input class="mdc-radio__native-control" type="radio" name="primary" value="blue900">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="green900">
+                    <input class="mdc-radio__native-control" type="radio" name="primary" value="green900">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="lime900">
+                    <input class="mdc-radio__native-control" type="radio" name="primary" value="lime900">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="yellow900">
+                    <input class="mdc-radio__native-control" type="radio" name="primary" value="yellow900">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="orange900">
+                    <input class="mdc-radio__native-control" type="radio" name="primary" value="orange900">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="brown900">
+                    <input class="mdc-radio__native-control" type="radio" name="primary" value="brown900">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div>
+                <div class="row-label">500</div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="grey500">
+                    <input class="mdc-radio__native-control" type="radio" name="primary" value="grey500">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="red500">
+                    <input class="mdc-radio__native-control" type="radio" name="primary" value="red500">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="purple500">
+                    <input class="mdc-radio__native-control" type="radio" name="primary" value="purple500">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="blue500">
+                    <input class="mdc-radio__native-control" type="radio" name="primary" value="blue500">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="green500">
+                    <input class="mdc-radio__native-control" type="radio" name="primary" value="green500">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="lime500">
+                    <input class="mdc-radio__native-control" type="radio" name="primary" value="lime500">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="yellow500">
+                    <input class="mdc-radio__native-control" type="radio" name="primary" value="yellow500">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="orange500">
+                    <input class="mdc-radio__native-control" type="radio" name="primary" value="orange500">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="brown500">
+                    <input class="mdc-radio__native-control" type="radio" name="primary" value="brown500">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div>
+                <div class="row-label">300</div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="grey100">
+                    <input class="mdc-radio__native-control" type="radio" name="primary" value="grey100">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="red100">
+                    <input class="mdc-radio__native-control" type="radio" name="primary" value="red100">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="purple100">
+                    <input class="mdc-radio__native-control" type="radio" name="primary" value="purple100">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="blue100">
+                    <input class="mdc-radio__native-control" type="radio" name="primary" value="blue100">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="green100">
+                    <input class="mdc-radio__native-control" type="radio" name="primary" value="green100">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="lime100">
+                    <input class="mdc-radio__native-control" type="radio" name="primary" value="lime100">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="yellow100">
+                    <input class="mdc-radio__native-control" type="radio" name="primary" value="yellow100">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="orange100">
+                    <input class="mdc-radio__native-control" type="radio" name="primary" value="orange100">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="brown100">
+                    <input class="mdc-radio__native-control" type="radio" name="primary" value="brown100">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div id="theme-secondary-colors">
+              <h3>Secondary</h3>
+
+              <div>
+                <div class="row-label">900</div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="grey900">
+                    <input class="mdc-radio__native-control" type="radio" name="secondary" value="grey900" checked>
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="red900">
+                    <input class="mdc-radio__native-control" type="radio" name="secondary" value="red900">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="purple900">
+                    <input class="mdc-radio__native-control" type="radio" name="secondary" value="purple900">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="blue900">
+                    <input class="mdc-radio__native-control" type="radio" name="secondary" value="blue900">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="green900">
+                    <input class="mdc-radio__native-control" type="radio" name="secondary" value="green900">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="lime900">
+                    <input class="mdc-radio__native-control" type="radio" name="secondary" value="lime900">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="yellow900">
+                    <input class="mdc-radio__native-control" type="radio" name="secondary" value="yellow900">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="orange900">
+                    <input class="mdc-radio__native-control" type="radio" name="secondary" value="orange900">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="brown900">
+                    <input class="mdc-radio__native-control" type="radio" name="secondary" value="brown900">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div>
+                <div class="row-label">500</div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="grey500">
+                    <input class="mdc-radio__native-control" type="radio" name="secondary" value="grey500">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="red500">
+                    <input class="mdc-radio__native-control" type="radio" name="secondary" value="red500">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="purple500">
+                    <input class="mdc-radio__native-control" type="radio" name="secondary" value="purple500">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="blue500">
+                    <input class="mdc-radio__native-control" type="radio" name="secondary" value="blue500">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="green500">
+                    <input class="mdc-radio__native-control" type="radio" name="secondary" value="green500">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="lime500">
+                    <input class="mdc-radio__native-control" type="radio" name="secondary" value="lime500">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="yellow500">
+                    <input class="mdc-radio__native-control" type="radio" name="secondary" value="yellow500">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="orange500">
+                    <input class="mdc-radio__native-control" type="radio" name="secondary" value="orange500">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="brown500">
+                    <input class="mdc-radio__native-control" type="radio" name="secondary" value="brown500">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div>
+                <div class="row-label">300</div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="grey100">
+                    <input class="mdc-radio__native-control" type="radio" name="secondary" value="grey100">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="red100">
+                    <input class="mdc-radio__native-control" type="radio" name="secondary" value="red100">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="purple100">
+                    <input class="mdc-radio__native-control" type="radio" name="secondary" value="purple100">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="blue100">
+                    <input class="mdc-radio__native-control" type="radio" name="secondary" value="blue100">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="green100">
+                    <input class="mdc-radio__native-control" type="radio" name="secondary" value="green100">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="lime100">
+                    <input class="mdc-radio__native-control" type="radio" name="secondary" value="lime100">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="yellow100">
+                    <input class="mdc-radio__native-control" type="radio" name="secondary" value="yellow100">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="orange100">
+                    <input class="mdc-radio__native-control" type="radio" name="secondary" value="orange100">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="radio-wrap">
+                  <div class="mdc-radio" data-theme-primary="brown100">
+                    <input class="mdc-radio__native-control" type="radio" name="secondary" value="brown100">
+                    <div class="mdc-radio__background">
+                      <div class="mdc-radio__outer-circle"></div>
+                      <div class="mdc-radio__inner-circle"></div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div id="dark-mode-switches">
+              <h3>Dark Mode</h3>
+
+              <div class="mdc-switch">
+                <input type="checkbox" id="dark-mode-switch" class="mdc-switch__native-control" />
+                <div class="mdc-switch__background">
+                  <div class="mdc-switch__knob"></div>
+                </div>
+              </div>
+              <label for="dark-mode-switch" class="mdc-switch-label">off/on</label>
+            </div>
+          </section>
+          <footer class="mdc-dialog__footer">
+            <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--cancel">Cancel</button>
+            <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept">Save</button>
+          </footer>
+        </div>
+        <div class="mdc-dialog__backdrop"></div>
+      </aside>
+    </main>
+
+    <script src="assets/material-components-web.js" charset="utf-8"></script>
+    <script>
+      (function() {
+        const dialog = new mdc.dialog.MDCDialog(document.querySelector('#mdc-dialog-theme'));
+        dialog.listen('MDCDialog:accept', function() {
+          console.log('accepted');
+        });
+        dialog.listen('MDCDialog:cancel', function() {
+          console.log('canceled');
+        });
+        document.querySelector('#theme-dialog-action').addEventListener('click', function (evt) {
+          dialog.lastFocusedTarget = evt.target;
+          dialog.show();
+        });
+
+        const primary = document.querySelector('#theme-primary-colors');
+        primary.addEventListener('change', function(e) {
+          document.documentElement.setAttribute('data-theme-primary', e.target.value);
+        });
+
+        const secondary = document.querySelector('#theme-secondary-colors');
+        secondary.addEventListener('change', function(e) {
+          document.documentElement.setAttribute('data-theme-secondary', e.target.value);
+        });
+
+        const darkMode = document.querySelector('#dark-mode-switch');
+        darkMode.addEventListener('change', function(e) {
+          if (e.target.checked) {
+            document.documentElement.classList.add('mdc-theme--dark');
+          } else {
+            document.documentElement.classList.remove('mdc-theme--dark');
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
