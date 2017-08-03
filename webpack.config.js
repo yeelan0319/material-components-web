@@ -210,8 +210,11 @@ if (IS_DEV) {
     name: 'demo-css',
     entry: {
       'demo-styles': path.resolve('./demos/demos.scss'),
+      'demo-theme-grey-900': path.resolve('./demos/theme/theme-grey-900.scss'),
       'demo-theme-red-500': path.resolve('./demos/theme/theme-red-500.scss'),
       'demo-theme-blue-500': path.resolve('./demos/theme/theme-blue-500.scss'),
+      'demo-theme-green-500': path.resolve('./demos/theme/theme-green-500.scss'),
+      'demo-theme-yellow-500': path.resolve('./demos/theme/theme-yellow-500.scss'),
     },
     output: {
       path: OUT_PATH,

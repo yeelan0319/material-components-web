@@ -16,92 +16,78 @@
 
 @import "variables";
 
-.mdc-color__radio--grey-900 {
-  --mdc-theme-primary: $mdc-theme-grey-900;
-  --mdc-theme-text-secondary-on-light: $mdc-theme-grey-900;
-  --mdc-theme-text-secondary-on-dark: $mdc-theme-grey-900;
+.mdc-color-radio {
+  display: block;
+  border: 1px solid $mdc-theme-grey-500;
+  border-radius: 50%;
+
+  @include mdc-theme-dark {
+    border-color: $mdc-theme-grey-100;
+  }
 }
 
-.mdc-color__radio--grey-500 {
-  --mdc-theme-primary: $mdc-theme-grey-500;
-  --mdc-theme-text-secondary-on-light: $mdc-theme-grey-500;
-  --mdc-theme-text-secondary-on-dark: $mdc-theme-grey-500;
+.mdc-color-radio__inner {
+  display: block;
+  border: 11px solid;
+  border-radius: 50%;
 }
 
-.mdc-color__radio--grey-100 {
-  --mdc-theme-primary: $mdc-theme-grey-100;
-  --mdc-theme-text-secondary-on-light: $mdc-theme-grey-100;
-  --mdc-theme-text-secondary-on-dark: $mdc-theme-grey-100;
+[data-color="grey-900"] .mdc-color-radio__inner {
+  border-color: $mdc-theme-grey-900 $mdc-theme-light-green-a700 $mdc-theme-light-green-a700 $mdc-theme-grey-900;
 }
 
-.mdc-color__radio--red-900 {
-  --mdc-theme-primary: $mdc-theme-red-900;
-  --mdc-theme-text-secondary-on-light: $mdc-theme-red-900;
-  --mdc-theme-text-secondary-on-dark: $mdc-theme-red-900;
+[data-color="grey-500"] .mdc-color-radio__inner {
+  border-color: $mdc-theme-grey-500 $mdc-theme-light-green-a400 $mdc-theme-light-green-a400 $mdc-theme-grey-500;
 }
 
-.mdc-color__radio--red-500 {
-  --mdc-theme-primary: $mdc-theme-red-500;
-  --mdc-theme-text-secondary-on-light: $mdc-theme-red-500;
-  --mdc-theme-text-secondary-on-dark: $mdc-theme-red-500;
+[data-color="grey-100"] .mdc-color-radio__inner {
+  border-color: $mdc-theme-grey-100 $mdc-theme-light-green-a100 $mdc-theme-light-green-a100 $mdc-theme-grey-100;
 }
 
-.mdc-color__radio--red-100 {
-  --mdc-theme-primary: $mdc-theme-red-100;
-  --mdc-theme-text-secondary-on-light: $mdc-theme-red-100;
-  --mdc-theme-text-secondary-on-dark: $mdc-theme-red-100;
+[data-color="red-900"] .mdc-color-radio__inner {
+  border-color: $mdc-theme-red-900 $mdc-theme-green-900 $mdc-theme-green-900 $mdc-theme-red-900;
 }
 
-.mdc-color__radio--blue-900 {
-  --mdc-theme-primary: $mdc-theme-blue-900;
-  --mdc-theme-text-secondary-on-light: $mdc-theme-blue-900;
-  --mdc-theme-text-secondary-on-dark: $mdc-theme-blue-900;
+[data-color="red-500"] .mdc-color-radio__inner {
+  border-color: $mdc-theme-red-500 $mdc-theme-green-500 $mdc-theme-green-500 $mdc-theme-red-500;
 }
 
-.mdc-color__radio--blue-500 {
-  --mdc-theme-primary: $mdc-theme-blue-500;
-  --mdc-theme-text-secondary-on-light: $mdc-theme-blue-500;
-  --mdc-theme-text-secondary-on-dark: $mdc-theme-blue-500;
+[data-color="red-100"] .mdc-color-radio__inner {
+  border-color: $mdc-theme-red-100 $mdc-theme-green-100 $mdc-theme-green-100 $mdc-theme-red-100;
 }
 
-.mdc-color__radio--blue-100 {
-  --mdc-theme-primary: $mdc-theme-blue-100;
-  --mdc-theme-text-secondary-on-light: $mdc-theme-blue-100;
-  --mdc-theme-text-secondary-on-dark: $mdc-theme-blue-100;
+[data-color="blue-900"] .mdc-color-radio__inner {
+  border-color: $mdc-theme-blue-900 $mdc-theme-yellow-900 $mdc-theme-yellow-900 $mdc-theme-blue-900;
 }
 
-.mdc-color__radio--green-900 {
-  --mdc-theme-primary: $mdc-theme-green-900;
-  --mdc-theme-text-secondary-on-light: $mdc-theme-green-900;
-  --mdc-theme-text-secondary-on-dark: $mdc-theme-green-900;
+[data-color="blue-500"] .mdc-color-radio__inner {
+  border-color: $mdc-theme-blue-500 $mdc-theme-yellow-500 $mdc-theme-yellow-500 $mdc-theme-blue-500;
 }
 
-.mdc-color__radio--green-500 {
-  --mdc-theme-primary: $mdc-theme-green-500;
-  --mdc-theme-text-secondary-on-light: $mdc-theme-green-500;
-  --mdc-theme-text-secondary-on-dark: $mdc-theme-green-500;
+[data-color="blue-100"] .mdc-color-radio__inner {
+  border-color: $mdc-theme-blue-100 $mdc-theme-yellow-100 $mdc-theme-yellow-100 $mdc-theme-blue-100;
 }
 
-.mdc-color__radio--green-100 {
-  --mdc-theme-primary: $mdc-theme-green-100;
-  --mdc-theme-text-secondary-on-light: $mdc-theme-green-100;
-  --mdc-theme-text-secondary-on-dark: $mdc-theme-green-100;
+[data-color="green-900"] .mdc-color-radio__inner {
+  border-color: $mdc-theme-green-900 $mdc-theme-orange-900 $mdc-theme-orange-900 $mdc-theme-green-900;
 }
 
-.mdc-color__radio--yellow-900 {
-  --mdc-theme-primary: $mdc-theme-yellow-900;
-  --mdc-theme-text-secondary-on-light: $mdc-theme-yellow-900;
-  --mdc-theme-text-secondary-on-dark: $mdc-theme-yellow-900;
+[data-color="green-500"] .mdc-color-radio__inner {
+  border-color: $mdc-theme-green-500 $mdc-theme-orange-500 $mdc-theme-orange-500 $mdc-theme-green-500;
 }
 
-.mdc-color__radio--yellow-500 {
-  --mdc-theme-primary: $mdc-theme-yellow-500;
-  --mdc-theme-text-secondary-on-light: $mdc-theme-yellow-500;
-  --mdc-theme-text-secondary-on-dark: $mdc-theme-yellow-500;
+[data-color="green-100"] .mdc-color-radio__inner {
+  border-color: $mdc-theme-green-100 $mdc-theme-orange-100 $mdc-theme-orange-100 $mdc-theme-green-100;
 }
 
-.mdc-color__radio--yellow-100 {
-  --mdc-theme-primary: $mdc-theme-yellow-100;
-  --mdc-theme-text-secondary-on-light: $mdc-theme-yellow-100;
-  --mdc-theme-text-secondary-on-dark: $mdc-theme-yellow-100;
+[data-color="yellow-900"] .mdc-color-radio__inner {
+  border-color: $mdc-theme-yellow-900 $mdc-theme-brown-900 $mdc-theme-brown-900 $mdc-theme-yellow-900;
+}
+
+[data-color="yellow-500"] .mdc-color-radio__inner {
+  border-color: $mdc-theme-yellow-500 $mdc-theme-brown-500 $mdc-theme-brown-500 $mdc-theme-yellow-500;
+}
+
+[data-color="yellow-100"] .mdc-color-radio__inner {
+  border-color: $mdc-theme-yellow-100 $mdc-theme-brown-100 $mdc-theme-brown-100 $mdc-theme-yellow-100;
 }

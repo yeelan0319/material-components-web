@@ -16,17 +16,7 @@
 
 @import "variables";
 
-.mdc-toolbar__icon {
-  /* TODO(advorak): Move this to mdc-shared-icon-style mixin */
-  background-color: transparent;
-}
+$mdc-theme-primary: $mdc-theme-grey-900;
+$mdc-theme-accent: $mdc-theme-light-green-a700;
 
-.mdc-list-item--selected {
-  background-color: $mdc-theme-grey-200;
-  box-shadow: inset 0 0 5px $mdc-theme-grey-500;
-
-  @include mdc-theme-dark {
-    background-color: $mdc-theme-grey-700;
-    box-shadow: inset 0 0 5px $mdc-theme-grey-400;
-  }
-}
+@import "styles";
