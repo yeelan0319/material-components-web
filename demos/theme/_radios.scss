@@ -1,0 +1,107 @@
+/*
+  Copyright 2017 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+*/
+
+@import "variables";
+
+.mdc-color__radio--grey-900 {
+  --mdc-theme-primary: $mdc-theme-grey-900;
+  --mdc-theme-text-secondary-on-light: $mdc-theme-grey-900;
+  --mdc-theme-text-secondary-on-dark: $mdc-theme-grey-900;
+}
+
+.mdc-color__radio--grey-500 {
+  --mdc-theme-primary: $mdc-theme-grey-500;
+  --mdc-theme-text-secondary-on-light: $mdc-theme-grey-500;
+  --mdc-theme-text-secondary-on-dark: $mdc-theme-grey-500;
+}
+
+.mdc-color__radio--grey-100 {
+  --mdc-theme-primary: $mdc-theme-grey-100;
+  --mdc-theme-text-secondary-on-light: $mdc-theme-grey-100;
+  --mdc-theme-text-secondary-on-dark: $mdc-theme-grey-100;
+}
+
+.mdc-color__radio--red-900 {
+  --mdc-theme-primary: $mdc-theme-red-900;
+  --mdc-theme-text-secondary-on-light: $mdc-theme-red-900;
+  --mdc-theme-text-secondary-on-dark: $mdc-theme-red-900;
+}
+
+.mdc-color__radio--red-500 {
+  --mdc-theme-primary: $mdc-theme-red-500;
+  --mdc-theme-text-secondary-on-light: $mdc-theme-red-500;
+  --mdc-theme-text-secondary-on-dark: $mdc-theme-red-500;
+}
+
+.mdc-color__radio--red-100 {
+  --mdc-theme-primary: $mdc-theme-red-100;
+  --mdc-theme-text-secondary-on-light: $mdc-theme-red-100;
+  --mdc-theme-text-secondary-on-dark: $mdc-theme-red-100;
+}
+
+.mdc-color__radio--blue-900 {
+  --mdc-theme-primary: $mdc-theme-blue-900;
+  --mdc-theme-text-secondary-on-light: $mdc-theme-blue-900;
+  --mdc-theme-text-secondary-on-dark: $mdc-theme-blue-900;
+}
+
+.mdc-color__radio--blue-500 {
+  --mdc-theme-primary: $mdc-theme-blue-500;
+  --mdc-theme-text-secondary-on-light: $mdc-theme-blue-500;
+  --mdc-theme-text-secondary-on-dark: $mdc-theme-blue-500;
+}
+
+.mdc-color__radio--blue-100 {
+  --mdc-theme-primary: $mdc-theme-blue-100;
+  --mdc-theme-text-secondary-on-light: $mdc-theme-blue-100;
+  --mdc-theme-text-secondary-on-dark: $mdc-theme-blue-100;
+}
+
+.mdc-color__radio--green-900 {
+  --mdc-theme-primary: $mdc-theme-green-900;
+  --mdc-theme-text-secondary-on-light: $mdc-theme-green-900;
+  --mdc-theme-text-secondary-on-dark: $mdc-theme-green-900;
+}
+
+.mdc-color__radio--green-500 {
+  --mdc-theme-primary: $mdc-theme-green-500;
+  --mdc-theme-text-secondary-on-light: $mdc-theme-green-500;
+  --mdc-theme-text-secondary-on-dark: $mdc-theme-green-500;
+}
+
+.mdc-color__radio--green-100 {
+  --mdc-theme-primary: $mdc-theme-green-100;
+  --mdc-theme-text-secondary-on-light: $mdc-theme-green-100;
+  --mdc-theme-text-secondary-on-dark: $mdc-theme-green-100;
+}
+
+.mdc-color__radio--yellow-900 {
+  --mdc-theme-primary: $mdc-theme-yellow-900;
+  --mdc-theme-text-secondary-on-light: $mdc-theme-yellow-900;
+  --mdc-theme-text-secondary-on-dark: $mdc-theme-yellow-900;
+}
+
+.mdc-color__radio--yellow-500 {
+  --mdc-theme-primary: $mdc-theme-yellow-500;
+  --mdc-theme-text-secondary-on-light: $mdc-theme-yellow-500;
+  --mdc-theme-text-secondary-on-dark: $mdc-theme-yellow-500;
+}
+
+.mdc-color__radio--yellow-100 {
+  --mdc-theme-primary: $mdc-theme-yellow-100;
+  --mdc-theme-text-secondary-on-light: $mdc-theme-yellow-100;
+  --mdc-theme-text-secondary-on-dark: $mdc-theme-yellow-100;
+}
