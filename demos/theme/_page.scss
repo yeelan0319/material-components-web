@@ -30,3 +30,84 @@
     box-shadow: inset 0 0 5px $mdc-theme-grey-400;
   }
 }
+
+.mdc-main {
+  padding: 24px;
+
+  @include mdc-theme-dark {
+    background-color: $mdc-theme-grey-800;
+  }
+}
+
+.mdc-component-section {
+  //padding: 24px;
+}
+
+.mdc-button-demo {
+  margin: 10px;
+}
+
+.mdc-fieldset-demo + .mdc-fieldset-demo {
+  margin-top: 16px;
+}
+
+.mdc-card-demo-tile {
+  display: inline-block;
+  width: 350px;
+  margin: 24px;
+  vertical-align: top;
+}
+
+.mdc-card-demo--with-avatar .mdc-card__primary {
+  position: relative;
+}
+
+.mdc-card-demo--with-avatar .mdc-card-demo__avatar {
+  position: absolute;
+  background: #bdbdbd;
+  height: 2.5rem;
+  /* 40sp */
+  width: 2.5rem;
+  /* 40sp */
+  border-radius: 50%;
+}
+
+.mdc-card-demo--with-avatar .mdc-card__title,
+.mdc-card-demo--with-avatar .mdc-card__subtitle {
+  margin-left: 56px;
+}
+
+[dir="rtl"] .mdc-card-demo--with-avatar .mdc-card__title,
+[dir="rtl"] .mdc-card-demo--with-avatar .mdc-card__subtitle {
+  margin-right: 56px;
+  margin-left: initial;
+}
+
+.mdc-card-demo__16-9-media {
+  background-image: url("../images/16-9.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 12.313rem;
+  /* 197sp, for 16:9 ratio with 350sp demo card width */
+}
+
+.mdc-card-demo--small .mdc-card__media {
+  background-image: url("../images/1-1.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 10.938rem;
+  /* 175sp, for 1:1 ratio with 175sp demo card width */
+}
+
+.mdc-card-demo--bg-demo {
+  height: 21.875rem;
+  /* 350sp */
+  background-image: url("../images/1-1.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.mdc-card-demo--bg-demo .mdc-card__primary,
+.mdc-card-demo--bg-demo .mdc-card__actions {
+  background: rgba(0, 0, 0, .4);
+}
