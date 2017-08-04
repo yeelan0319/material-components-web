@@ -16,6 +16,10 @@
 
 @import "variables";
 
+/*
+ * Global
+ */
+
 .mdc-toolbar__icon {
   /* TODO(advorak): Move this to mdc-shared-icon-style mixin */
   background-color: transparent;
@@ -43,6 +47,16 @@
   //padding: 24px;
 }
 
+// TODO(acdvorak): Use classes instead?
+// stylelint-disable-next-line plugin/selector-bem-pattern, selector-max-type
+button code {
+  font-size: smaller;
+}
+
+/*
+ * Button
+ */
+
 .mdc-button-demo {
   margin: 10px;
 }
@@ -50,6 +64,10 @@
 .mdc-fieldset-demo + .mdc-fieldset-demo {
   margin-top: 16px;
 }
+
+/*
+ * Card
+ */
 
 .mdc-card-demo-tile {
   display: inline-block;
@@ -110,4 +128,28 @@
 .mdc-card-demo--bg-demo .mdc-card__primary,
 .mdc-card-demo--bg-demo .mdc-card__actions {
   background: rgba(0, 0, 0, .4);
+}
+
+/*
+ * Checkbox
+ */
+
+.mdc-checkbox-row {
+  display: flex;
+  align-items: center;
+}
+
+.mdc-checkbox-wrap,
+.mdc-checkbox-toggle {
+  margin-right: 10px;
+}
+
+.mdc-checkbox-wrap + .mdc-checkbox-toggle {
+  margin-left: 20px;
+}
+
+.mdc-checkbox-wrap {
+  // TODO(acdvorak): Document this requirement in mdc-checkbox or fix it directly
+  //display: inline-flex;
+  //align-items: center;
 }

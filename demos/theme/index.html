@@ -121,6 +121,7 @@
           <button class="mdc-button mdc-button--raised mdc-button--accent mdc-button-demo">Raised + Accent</button>
         </fieldset>
       </section>
+
       <section class="mdc-component-section">
         <h2>Card</h2>
 
@@ -197,6 +198,73 @@
           </div>
         </div>
       </section>
+
+      <section class="mdc-component-section">
+        <h2>Checkbox</h2>
+
+        <div class="mdc-checkbox-row">
+          <div class="mdc-form-field mdc-checkbox-wrap">
+            <div class="mdc-checkbox">
+              <input type="checkbox"
+                     id="enabled-checkbox"
+                     class="mdc-checkbox__native-control"/>
+              <div class="mdc-checkbox__background">
+                <svg class="mdc-checkbox__checkmark"
+                     viewBox="0 0 24 24">
+                  <path class="mdc-checkbox__checkmark__path"
+                        fill="none"
+                        stroke="white"
+                        d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                </svg>
+                <div class="mdc-checkbox__mixedmark"></div>
+              </div>
+            </div>
+            <label for="enabled-checkbox" id="enabled-checkbox-label">Enabled</label>
+          </div>
+
+          <div class="mdc-form-field mdc-checkbox-wrap">
+            <div class="mdc-checkbox">
+              <input type="checkbox"
+                     id="indeterminate-checkbox"
+                     class="mdc-checkbox__native-control"/>
+              <div class="mdc-checkbox__background">
+                <svg class="mdc-checkbox__checkmark"
+                     viewBox="0 0 24 24">
+                  <path class="mdc-checkbox__checkmark__path"
+                        fill="none"
+                        stroke="white"
+                        d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                </svg>
+                <div class="mdc-checkbox__mixedmark"></div>
+              </div>
+            </div>
+            <label for="indeterminate-checkbox" id="indeterminate-checkbox-label">Indeterminate</label>
+          </div>
+
+          <div class="mdc-form-field mdc-checkbox-wrap">
+            <div class="mdc-checkbox mdc-checkbox--disabled">
+              <input type="checkbox"
+                     id="disabled-checkbox"
+                     class="mdc-checkbox__native-control"
+                     disabled />
+              <div class="mdc-checkbox__background">
+                <svg class="mdc-checkbox__checkmark"
+                     viewBox="0 0 24 24">
+                  <path class="mdc-checkbox__checkmark__path"
+                        fill="none"
+                        stroke="white"
+                        d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                </svg>
+                <div class="mdc-checkbox__mixedmark"></div>
+              </div>
+            </div>
+            <label for="disabled-checkbox" id="disabled-checkbox-label">Disabled</label>
+          </div>
+
+          <button type="button" class="mdc-checkbox-toggle" id="toggle-indeterminate">Toggle <code>indeterminate</code></button>
+          <button type="button" class="mdc-checkbox-toggle" id="toggle-align-end">Toggle <code>--align-end</code></button>
+        </div>
+      </section>
     </main>
 
     <script src="/assets/material-components-web.js" charset="utf-8"></script>
@@ -240,6 +308,22 @@
               toggleIcon.style.setProperty('visibility', '');
             }
           }
+        });
+
+        document.querySelector('#indeterminate-checkbox').indeterminate = true;
+
+        document.querySelector('#toggle-indeterminate').addEventListener('click', function(e) {
+          const checkboxes = [].slice.call(document.querySelectorAll('.mdc-checkbox-wrap .mdc-checkbox__native-control'));
+          checkboxes.forEach(function(checkbox) {
+            checkbox.indeterminate = !checkbox.indeterminate;
+          });
+        });
+
+        document.querySelector('#toggle-align-end').addEventListener('click', function(e) {
+          const formFields = [].slice.call(document.querySelectorAll('.mdc-form-field.mdc-checkbox-wrap'));
+          formFields.forEach(function(formField) {
+            formField.classList.toggle('mdc-form-field--align-end');
+          });
         });
 
         // TODO(acdvorak): This is probably a bad idea; it's tightly coupled to webpack's current implementation.
