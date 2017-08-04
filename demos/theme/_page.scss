@@ -101,33 +101,12 @@ button code {
   margin-left: initial;
 }
 
-.mdc-card-demo__16-9-media {
-  background-image: url("../images/16-9.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 12.313rem;
-  /* 197sp, for 16:9 ratio with 350sp demo card width */
-}
-
 .mdc-card-demo--small .mdc-card__media {
   background-image: url("../images/1-1.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   height: 10.938rem;
   /* 175sp, for 1:1 ratio with 175sp demo card width */
-}
-
-.mdc-card-demo--bg-demo {
-  height: 21.875rem;
-  /* 350sp */
-  background-image: url("../images/1-1.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.mdc-card-demo--bg-demo .mdc-card__primary,
-.mdc-card-demo--bg-demo .mdc-card__actions {
-  background: rgba(0, 0, 0, .4);
 }
 
 /*
