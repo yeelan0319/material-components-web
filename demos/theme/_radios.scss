@@ -18,11 +18,11 @@
 
 .mdc-color-radio {
   display: block;
-  border: 1px solid $mdc-color-grey-500;
+  border: 1px solid $material-color-grey-500;
   border-radius: 50%;
 
   @include mdc-theme-dark {
-    border-color: $mdc-color-grey-100;
+    border-color: $material-color-grey-100;
   }
 }
 
@@ -33,61 +33,61 @@
 }
 
 [data-color="grey-900"] .mdc-color-radio__inner {
-  border-color: $mdc-color-grey-900 $mdc-color-light-green-a700 $mdc-color-light-green-a700 $mdc-color-grey-900;
+  border-color: $material-color-grey-900 $material-color-light-green-a700 $material-color-light-green-a700 $material-color-grey-900;
 }
 
 [data-color="grey-500"] .mdc-color-radio__inner {
-  border-color: $mdc-color-grey-500 $mdc-color-light-green-a400 $mdc-color-light-green-a400 $mdc-color-grey-500;
+  border-color: $material-color-grey-500 $material-color-light-green-a400 $material-color-light-green-a400 $material-color-grey-500;
 }
 
 [data-color="grey-100"] .mdc-color-radio__inner {
-  border-color: $mdc-color-grey-100 $mdc-color-light-green-a100 $mdc-color-light-green-a100 $mdc-color-grey-100;
+  border-color: $material-color-grey-100 $material-color-light-green-a100 $material-color-light-green-a100 $material-color-grey-100;
 }
 
 [data-color="red-900"] .mdc-color-radio__inner {
-  border-color: $mdc-color-red-900 $mdc-color-light-blue-900 $mdc-color-light-blue-900 $mdc-color-red-900;
+  border-color: $material-color-red-900 $material-color-light-blue-900 $material-color-light-blue-900 $material-color-red-900;
 }
 
 [data-color="red-500"] .mdc-color-radio__inner {
-  border-color: $mdc-color-red-500 $mdc-color-light-blue-500 $mdc-color-light-blue-500 $mdc-color-red-500;
+  border-color: $material-color-red-500 $material-color-light-blue-500 $material-color-light-blue-500 $material-color-red-500;
 }
 
 [data-color="red-100"] .mdc-color-radio__inner {
-  border-color: $mdc-color-red-100 $mdc-color-light-blue-100 $mdc-color-light-blue-100 $mdc-color-red-100;
+  border-color: $material-color-red-100 $material-color-light-blue-100 $material-color-light-blue-100 $material-color-red-100;
 }
 
 [data-color="blue-900"] .mdc-color-radio__inner {
-  border-color: $mdc-color-blue-900 $mdc-color-yellow-900 $mdc-color-yellow-900 $mdc-color-blue-900;
+  border-color: $material-color-blue-900 $material-color-yellow-900 $material-color-yellow-900 $material-color-blue-900;
 }
 
 [data-color="blue-500"] .mdc-color-radio__inner {
-  border-color: $mdc-color-blue-500 $mdc-color-yellow-500 $mdc-color-yellow-500 $mdc-color-blue-500;
+  border-color: $material-color-blue-500 $material-color-yellow-500 $material-color-yellow-500 $material-color-blue-500;
 }
 
 [data-color="blue-100"] .mdc-color-radio__inner {
-  border-color: $mdc-color-blue-100 $mdc-color-yellow-100 $mdc-color-yellow-100 $mdc-color-blue-100;
+  border-color: $material-color-blue-100 $material-color-yellow-100 $material-color-yellow-100 $material-color-blue-100;
 }
 
 [data-color="green-900"] .mdc-color-radio__inner {
-  border-color: $mdc-color-green-900 $mdc-color-orange-900 $mdc-color-orange-900 $mdc-color-green-900;
+  border-color: $material-color-green-900 $material-color-orange-900 $material-color-orange-900 $material-color-green-900;
 }
 
 [data-color="green-500"] .mdc-color-radio__inner {
-  border-color: $mdc-color-green-500 $mdc-color-orange-500 $mdc-color-orange-500 $mdc-color-green-500;
+  border-color: $material-color-green-500 $material-color-orange-500 $material-color-orange-500 $material-color-green-500;
 }
 
 [data-color="green-100"] .mdc-color-radio__inner {
-  border-color: $mdc-color-green-100 $mdc-color-orange-100 $mdc-color-orange-100 $mdc-color-green-100;
+  border-color: $material-color-green-100 $material-color-orange-100 $material-color-orange-100 $material-color-green-100;
 }
 
 [data-color="yellow-900"] .mdc-color-radio__inner {
-  border-color: $mdc-color-yellow-900 $mdc-color-brown-900 $mdc-color-brown-900 $mdc-color-yellow-900;
+  border-color: $material-color-yellow-900 $material-color-brown-900 $material-color-brown-900 $material-color-yellow-900;
 }
 
 [data-color="yellow-500"] .mdc-color-radio__inner {
-  border-color: $mdc-color-yellow-500 $mdc-color-brown-500 $mdc-color-brown-500 $mdc-color-yellow-500;
+  border-color: $material-color-yellow-500 $material-color-brown-500 $material-color-brown-500 $material-color-yellow-500;
 }
 
 [data-color="yellow-100"] .mdc-color-radio__inner {
-  border-color: $mdc-color-yellow-100 $mdc-color-brown-100 $mdc-color-brown-100 $mdc-color-yellow-100;
+  border-color: $material-color-yellow-100 $material-color-brown-100 $material-color-brown-100 $material-color-yellow-100;
 }

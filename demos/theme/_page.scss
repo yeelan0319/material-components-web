@@ -23,7 +23,7 @@
  */
 
 .mdc-theme--dark {
-  background-color: $mdc-color-grey-800;
+  background-color: $material-color-grey-800;
 }
 
 .mdc-toolbar__icon {
@@ -32,12 +32,12 @@
 }
 
 .mdc-list-item--selected {
-  background-color: $mdc-color-grey-200;
-  box-shadow: inset 0 0 5px $mdc-color-grey-500;
+  background-color: $material-color-grey-200;
+  box-shadow: inset 0 0 5px $material-color-grey-500;
 
   @include mdc-theme-dark {
-    background-color: $mdc-color-grey-700;
-    box-shadow: inset 0 0 5px $mdc-color-grey-400;
+    background-color: $material-color-grey-700;
+    box-shadow: inset 0 0 5px $material-color-grey-400;
   }
 }
 

@@ -16,7 +16,7 @@
 
 @import "../../packages/mdc-theme/color_palette";
 
-$mdc-theme-primary: $mdc-color-red-500;
-$mdc-theme-accent: $mdc-color-light-blue-500;
+$mdc-theme-primary: $material-color-red-500;
+$mdc-theme-accent: $material-color-light-blue-500;
 
 @import "styles";
