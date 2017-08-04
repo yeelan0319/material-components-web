@@ -45,8 +45,8 @@
   padding: 24px;
 }
 
-.mdc-component-section {
-  //padding: 24px;
+.mdc-component-section + .mdc-component-section {
+  margin-top: 36px;
 }
 
 // TODO(acdvorak): Use classes instead?
@@ -181,7 +181,7 @@ fieldset {
 
 .demo-icon-toggle__tile {
   width: 200px;
-  margin: 10px 10px 0 0;
+  margin: 0 10px 10px 0;
   padding: 20px;
   border-radius: 5px;
   text-align: center;
