@@ -186,3 +186,15 @@ fieldset {
   border-radius: 5px;
   text-align: center;
 }
+
+/*
+ * Linear Progress
+ */
+
+.demo-linear-progress__row {
+  margin: 32px 0;
+}
+
+.demo-linear-progress__row + .demo-linear-progress__row {
+  margin-top: 64px;
+}

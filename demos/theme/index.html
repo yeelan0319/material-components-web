@@ -404,6 +404,52 @@
           </div>
         </div>
       </section>
+
+      <section class="mdc-component-section">
+        <h2>Linear Progress</h2>
+
+        <figure class="demo-linear-progress__row">
+          <figcaption>Indeterminate</figcaption>
+          <div role="progressbar" class="mdc-linear-progress mdc-linear-progress--indeterminate">
+            <div class="mdc-linear-progress__buffering-dots"></div>
+            <div class="mdc-linear-progress__buffer"></div>
+            <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
+              <span class="mdc-linear-progress__bar-inner"></span>
+            </div>
+            <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
+              <span class="mdc-linear-progress__bar-inner"></span>
+            </div>
+          </div>
+        </figure>
+
+        <figure class="demo-linear-progress__row">
+          <figcaption>Buffer</figcaption>
+          <div role="progressbar" class="mdc-linear-progress" data-buffer="true">
+            <div class="mdc-linear-progress__buffering-dots"></div>
+            <div class="mdc-linear-progress__buffer"></div>
+            <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
+              <span class="mdc-linear-progress__bar-inner"></span>
+            </div>
+            <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
+              <span class="mdc-linear-progress__bar-inner"></span>
+            </div>
+          </div>
+        </figure>
+
+        <figure class="demo-linear-progress__row">
+          <figcaption>Accent</figcaption>
+          <div role="progressbar" class="mdc-linear-progress mdc-linear-progress--accent">
+            <div class="mdc-linear-progress__buffering-dots"></div>
+            <div class="mdc-linear-progress__buffer"></div>
+            <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
+              <span class="mdc-linear-progress__bar-inner"></span>
+            </div>
+            <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
+              <span class="mdc-linear-progress__bar-inner"></span>
+            </div>
+          </div>
+        </figure>
+      </section>
     </main>
 
     <script src="/assets/material-components-web.js" charset="utf-8"></script>
@@ -539,6 +585,19 @@
         const nodes = document.querySelectorAll('.mdc-icon-toggle');
         for (let i = 0, node; node = nodes[i]; i++) {
           mdc.iconToggle.MDCIconToggle.attachTo(node);
+        }
+
+        /*
+         * Linear Progress
+         */
+
+        const determinates = document.querySelectorAll('.mdc-linear-progress');
+        for (let i = 0, determinate; determinate = determinates[i]; i++) {
+          const linearProgress = mdc.linearProgress.MDCLinearProgress.attachTo(determinate);
+          linearProgress.progress = 0.5;
+          if (determinate.dataset.buffer) {
+            linearProgress.buffer = 0.75;
+          }
         }
       })();
     </script>
