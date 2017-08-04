@@ -53,6 +53,12 @@ button code {
   font-size: smaller;
 }
 
+// TODO(acdvorak): Figure out why this is necessary to prevent jank when switching themes.
+// stylelint-disable-next-line plugin/selector-bem-pattern, selector-max-type
+fieldset {
+  padding: 0 !important;
+}
+
 /*
  * Button
  */
