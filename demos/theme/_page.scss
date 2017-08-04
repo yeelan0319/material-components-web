@@ -132,3 +132,12 @@ button code {
   //display: inline-flex;
   //align-items: center;
 }
+
+/*
+ * Dialog
+ */
+
+.mdc-dialog--demo {
+  position: relative;
+  justify-content: unset;
+}
