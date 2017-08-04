@@ -22,6 +22,10 @@
  * Global
  */
 
+.mdc-theme--dark {
+  background-color: $mdc-theme-grey-800;
+}
+
 .mdc-toolbar__icon {
   /* TODO(advorak): Move this to mdc-shared-icon-style mixin */
   background-color: transparent;
@@ -39,10 +43,6 @@
 
 .mdc-main {
   padding: 24px;
-
-  @include mdc-theme-dark {
-    background-color: $mdc-theme-grey-800;
-  }
 }
 
 .mdc-component-section {
