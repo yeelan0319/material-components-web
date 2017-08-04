@@ -24,13 +24,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   </head>
-  <body>
+  <body class="mdc-typography">
     <header class="mdc-toolbar mdc-toolbar--fixed">
       <div class="mdc-toolbar__row">
         <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
-          <span class="catalog-logo mdc-toolbar__icon--menu">
-            <img src="/images/ic_component_24px_white.svg">
-          </span>
+          <button class="demo-menu material-icons mdc-toolbar__icon--menu">menu</button>
           <span class="mdc-toolbar__title catalog-title">Material Components Catalog</span>
         </section>
         <section class="mdc-toolbar__section mdc-toolbar__section--align-end mdc-toolbar__section--shrink-to-fit" role="toolbar">
@@ -97,6 +95,47 @@
         </section>
       </div>
     </header>
+
+    <aside class="mdc-temporary-drawer">
+      <nav class="mdc-temporary-drawer__drawer">
+        <header class="mdc-temporary-drawer__header">
+          <div class="mdc-temporary-drawer__header-content mdc-theme--primary-bg mdc-theme--text-primary-on-primary">
+            Header here
+          </div>
+        </header>
+        <nav class="mdc-temporary-drawer__content mdc-list-group">
+          <div id="icon-with-text-demo" class="mdc-list">
+            <a class="mdc-list-item mdc-temporary-drawer--selected" href="#">
+              <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>Inbox
+            </a>
+            <a class="mdc-list-item" href="#">
+              <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>Star
+            </a>
+            <a class="mdc-list-item" href="#">
+              <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">send</i>Sent Mail
+            </a>
+            <a class="mdc-list-item" href="#">
+              <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">drafts</i>Drafts
+            </a>
+          </div>
+
+          <hr class="mdc-list-divider">
+
+          <div class="mdc-list">
+            <a class="mdc-list-item" href="#">
+              <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">email</i>All Mail
+            </a>
+            <a class="mdc-list-item" href="#">
+              <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">delete</i>Trash
+            </a>
+            <a class="mdc-list-item" href="#">
+              <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">report</i>Spam
+            </a>
+          </div>
+        </nav>
+      </nav>
+    </aside>
+
     <main class="mdc-toolbar-fixed-adjust mdc-main">
       <section class="mdc-component-section">
         <h2>Button</h2>
@@ -258,24 +297,36 @@
           </div>
         </aside>
       </section>
+
+      <section class="mdc-component-section">
+        <h2>Drawer</h2>
+
+        <p class="mdc-typography--body1">Click the menu icon at the top of the page to open the drawer.</p>
+      </section>
     </main>
 
     <script src="/assets/material-components-web.js" charset="utf-8"></script>
     <script>
       (function() {
-        const menuEl = document.querySelector('#theme-menu');
-        const menu = new mdc.menu.MDCSimpleMenu(menuEl);
-        const actionEl = document.querySelector('#theme-action');
-        actionEl.addEventListener('click', function() {
-          menu.open = !menu.open;
+        /*
+         * Theme
+         */
+
+        const themeActionEl = document.querySelector('#theme-action');
+        const themeMenuEl = document.querySelector('#theme-menu');
+        const themeMenu = new mdc.menu.MDCSimpleMenu(themeMenuEl);
+
+        themeActionEl.addEventListener('click', function() {
+          themeMenu.open = !themeMenu.open;
         });
-        menuEl.addEventListener('MDCSimpleMenu:selected', function(evt) {
+
+        themeMenuEl.addEventListener('MDCSimpleMenu:selected', function(evt) {
           const detail = evt.detail;
           const item = detail.item;
           const color = item.dataset.color;
 
           if (color) {
-            const selectedItems = [].slice.call(menuEl.querySelectorAll('[data-color].mdc-list-item--selected'));
+            const selectedItems = [].slice.call(themeMenuEl.querySelectorAll('[data-color].mdc-list-item--selected'));
             selectedItems.forEach(function(colorIcon) {
               colorIcon.classList.remove('mdc-list-item--selected');
             });
@@ -303,22 +354,6 @@
           }
         });
 
-        document.querySelector('#indeterminate-checkbox').indeterminate = true;
-
-        document.querySelector('#toggle-indeterminate').addEventListener('click', function(e) {
-          const checkboxes = [].slice.call(document.querySelectorAll('.mdc-checkbox-wrap .mdc-checkbox__native-control'));
-          checkboxes.forEach(function(checkbox) {
-            checkbox.indeterminate = !checkbox.indeterminate;
-          });
-        });
-
-        document.querySelector('#toggle-align-end').addEventListener('click', function(e) {
-          const formFields = [].slice.call(document.querySelectorAll('.mdc-form-field.mdc-checkbox-wrap'));
-          formFields.forEach(function(formField) {
-            formField.classList.toggle('mdc-form-field--align-end');
-          });
-        });
-
         // TODO(acdvorak): This is probably a bad idea; it's tightly coupled to webpack's current implementation.
         function swapTheme(color) {
           function headElems(query) {
@@ -344,7 +379,7 @@
               const first100 = first5000.substring(0, 100);
 
               if ((first100.indexOf('@import') > -1 &&
-                  first100.indexOf('normalize') > -1) ||
+                      first100.indexOf('normalize') > -1) ||
                   first5000.indexOf('.mdc-animation-') > -1) {
                 style.parentElement.removeChild(style);
               }
@@ -355,6 +390,46 @@
             });
           }, 1000);
         }
+
+        /*
+         * Checkbox
+         */
+
+        document.querySelector('#indeterminate-checkbox').indeterminate = true;
+
+        document.querySelector('#toggle-indeterminate').addEventListener('click', function(e) {
+          const checkboxes = [].slice.call(document.querySelectorAll('.mdc-checkbox-wrap .mdc-checkbox__native-control'));
+          checkboxes.forEach(function(checkbox) {
+            checkbox.indeterminate = !checkbox.indeterminate;
+          });
+        });
+
+        document.querySelector('#toggle-align-end').addEventListener('click', function(e) {
+          const formFields = [].slice.call(document.querySelectorAll('.mdc-form-field.mdc-checkbox-wrap'));
+          formFields.forEach(function(formField) {
+            formField.classList.toggle('mdc-form-field--align-end');
+          });
+        });
+
+        /*
+         * Drawer
+         */
+
+        const MDCTemporaryDrawer = mdc.drawer.MDCTemporaryDrawer;
+        const drawerEl = document.querySelector('.mdc-temporary-drawer');
+        const drawer = new MDCTemporaryDrawer(drawerEl);
+
+        document.querySelector('.demo-menu').addEventListener('click', function() {
+          drawer.open = true;
+        });
+
+        drawerEl.addEventListener('MDCTemporaryDrawer:open', function() {
+          console.log('Received MDCTemporaryDrawer:open');
+        });
+
+        drawerEl.addEventListener('MDCTemporaryDrawer:close', function() {
+          console.log('Received MDCTemporaryDrawer:close');
+        });
       })();
     </script>
   </body>
