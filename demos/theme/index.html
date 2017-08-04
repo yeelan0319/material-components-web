@@ -355,6 +355,55 @@
           </button>
         </fieldset>
       </section>
+
+      <section class="mdc-component-section">
+        <h2>Icon Toggle</h2>
+
+        <div class="demo-icon-toggle__row">
+          <div class="mdc-elevation--z2 demo-icon-toggle__tile">
+            <h3>Primary Colored Icon</h3>
+
+            <i class="mdc-icon-toggle mdc-icon-toggle--primary material-icons"
+               role="button"
+               aria-label="Add to favorites"
+               aria-pressed="false"
+               tabindex="0"
+               data-toggle-on='{"content": "favorite", "label": "Remove From Favorites"}'
+               data-toggle-off='{"content": "favorite_border", "label": "Add to Favorites"}'>
+              favorite_border
+            </i>
+          </div>
+
+          <div class="mdc-elevation--z2 demo-icon-toggle__tile">
+            <h3>Accent Colored Icon</h3>
+
+            <i class="mdc-icon-toggle mdc-icon-toggle--accent material-icons"
+               role="button"
+               aria-label="Add to favorites"
+               aria-pressed="false"
+               tabindex="0"
+               data-toggle-on='{"content": "favorite", "label": "Remove From Favorites"}'
+               data-toggle-off='{"content": "favorite_border", "label": "Add to Favorites"}'>
+              favorite_border
+            </i>
+          </div>
+
+          <div class="mdc-elevation--z2 demo-icon-toggle__tile">
+            <h3>Disabled Icon</h3>
+
+            <i class="mdc-icon-toggle mdc-icon-toggle--disabled material-icons"
+               role="button"
+               aria-label="Add to favorites"
+               aria-pressed="false"
+               aria-disabled="true"
+               tabindex="-1"
+               data-toggle-on='{"content": "favorite", "label": "Remove From Favorites"}'
+               data-toggle-off='{"content": "favorite_border", "label": "Add to Favorites"}'>
+              favorite_border
+            </i>
+          </div>
+        </div>
+      </section>
     </main>
 
     <script src="/assets/material-components-web.js" charset="utf-8"></script>
@@ -482,6 +531,15 @@
         drawerEl.addEventListener('MDCTemporaryDrawer:close', function() {
           console.log('Received MDCTemporaryDrawer:close');
         });
+
+        /*
+         * Icon Toggle
+         */
+
+        const nodes = document.querySelectorAll('.mdc-icon-toggle');
+        for (let i = 0, node; node = nodes[i]; i++) {
+          mdc.iconToggle.MDCIconToggle.attachTo(node);
+        }
       })();
     </script>
   </body>

@@ -163,3 +163,26 @@ fieldset {
 .mdc-fab-fieldset-demo .mdc-fab {
   margin: 16px;
 }
+
+/*
+ * Icon Toggle
+ */
+
+.mdc-icon-toggle {
+  // .material-icons and .mdc-icon-toggle each set different `display` values. Whichever CSS file is imported last
+  // will win, so prevent them from fighting by specifying the value we want here.
+  display: inline-flex;
+}
+
+.demo-icon-toggle__row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.demo-icon-toggle__tile {
+  width: 200px;
+  margin: 10px 10px 0 0;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
