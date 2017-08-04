@@ -18,11 +18,11 @@
 
 .mdc-color-radio {
   display: block;
-  border: 1px solid $mdc-theme-grey-500;
+  border: 1px solid $mdc-color-grey-500;
   border-radius: 50%;
 
   @include mdc-theme-dark {
-    border-color: $mdc-theme-grey-100;
+    border-color: $mdc-color-grey-100;
   }
 }
 
@@ -33,61 +33,61 @@
 }
 
 [data-color="grey-900"] .mdc-color-radio__inner {
-  border-color: $mdc-theme-grey-900 $mdc-theme-light-green-a700 $mdc-theme-light-green-a700 $mdc-theme-grey-900;
+  border-color: $mdc-color-grey-900 $mdc-color-light-green-a700 $mdc-color-light-green-a700 $mdc-color-grey-900;
 }
 
 [data-color="grey-500"] .mdc-color-radio__inner {
-  border-color: $mdc-theme-grey-500 $mdc-theme-light-green-a400 $mdc-theme-light-green-a400 $mdc-theme-grey-500;
+  border-color: $mdc-color-grey-500 $mdc-color-light-green-a400 $mdc-color-light-green-a400 $mdc-color-grey-500;
 }
 
 [data-color="grey-100"] .mdc-color-radio__inner {
-  border-color: $mdc-theme-grey-100 $mdc-theme-light-green-a100 $mdc-theme-light-green-a100 $mdc-theme-grey-100;
+  border-color: $mdc-color-grey-100 $mdc-color-light-green-a100 $mdc-color-light-green-a100 $mdc-color-grey-100;
 }
 
 [data-color="red-900"] .mdc-color-radio__inner {
-  border-color: $mdc-theme-red-900 $mdc-theme-light-blue-900 $mdc-theme-light-blue-900 $mdc-theme-red-900;
+  border-color: $mdc-color-red-900 $mdc-color-light-blue-900 $mdc-color-light-blue-900 $mdc-color-red-900;
 }
 
 [data-color="red-500"] .mdc-color-radio__inner {
-  border-color: $mdc-theme-red-500 $mdc-theme-light-blue-500 $mdc-theme-light-blue-500 $mdc-theme-red-500;
+  border-color: $mdc-color-red-500 $mdc-color-light-blue-500 $mdc-color-light-blue-500 $mdc-color-red-500;
 }
 
 [data-color="red-100"] .mdc-color-radio__inner {
-  border-color: $mdc-theme-red-100 $mdc-theme-light-blue-100 $mdc-theme-light-blue-100 $mdc-theme-red-100;
+  border-color: $mdc-color-red-100 $mdc-color-light-blue-100 $mdc-color-light-blue-100 $mdc-color-red-100;
 }
 
 [data-color="blue-900"] .mdc-color-radio__inner {
-  border-color: $mdc-theme-blue-900 $mdc-theme-yellow-900 $mdc-theme-yellow-900 $mdc-theme-blue-900;
+  border-color: $mdc-color-blue-900 $mdc-color-yellow-900 $mdc-color-yellow-900 $mdc-color-blue-900;
 }
 
 [data-color="blue-500"] .mdc-color-radio__inner {
-  border-color: $mdc-theme-blue-500 $mdc-theme-yellow-500 $mdc-theme-yellow-500 $mdc-theme-blue-500;
+  border-color: $mdc-color-blue-500 $mdc-color-yellow-500 $mdc-color-yellow-500 $mdc-color-blue-500;
 }
 
 [data-color="blue-100"] .mdc-color-radio__inner {
-  border-color: $mdc-theme-blue-100 $mdc-theme-yellow-100 $mdc-theme-yellow-100 $mdc-theme-blue-100;
+  border-color: $mdc-color-blue-100 $mdc-color-yellow-100 $mdc-color-yellow-100 $mdc-color-blue-100;
 }
 
 [data-color="green-900"] .mdc-color-radio__inner {
-  border-color: $mdc-theme-green-900 $mdc-theme-orange-900 $mdc-theme-orange-900 $mdc-theme-green-900;
+  border-color: $mdc-color-green-900 $mdc-color-orange-900 $mdc-color-orange-900 $mdc-color-green-900;
 }
 
 [data-color="green-500"] .mdc-color-radio__inner {
-  border-color: $mdc-theme-green-500 $mdc-theme-orange-500 $mdc-theme-orange-500 $mdc-theme-green-500;
+  border-color: $mdc-color-green-500 $mdc-color-orange-500 $mdc-color-orange-500 $mdc-color-green-500;
 }
 
 [data-color="green-100"] .mdc-color-radio__inner {
-  border-color: $mdc-theme-green-100 $mdc-theme-orange-100 $mdc-theme-orange-100 $mdc-theme-green-100;
+  border-color: $mdc-color-green-100 $mdc-color-orange-100 $mdc-color-orange-100 $mdc-color-green-100;
 }
 
 [data-color="yellow-900"] .mdc-color-radio__inner {
-  border-color: $mdc-theme-yellow-900 $mdc-theme-brown-900 $mdc-theme-brown-900 $mdc-theme-yellow-900;
+  border-color: $mdc-color-yellow-900 $mdc-color-brown-900 $mdc-color-brown-900 $mdc-color-yellow-900;
 }
 
 [data-color="yellow-500"] .mdc-color-radio__inner {
-  border-color: $mdc-theme-yellow-500 $mdc-theme-brown-500 $mdc-theme-brown-500 $mdc-theme-yellow-500;
+  border-color: $mdc-color-yellow-500 $mdc-color-brown-500 $mdc-color-brown-500 $mdc-color-yellow-500;
 }
 
 [data-color="yellow-100"] .mdc-color-radio__inner {
-  border-color: $mdc-theme-yellow-100 $mdc-theme-brown-100 $mdc-theme-brown-100 $mdc-theme-yellow-100;
+  border-color: $mdc-color-yellow-100 $mdc-color-brown-100 $mdc-color-brown-100 $mdc-color-yellow-100;
 }
