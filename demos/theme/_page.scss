@@ -141,3 +141,16 @@ button code {
   position: relative;
   justify-content: unset;
 }
+
+/*
+ * Floating Action Button (FAB)
+ */
+
+/* Make the demo look a little bit better */
+.mdc-fab-fieldset-demo {
+  margin-bottom: .5rem;
+}
+
+.mdc-fab-fieldset-demo .mdc-fab {
+  margin: 16px;
+}
