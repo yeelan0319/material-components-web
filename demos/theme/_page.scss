@@ -16,22 +16,33 @@
 
 @import "../../packages/mdc-theme/color_palette";
 
-// stylelint-disable selector-class-pattern
+// stylelint-disable selector-class-pattern, selector-max-type
 
 /*
- * Global
+ * Global styles
  */
 
+// TODO(acdvorak): Figure out why this is necessary to prevent jank when switching themes.
+fieldset {
+  padding: 0 !important;
+}
+
+// TODO(acdvorak): Should we move this to mdc-theme?
 .mdc-theme--dark {
   background-color: $material-color-grey-800;
+  color: map-get($mdc-theme-property-values, text-primary-on-dark);
 }
+
+/*
+ * Page header
+ */
 
 .mdc-toolbar__icon {
   /* TODO(advorak): Move this to mdc-shared-icon-style mixin */
   background-color: transparent;
 }
 
-.mdc-list-item--selected {
+.demo-theme-menu__list-item--selected {
   background-color: $material-color-grey-200;
   box-shadow: inset 0 0 5px $material-color-grey-500;
 
@@ -41,54 +52,50 @@
   }
 }
 
-.mdc-main {
+/*
+ * Page content
+ */
+
+.demo-main {
   padding: 24px;
 }
 
-.mdc-component-section + .mdc-component-section {
+.demo-component-section + .demo-component-section {
   margin-top: 36px;
 }
 
-// TODO(acdvorak): Use classes instead?
-// stylelint-disable-next-line plugin/selector-bem-pattern, selector-max-type
-button code {
-  font-size: smaller;
-}
-
-// TODO(acdvorak): Figure out why this is necessary to prevent jank when switching themes.
-// stylelint-disable-next-line plugin/selector-bem-pattern, selector-max-type
-fieldset {
-  padding: 0 !important;
-}
-
 /*
- * Button
+ * Button demo
  */
 
-.mdc-button-demo {
-  margin: 10px;
-}
-
-.mdc-fieldset-demo + .mdc-fieldset-demo {
+.demo-fieldset--button + .demo-fieldset--button {
   margin-top: 16px;
 }
 
+.demo-button {
+  margin: 10px;
+}
+
+.demo-button__code {
+  font-size: smaller;
+}
+
 /*
- * Card
+ * Card demo
  */
 
-.mdc-card-demo-tile {
+.demo-card-wrap {
   display: inline-block;
   width: 350px;
   margin: 24px;
   vertical-align: top;
 }
 
-.mdc-card-demo--with-avatar .mdc-card__primary {
+.demo-card--with-avatar .mdc-card__primary {
   position: relative;
 }
 
-.mdc-card-demo--with-avatar .mdc-card-demo__avatar {
+.demo-card--with-avatar .demo-card__avatar {
   position: absolute;
   background: #bdbdbd;
   height: 2.5rem;
@@ -98,18 +105,18 @@ fieldset {
   border-radius: 50%;
 }
 
-.mdc-card-demo--with-avatar .mdc-card__title,
-.mdc-card-demo--with-avatar .mdc-card__subtitle {
+.demo-card--with-avatar .mdc-card__title,
+.demo-card--with-avatar .mdc-card__subtitle {
   margin-left: 56px;
 }
 
-[dir="rtl"] .mdc-card-demo--with-avatar .mdc-card__title,
-[dir="rtl"] .mdc-card-demo--with-avatar .mdc-card__subtitle {
+[dir="rtl"] .demo-card--with-avatar .mdc-card__title,
+[dir="rtl"] .demo-card--with-avatar .mdc-card__subtitle {
   margin-right: 56px;
   margin-left: initial;
 }
 
-.mdc-card-demo--small .mdc-card__media {
+.demo-card--small .mdc-card__media {
   background-image: url("../images/1-1.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -118,54 +125,53 @@ fieldset {
 }
 
 /*
- * Checkbox
+ * Checkbox demo
  */
 
-.mdc-checkbox-row {
+.demo-checkbox-row {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
 }
 
-.mdc-checkbox-wrap,
-.mdc-checkbox-toggle {
+.demo-checkbox-wrap,
+.demo-checkbox-toggle {
   margin-right: 10px;
 }
 
-.mdc-checkbox-wrap + .mdc-checkbox-toggle {
+.demo-checkbox-wrap + .demo-checkbox-toggle {
   margin-left: 20px;
 }
 
-.mdc-checkbox-wrap {
+.demo-checkbox-wrap {
   // TODO(acdvorak): Document this requirement in mdc-checkbox or fix it directly
   //display: inline-flex;
   //align-items: center;
 }
 
 /*
- * Dialog
+ * Dialog demo
  */
 
-.mdc-dialog--demo {
+.demo-dialog {
   position: relative;
   justify-content: unset;
 }
 
 /*
- * Floating Action Button (FAB)
+ * Floating Action Button (FAB) demo
  */
 
-/* Make the demo look a little bit better */
-.mdc-fab-fieldset-demo {
+.demo-fieldset--fab {
   margin-bottom: .5rem;
 }
 
-.mdc-fab-fieldset-demo .mdc-fab {
+.demo-fieldset--fab .mdc-fab {
   margin: 16px;
 }
 
 /*
- * Icon Toggle
+ * Icon Toggle demo
  */
 
 .mdc-icon-toggle {
@@ -188,7 +194,7 @@ fieldset {
 }
 
 /*
- * Linear Progress
+ * Linear Progress demo
  */
 
 .demo-linear-progress__row {

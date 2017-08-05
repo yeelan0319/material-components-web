@@ -28,7 +28,7 @@
     <header class="mdc-toolbar mdc-toolbar--fixed">
       <div class="mdc-toolbar__row">
         <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
-          <button class="demo-menu material-icons mdc-toolbar__icon--menu">menu</button>
+          <button class="demo-menu-action material-icons mdc-toolbar__icon--menu">menu</button>
           <span class="mdc-toolbar__title catalog-title">Material Components Catalog</span>
         </section>
         <section class="mdc-toolbar__section mdc-toolbar__section--align-end mdc-toolbar__section--shrink-to-fit" role="toolbar">
@@ -36,7 +36,7 @@
             <button id="theme-action" class="material-icons mdc-toolbar__icon" aria-label="Change color theme">palette</button>
             <div class="mdc-simple-menu" style="position: absolute;" tabindex="-1" id="theme-menu">
               <ul class="mdc-simple-menu__items mdc-list" role="menu" aria-hidden="true">
-                <li class="mdc-list-item mdc-list-item--selected" role="menuitem" tabindex="0" data-color="grey-900">
+                <li class="mdc-list-item demo-theme-menu__list-item--selected" role="menuitem" tabindex="0" data-color="grey-900">
                   <div class="mdc-list-item__start-detail">
                     <i class="mdc-color-radio">
                       <span class="mdc-color-radio__inner"></span>
@@ -77,13 +77,13 @@
                   Yellow 500 / Brown 500
                 </li>
                 <li class="mdc-list-divider" role="separator"></li>
-                <li class="mdc-list-item" role="menuitem" tabindex="0" id="dark-mode-toggle">
+                <li class="mdc-list-item" role="menuitem" tabindex="0" id="theme-toggle--dark-mode">
                   <div class="mdc-list-item__start-detail">
                     <i class="material-icons" style="visibility: hidden;">check</i>
                   </div>
                   Dark mode
                 </li>
-                <li class="mdc-list-item" role="menuitem" tabindex="0" id="rtl-toggle">
+                <li class="mdc-list-item" role="menuitem" tabindex="0" id="theme-toggle--rtl">
                   <div class="mdc-list-item__start-detail">
                     <i class="material-icons" style="visibility: hidden;">check</i>
                   </div>
@@ -104,7 +104,7 @@
           </div>
         </header>
         <nav class="mdc-temporary-drawer__content mdc-list-group">
-          <div id="icon-with-text-demo" class="mdc-list">
+          <div class="mdc-list">
             <a class="mdc-list-item mdc-temporary-drawer--selected" href="#">
               <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>Inbox
             </a>
@@ -136,35 +136,35 @@
       </nav>
     </aside>
 
-    <main class="mdc-toolbar-fixed-adjust mdc-main">
-      <section class="mdc-component-section">
-        <h2>Button</h2>
+    <main class="mdc-toolbar-fixed-adjust demo-main">
+      <section class="demo-component-section">
+        <h2 class="mdc-typography--headline">Button</h2>
 
-        <fieldset class="mdc-fieldset-demo">
-          <legend>Enabled</legend>
+        <fieldset class="demo-fieldset--button">
+          <legend class="mdc-typography--subheading2">Enabled</legend>
 
-          <button class="mdc-button mdc-button-demo">Flat</button>
-          <button class="mdc-button mdc-button--raised mdc-button-demo">Raised</button>
-          <button class="mdc-button mdc-button--raised mdc-button--primary mdc-button-demo">Raised + Primary</button>
-          <button class="mdc-button mdc-button--accent mdc-button-demo">Flat + Accent</button>
-          <button class="mdc-button mdc-button--raised mdc-button--accent mdc-button-demo">Raised + Accent</button>
+          <button class="mdc-button demo-button">Flat</button>
+          <button class="mdc-button mdc-button--raised demo-button">Raised</button>
+          <button class="mdc-button mdc-button--raised mdc-button--primary demo-button">Raised + Primary</button>
+          <button class="mdc-button mdc-button--accent demo-button">Flat + Accent</button>
+          <button class="mdc-button mdc-button--raised mdc-button--accent demo-button">Raised + Accent</button>
         </fieldset>
 
-        <fieldset class="mdc-fieldset-demo" disabled>
-          <legend>Disabled</legend>
+        <fieldset class="demo-fieldset--button" disabled>
+          <legend class="mdc-typography--subheading2">Disabled</legend>
 
-          <button class="mdc-button mdc-button-demo">Flat</button>
-          <button class="mdc-button mdc-button--raised mdc-button-demo">Raised</button>
-          <button class="mdc-button mdc-button--raised mdc-button--primary mdc-button-demo">Raised + Primary</button>
-          <button class="mdc-button mdc-button--accent mdc-button-demo">Flat + Accent</button>
-          <button class="mdc-button mdc-button--raised mdc-button--accent mdc-button-demo">Raised + Accent</button>
+          <button class="mdc-button demo-button">Flat</button>
+          <button class="mdc-button mdc-button--raised demo-button">Raised</button>
+          <button class="mdc-button mdc-button--raised mdc-button--primary demo-button">Raised + Primary</button>
+          <button class="mdc-button mdc-button--accent demo-button">Flat + Accent</button>
+          <button class="mdc-button mdc-button--raised mdc-button--accent demo-button">Raised + Accent</button>
         </fieldset>
       </section>
 
-      <section class="mdc-component-section" hidden>
-        <h2>Card</h2>
+      <section class="demo-component-section" hidden>
+        <h2 class="mdc-typography--headline">Card</h2>
 
-        <div class="mdc-card-demo-tile">
+        <div class="demo-card-wrap">
           <div class="mdc-card">
             <section class="mdc-card__primary">
               <h1 class="mdc-card__title mdc-card__title--large">Title goes here</h1>
@@ -181,10 +181,10 @@
           </div>
         </div>
 
-        <div class="mdc-card-demo-tile">
-          <div class="mdc-card mdc-card-demo--with-avatar">
+        <div class="demo-card-wrap">
+          <div class="mdc-card demo-card--with-avatar">
             <section class="mdc-card__primary">
-              <div class="mdc-card-demo__avatar"></div>
+              <div class="demo-card__avatar"></div>
               <h1 class="mdc-card__title">Title</h1>
               <h2 class="mdc-card__subtitle">Subhead</h2>
             </section>
@@ -198,8 +198,8 @@
           </div>
         </div>
 
-        <div class="mdc-card-demo-tile">
-          <div class="mdc-card mdc-card-demo--small">
+        <div class="demo-card-wrap">
+          <div class="mdc-card demo-card--small">
             <section class="mdc-card__media">
               <h1 class="mdc-card__title mdc-card__title--large">Title</h1>
             </section>
@@ -210,11 +210,11 @@
         </div>
       </section>
 
-      <section class="mdc-component-section">
-        <h2>Checkbox</h2>
+      <section class="demo-component-section">
+        <h2 class="mdc-typography--headline">Checkbox</h2>
 
-        <div class="mdc-checkbox-row">
-          <div class="mdc-form-field mdc-checkbox-wrap">
+        <div class="demo-checkbox-row">
+          <div class="mdc-form-field demo-checkbox-wrap">
             <div class="mdc-checkbox">
               <input type="checkbox"
                      id="enabled-checkbox"
@@ -233,7 +233,7 @@
             <label for="enabled-checkbox" id="enabled-checkbox-label">Enabled</label>
           </div>
 
-          <div class="mdc-form-field mdc-checkbox-wrap">
+          <div class="mdc-form-field demo-checkbox-wrap">
             <div class="mdc-checkbox">
               <input type="checkbox"
                      id="indeterminate-checkbox"
@@ -252,7 +252,7 @@
             <label for="indeterminate-checkbox" id="indeterminate-checkbox-label">Indeterminate</label>
           </div>
 
-          <div class="mdc-form-field mdc-checkbox-wrap">
+          <div class="mdc-form-field demo-checkbox-wrap">
             <div class="mdc-checkbox mdc-checkbox--disabled">
               <input type="checkbox"
                      id="disabled-checkbox"
@@ -272,15 +272,15 @@
             <label for="disabled-checkbox" id="disabled-checkbox-label">Disabled</label>
           </div>
 
-          <button type="button" class="mdc-checkbox-toggle" id="toggle-indeterminate">Toggle <code>indeterminate</code></button>
-          <button type="button" class="mdc-checkbox-toggle" id="toggle-align-end">Toggle <code>--align-end</code></button>
+          <button type="button" class="demo-checkbox-toggle" id="checkbox-toggle--indeterminate">Toggle <code class="demo-button__code">indeterminate</code></button>
+          <button type="button" class="demo-checkbox-toggle" id="checkbox-toggle--align-end">Toggle <code class="demo-button__code">--align-end</code></button>
         </div>
       </section>
 
-      <section class="mdc-component-section" hidden>
-        <h2>Dialog</h2>
+      <section class="demo-component-section" hidden>
+        <h2 class="mdc-typography--headline">Dialog</h2>
 
-        <aside class="mdc-dialog mdc-dialog--open mdc-dialog--demo">
+        <aside class="mdc-dialog mdc-dialog--open demo-dialog">
           <div class="mdc-dialog__surface">
             <header class="mdc-dialog__header">
               <h2 id="mdc-dialog-default-label" class="mdc-dialog__header__title">
@@ -298,17 +298,17 @@
         </aside>
       </section>
 
-      <section class="mdc-component-section">
-        <h2>Drawer</h2>
+      <section class="demo-component-section">
+        <h2 class="mdc-typography--headline">Drawer</h2>
 
         <p class="mdc-typography--body1">Click the menu icon at the top of the page to open the drawer.</p>
       </section>
 
-      <section class="mdc-component-section">
-        <h2>Floating Action Button</h2>
+      <section class="demo-component-section">
+        <h2 class="mdc-typography--headline">Floating Action Button</h2>
 
-        <fieldset class="mdc-fab-fieldset-demo">
-          <legend>Normal FABs</legend>
+        <fieldset class="demo-fieldset--fab">
+          <legend class="mdc-typography--subheading2">Normal FABs</legend>
           <button class="mdc-fab material-icons" aria-label="Favorite">
             <span class="mdc-fab__icon">
               favorite_border
@@ -331,8 +331,8 @@
           </button>
         </fieldset>
 
-        <fieldset class="mdc-fab-fieldset-demo" disabled>
-          <legend>Disabled FABs</legend>
+        <fieldset class="demo-fieldset--fab" disabled>
+          <legend class="mdc-typography--subheading2">Disabled FABs</legend>
           <button class="mdc-fab material-icons" aria-label="Favorite">
             <span class="mdc-fab__icon">
               favorite_border
@@ -356,12 +356,12 @@
         </fieldset>
       </section>
 
-      <section class="mdc-component-section">
-        <h2>Icon Toggle</h2>
+      <section class="demo-component-section">
+        <h2 class="mdc-typography--headline">Icon Toggle</h2>
 
         <div class="demo-icon-toggle__row">
           <div class="mdc-elevation--z2 demo-icon-toggle__tile">
-            <h3>Primary Colored Icon</h3>
+            <h3 class="mdc-typography--subheading2">Primary Colored Icon</h3>
 
             <i class="mdc-icon-toggle mdc-icon-toggle--primary material-icons"
                role="button"
@@ -375,7 +375,7 @@
           </div>
 
           <div class="mdc-elevation--z2 demo-icon-toggle__tile">
-            <h3>Accent Colored Icon</h3>
+            <h3 class="mdc-typography--subheading2">Accent Colored Icon</h3>
 
             <i class="mdc-icon-toggle mdc-icon-toggle--accent material-icons"
                role="button"
@@ -389,7 +389,7 @@
           </div>
 
           <div class="mdc-elevation--z2 demo-icon-toggle__tile">
-            <h3>Disabled Icon</h3>
+            <h3 class="mdc-typography--subheading2">Disabled Icon</h3>
 
             <i class="mdc-icon-toggle mdc-icon-toggle--disabled material-icons"
                role="button"
@@ -405,11 +405,11 @@
         </div>
       </section>
 
-      <section class="mdc-component-section">
-        <h2>Linear Progress</h2>
+      <section class="demo-component-section">
+        <h2 class="mdc-typography--headline">Linear Progress</h2>
 
         <figure class="demo-linear-progress__row">
-          <figcaption>Indeterminate</figcaption>
+          <figcaption class="mdc-typography--subheading2">Indeterminate</figcaption>
           <div role="progressbar" class="mdc-linear-progress mdc-linear-progress--indeterminate">
             <div class="mdc-linear-progress__buffering-dots"></div>
             <div class="mdc-linear-progress__buffer"></div>
@@ -423,7 +423,7 @@
         </figure>
 
         <figure class="demo-linear-progress__row">
-          <figcaption>Buffer</figcaption>
+          <figcaption class="mdc-typography--subheading2">Buffer</figcaption>
           <div role="progressbar" class="mdc-linear-progress" data-buffer="true">
             <div class="mdc-linear-progress__buffering-dots"></div>
             <div class="mdc-linear-progress__buffer"></div>
@@ -437,7 +437,7 @@
         </figure>
 
         <figure class="demo-linear-progress__row">
-          <figcaption>Accent</figcaption>
+          <figcaption class="mdc-typography--subheading2">Accent</figcaption>
           <div role="progressbar" class="mdc-linear-progress mdc-linear-progress--accent">
             <div class="mdc-linear-progress__buffering-dots"></div>
             <div class="mdc-linear-progress__buffer"></div>
@@ -455,12 +455,34 @@
     <script src="/assets/material-components-web.js" charset="utf-8"></script>
     <script>
       (function() {
+        const toArray = function(arrayish) {
+          return [].slice.call(arrayish);
+        };
+
+        const qs = function(parentEl, query) {
+          // Only 1 argument was passed - e.g., qs('#foo').
+          if (typeof query === 'undefined') {
+            query = parentEl;
+            parentEl = document;
+          }
+          return parentEl.querySelector(query);
+        };
+
+        const qsAll = function(parentEl, query) {
+          // Only 1 argument was passed - e.g., qsAll('#foo').
+          if (typeof query === 'undefined') {
+            query = parentEl;
+            parentEl = document;
+          }
+          return toArray(parentEl.querySelectorAll(query));
+        };
+
         /*
          * Theme
          */
 
-        const themeActionEl = document.querySelector('#theme-action');
-        const themeMenuEl = document.querySelector('#theme-menu');
+        const themeActionEl = qs('#theme-action');
+        const themeMenuEl = qs('#theme-menu');
         const themeMenu = new mdc.menu.MDCSimpleMenu(themeMenuEl);
 
         themeActionEl.addEventListener('click', function() {
@@ -473,22 +495,22 @@
           const color = item.dataset.color;
 
           if (color) {
-            const selectedItems = [].slice.call(themeMenuEl.querySelectorAll('[data-color].mdc-list-item--selected'));
+            const selectedItems = qsAll(themeMenuEl, '[data-color].demo-theme-menu__list-item--selected');
             selectedItems.forEach(function(colorIcon) {
-              colorIcon.classList.remove('mdc-list-item--selected');
+              colorIcon.classList.remove('demo-theme-menu__list-item--selected');
             });
-            item.classList.add('mdc-list-item--selected');
+            item.classList.add('demo-theme-menu__list-item--selected');
             swapTheme(color);
-          } else if (item.id === 'dark-mode-toggle') {
-            const toggleIcon = item.querySelector('.material-icons');
+          } else if (item.id === 'theme-toggle--dark-mode') {
+            const toggleIconEl = item.querySelector('.material-icons');
             const rootClassList = document.documentElement.classList;
             rootClassList.toggle('mdc-theme--dark');
             if (rootClassList.contains('mdc-theme--dark')) {
-              toggleIcon.style.setProperty('visibility', '');
+              toggleIconEl.style.setProperty('visibility', '');
             } else {
-              toggleIcon.style.setProperty('visibility', 'hidden');
+              toggleIconEl.style.setProperty('visibility', 'hidden');
             }
-          } else if (item.id === 'rtl-toggle') {
+          } else if (item.id === 'theme-toggle--rtl') {
             const rootEl = document.documentElement;
             const toggleIcon = item.querySelector('.material-icons');
             if (rootEl.getAttribute('dir') === 'rtl') {
@@ -504,7 +526,7 @@
         // TODO(acdvorak): This is probably a bad idea; it's tightly coupled to webpack's current implementation.
         function swapTheme(color) {
           function headElems(query) {
-            return [].slice.call(document.head.querySelectorAll(query));
+            return qsAll(document.head, query);
           }
 
           const links = headElems('link[href^="blob:"]');
@@ -542,17 +564,17 @@
          * Checkbox
          */
 
-        document.querySelector('#indeterminate-checkbox').indeterminate = true;
+        qs('#indeterminate-checkbox').indeterminate = true;
 
-        document.querySelector('#toggle-indeterminate').addEventListener('click', function(e) {
-          const checkboxes = [].slice.call(document.querySelectorAll('.mdc-checkbox-wrap .mdc-checkbox__native-control'));
+        qs('#checkbox-toggle--indeterminate').addEventListener('click', function(e) {
+          const checkboxes = qsAll('.demo-checkbox-wrap .mdc-checkbox__native-control');
           checkboxes.forEach(function(checkbox) {
             checkbox.indeterminate = !checkbox.indeterminate;
           });
         });
 
-        document.querySelector('#toggle-align-end').addEventListener('click', function(e) {
-          const formFields = [].slice.call(document.querySelectorAll('.mdc-form-field.mdc-checkbox-wrap'));
+        qs('#checkbox-toggle--align-end').addEventListener('click', function(e) {
+          const formFields = qsAll('.demo-checkbox-wrap.mdc-form-field');
           formFields.forEach(function(formField) {
             formField.classList.toggle('mdc-form-field--align-end');
           });
@@ -562,11 +584,10 @@
          * Drawer
          */
 
-        const MDCTemporaryDrawer = mdc.drawer.MDCTemporaryDrawer;
-        const drawerEl = document.querySelector('.mdc-temporary-drawer');
-        const drawer = new MDCTemporaryDrawer(drawerEl);
+        const drawerEl = qs('.mdc-temporary-drawer');
+        const drawer = new mdc.drawer.MDCTemporaryDrawer(drawerEl);
 
-        document.querySelector('.demo-menu').addEventListener('click', function() {
+        qs('.demo-menu-action').addEventListener('click', function() {
           drawer.open = true;
         });
 
@@ -582,20 +603,20 @@
          * Icon Toggle
          */
 
-        const nodes = document.querySelectorAll('.mdc-icon-toggle');
-        for (let i = 0, node; node = nodes[i]; i++) {
-          mdc.iconToggle.MDCIconToggle.attachTo(node);
+        const iconToggleEls = qsAll('.mdc-icon-toggle');
+        for (let i = 0, iconToggleEl; iconToggleEl = iconToggleEls[i]; i++) {
+          mdc.iconToggle.MDCIconToggle.attachTo(iconToggleEl);
         }
 
         /*
          * Linear Progress
          */
 
-        const determinates = document.querySelectorAll('.mdc-linear-progress');
-        for (let i = 0, determinate; determinate = determinates[i]; i++) {
-          const linearProgress = mdc.linearProgress.MDCLinearProgress.attachTo(determinate);
+        const progressEls = qsAll('.mdc-linear-progress');
+        for (let i = 0, progressEl; progressEl = progressEls[i]; i++) {
+          const linearProgress = mdc.linearProgress.MDCLinearProgress.attachTo(progressEl);
           linearProgress.progress = 0.5;
-          if (determinate.dataset.buffer) {
+          if (progressEl.dataset.buffer) {
             linearProgress.buffer = 0.75;
           }
         }
