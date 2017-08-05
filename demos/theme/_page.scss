@@ -66,7 +66,11 @@ fieldset {
 
 .demo-component-section__heading .demo-component-section__permalink {
   color: inherit;
-  opacity: 0; // TODO(acdvorak): Accessibility
+  opacity: .15; // TODO(acdvorak): Accessibility
+
+  @include mdc-theme-dark {
+    opacity: .2;
+  }
 }
 
 .demo-component-section__permalink {
