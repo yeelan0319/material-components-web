@@ -561,6 +561,50 @@
         }
 
         /*
+         * Button
+         */
+
+        // Because we load our CSS via webpack, we need to ensure that all of the correct styles
+        // are applied before ripples are attached. Otherwise, ripples may use the computed styles of
+        // elements before our CSS is applied, leading to improper UX.
+        let buttonPollId = setInterval(function() {
+          const pos = getComputedStyle(document.querySelector('.mdc-button')).position;
+          if (pos === 'relative') {
+            attachButtonRipples();
+            clearInterval(buttonPollId);
+          }
+        }, 250);
+
+        function attachButtonRipples() {
+          const btns = document.querySelectorAll('.mdc-button:not([data-demo-no-js])');
+          for (let i = 0, btn; btn = btns[i]; i++) {
+            mdc.ripple.MDCRipple.attachTo(btn);
+          }
+        }
+
+        /*
+         * FAB
+         */
+
+        // Because we load our CSS via webpack, we need to ensure that all of the correct styles
+        // are applied before ripples are attached. Otherwise, ripples may use the computed styles of
+        // elements before our CSS is applied, leading to improper UX.
+        let fabPollId = setInterval(function() {
+          const pos = getComputedStyle(document.querySelector('.mdc-fab.material-icons')).position;
+          if (pos === 'relative') {
+            attachFabRipples();
+            clearInterval(fabPollId);
+          }
+        }, 250);
+
+        function attachFabRipples() {
+          const fabs = document.querySelectorAll('.mdc-fab:not([data-demo-no-js])');
+          for (let i = 0, fab; fab = fabs[i]; i++) {
+            mdc.ripple.MDCRipple.attachTo(fab);
+          }
+        }
+
+        /*
          * Checkbox
          */
 
