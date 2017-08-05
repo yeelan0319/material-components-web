@@ -64,6 +64,18 @@ fieldset {
   margin-top: 36px;
 }
 
+.demo-component-section__heading .demo-component-section__permalink {
+  color: inherit;
+  opacity: 0; // TODO(acdvorak): Accessibility
+}
+
+.demo-component-section__permalink {
+  .demo-component-section__heading:hover &,
+  .demo-component-section__heading--focus & {
+    opacity: 1; // TODO(acdvorak): Accessibility
+  }
+}
+
 /*
  * Button demo
  */

@@ -138,7 +138,7 @@
 
     <main class="mdc-toolbar-fixed-adjust demo-main">
       <section class="demo-component-section">
-        <h2 class="mdc-typography--headline">Button</h2>
+        <h2 class="mdc-typography--headline demo-component-section__heading">Button</h2>
 
         <fieldset class="demo-fieldset--button">
           <legend class="mdc-typography--subheading2">Enabled</legend>
@@ -162,7 +162,7 @@
       </section>
 
       <section class="demo-component-section" hidden>
-        <h2 class="mdc-typography--headline">Card</h2>
+        <h2 class="mdc-typography--headline demo-component-section__heading">Card</h2>
 
         <div class="demo-card-wrap">
           <div class="mdc-card">
@@ -211,7 +211,7 @@
       </section>
 
       <section class="demo-component-section">
-        <h2 class="mdc-typography--headline">Checkbox</h2>
+        <h2 class="mdc-typography--headline demo-component-section__heading">Checkbox</h2>
 
         <div class="demo-checkbox-row">
           <div class="mdc-form-field demo-checkbox-wrap">
@@ -278,7 +278,7 @@
       </section>
 
       <section class="demo-component-section" hidden>
-        <h2 class="mdc-typography--headline">Dialog</h2>
+        <h2 class="mdc-typography--headline demo-component-section__heading">Dialog</h2>
 
         <aside class="mdc-dialog mdc-dialog--open demo-dialog">
           <div class="mdc-dialog__surface">
@@ -299,13 +299,13 @@
       </section>
 
       <section class="demo-component-section">
-        <h2 class="mdc-typography--headline">Drawer</h2>
+        <h2 class="mdc-typography--headline demo-component-section__heading">Drawer</h2>
 
         <p class="mdc-typography--body1">Click the menu icon at the top of the page to open the drawer.</p>
       </section>
 
       <section class="demo-component-section">
-        <h2 class="mdc-typography--headline">Floating Action Button</h2>
+        <h2 class="mdc-typography--headline demo-component-section__heading">Floating Action Button</h2>
 
         <fieldset class="demo-fieldset--fab">
           <legend class="mdc-typography--subheading2">Normal FABs</legend>
@@ -357,7 +357,7 @@
       </section>
 
       <section class="demo-component-section">
-        <h2 class="mdc-typography--headline">Icon Toggle</h2>
+        <h2 class="mdc-typography--headline demo-component-section__heading">Icon Toggle</h2>
 
         <div class="demo-icon-toggle__row">
           <div class="mdc-elevation--z2 demo-icon-toggle__tile">
@@ -406,7 +406,7 @@
       </section>
 
       <section class="demo-component-section">
-        <h2 class="mdc-typography--headline">Linear Progress</h2>
+        <h2 class="mdc-typography--headline demo-component-section__heading">Linear Progress</h2>
 
         <figure class="demo-linear-progress__row">
           <figcaption class="mdc-typography--subheading2">Indeterminate</figcaption>
@@ -476,6 +476,36 @@
           }
           return toArray(parentEl.querySelectorAll(query));
         };
+
+        /*
+         * Component section heading permalinks
+         */
+
+        qsAll('.demo-component-section__heading').forEach(function(headingEl) {
+          let newId = headingEl.id;
+          if (!newId) {
+            newId = headingEl.innerText;
+            newId = newId.toLowerCase();
+            newId = newId.replace(/[^\w-]+/g, '-');
+            newId = newId.replace(/^-+|-+$/g, '');
+            newId = newId.replace(/-{2,}/g, '-');
+          }
+
+          let span = document.createElement('span');
+          span.innerHTML = `<a href="#${newId}" class="demo-component-section__permalink" id="${newId}" title="Permalink to this component demo">#</a>`;
+          headingEl.appendChild(document.createTextNode(' '));
+          headingEl.appendChild(span.firstElementChild);
+        });
+        document.addEventListener('focusin', function(e) {
+          if (e.target.classList.contains('demo-component-section__permalink')) {
+            e.target.parentElement.classList.add('demo-component-section__heading--focus');
+          }
+        });
+        document.addEventListener('focusout', function(e) {
+          if (e.target.classList.contains('demo-component-section__permalink')) {
+            e.target.parentElement.classList.remove('demo-component-section__heading--focus');
+          }
+        });
 
         /*
          * Theme
