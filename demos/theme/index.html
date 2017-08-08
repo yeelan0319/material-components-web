@@ -20,7 +20,30 @@
     <title>Color Theming - Material Components Catalog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="/images/logo_components_color_2x_web_48dp.png" />
-    <script src="/assets/demo-theme-grey-900.css.js" charset="utf-8"></script>
+    <script>
+      (function() {
+        let theme = 'grey-900';
+
+        const qsList = location.search.replace(/^[?]/, '').split('&');
+        const qsMap = {};
+        qsList.forEach(function(query) {
+          const split = query.split('=');
+          const key = split[0];
+          const value = split[1] || '';
+          if (!(key in qsMap)) {
+            qsMap[key] = [];
+          }
+          qsMap[key].push(value);
+        });
+
+        if ('theme' in qsMap) {
+          const values = qsMap['theme'];
+          theme = values[values.length - 1];
+        }
+
+        document.write(`<script src="/assets/demo-theme-${theme}.css.js" charset="utf-8"></` + `script>`);
+      })();
+    </script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   </head>
