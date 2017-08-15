@@ -474,8 +474,8 @@
           return [].slice.call(arrayish);
         };
 
-        const qs = function(parentEl, query) {
-          // Only 1 argument was passed - e.g., qs('#foo').
+        const get = function(parentEl, query) {
+          // Only 1 argument was passed - e.g., get('#foo').
           if (typeof query === 'undefined') {
             query = parentEl;
             parentEl = document;
@@ -483,8 +483,8 @@
           return parentEl.querySelector(query);
         };
 
-        const qsAll = function(parentEl, query) {
-          // Only 1 argument was passed - e.g., qsAll('#foo').
+        const getAll = function(parentEl, query) {
+          // Only 1 argument was passed - e.g., getAll('#foo').
           if (typeof query === 'undefined') {
             query = parentEl;
             parentEl = document;
@@ -496,7 +496,7 @@
          * Component section heading permalinks
          */
 
-        qsAll('.demo-component-section__heading').forEach(function(headingEl) {
+        getAll('.demo-component-section__heading').forEach(function(headingEl) {
           let newId = headingEl.id;
           if (!newId) {
             newId = headingEl.innerText;
@@ -526,8 +526,8 @@
          * Theme
          */
 
-        const themeActionEl = qs('#theme-action');
-        const themeMenuEl = qs('#theme-menu');
+        const themeActionEl = get('#theme-action');
+        const themeMenuEl = get('#theme-menu');
         const themeMenu = new mdc.menu.MDCSimpleMenu(themeMenuEl);
 
         themeActionEl.addEventListener('click', function() {
@@ -540,7 +540,7 @@
           const color = item.dataset.color;
 
           if (color) {
-            const selectedItems = qsAll(themeMenuEl, '[data-color].demo-theme-menu__list-item--selected');
+            const selectedItems = getAll(themeMenuEl, '[data-color].demo-theme-menu__list-item--selected');
             selectedItems.forEach(function(colorIcon) {
               colorIcon.classList.remove('demo-theme-menu__list-item--selected');
             });
@@ -571,14 +571,14 @@
         // TODO(acdvorak): Add IE 11 support
         window.addEventListener('message', function(event) {
           if (typeof event.data === 'string' && event.data.indexOf('webpackHotUpdate') === 0) {
-            qsAll(document.head, 'link[data-hot]').forEach(function(link) {
+            getAll(document.head, 'link[data-hot]').forEach(function(link) {
               link.href = link.href;
             });
           }
         });
 
         function swapTheme(color) {
-          qs('#theme-stylesheet').href = '/assets/demo-theme-' + color + '.css';
+          get('#theme-stylesheet').href = '/assets/demo-theme-' + color + '.css';
         }
 
         /*
@@ -629,17 +629,17 @@
          * Checkbox
          */
 
-        qs('#indeterminate-checkbox').indeterminate = true;
+        get('#indeterminate-checkbox').indeterminate = true;
 
-        qs('#checkbox-toggle--indeterminate').addEventListener('click', function(e) {
-          const checkboxes = qsAll('.demo-checkbox-wrap .mdc-checkbox__native-control');
+        get('#checkbox-toggle--indeterminate').addEventListener('click', function(e) {
+          const checkboxes = getAll('.demo-checkbox-wrap .mdc-checkbox__native-control');
           checkboxes.forEach(function(checkbox) {
             checkbox.indeterminate = !checkbox.indeterminate;
           });
         });
 
-        qs('#checkbox-toggle--align-end').addEventListener('click', function(e) {
-          const formFields = qsAll('.demo-checkbox-wrap.mdc-form-field');
+        get('#checkbox-toggle--align-end').addEventListener('click', function(e) {
+          const formFields = getAll('.demo-checkbox-wrap.mdc-form-field');
           formFields.forEach(function(formField) {
             formField.classList.toggle('mdc-form-field--align-end');
           });
@@ -649,10 +649,10 @@
          * Drawer
          */
 
-        const drawerEl = qs('.mdc-temporary-drawer');
+        const drawerEl = get('.mdc-temporary-drawer');
         const drawer = new mdc.drawer.MDCTemporaryDrawer(drawerEl);
 
-        qs('.demo-menu-action').addEventListener('click', function() {
+        get('.demo-menu-action').addEventListener('click', function() {
           drawer.open = true;
         });
 
@@ -668,7 +668,7 @@
          * Icon Toggle
          */
 
-        const iconToggleEls = qsAll('.mdc-icon-toggle');
+        const iconToggleEls = getAll('.mdc-icon-toggle');
         for (let i = 0, iconToggleEl; iconToggleEl = iconToggleEls[i]; i++) {
           mdc.iconToggle.MDCIconToggle.attachTo(iconToggleEl);
         }
@@ -677,7 +677,7 @@
          * Linear Progress
          */
 
-        const progressEls = qsAll('.mdc-linear-progress');
+        const progressEls = getAll('.mdc-linear-progress');
         for (let i = 0, progressEl; progressEl = progressEls[i]; i++) {
           const linearProgress = mdc.linearProgress.MDCLinearProgress.attachTo(progressEl);
           linearProgress.progress = 0.5;
