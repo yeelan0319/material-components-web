@@ -191,11 +191,11 @@ module.exports = [{
   devServer: {
     disableHostCheck: true,
   },
-  devtool: IS_DEV ? 'source-map' : false,
+  // devtool: IS_DEV ? 'source-map' : false,
   module: {
     rules: [{
       test: /\.scss$/,
-      use: IS_DEV ? [{loader: 'style-loader'}].concat(CSS_LOADER_CONFIG) : ExtractTextPlugin.extract({
+      use: ExtractTextPlugin.extract({
         fallback: 'style-loader',
         use: CSS_LOADER_CONFIG,
       }),
@@ -207,7 +207,7 @@ module.exports = [{
   ],
 }];
 
-if (IS_DEV) {
+if (0 && IS_DEV) {
   module.exports.push({
     name: 'demo-css',
     entry: {
