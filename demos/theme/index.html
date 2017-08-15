@@ -41,7 +41,7 @@
           theme = values[values.length - 1];
         }
 
-        document.write(`<script src="/assets/demo-theme-${theme}.css.js" charset="utf-8"></` + `script>`);
+        document.write('<link rel="stylesheet" href="/assets/demo-theme-' + theme + '.css" id="theme-stylesheet" data-hot>');
       })();
     </script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
@@ -67,29 +67,13 @@
                   </div>
                   Grey 900 / Light Green A700
                 </li>
-                <li class="mdc-list-item" role="menuitem" tabindex="0" data-color="red-500">
+                <li class="mdc-list-item" role="menuitem" tabindex="0" data-color="deep-purple-a700">
                   <div class="mdc-list-item__start-detail">
                     <i class="mdc-color-radio">
                       <span class="mdc-color-radio__inner"></span>
                     </i>
                   </div>
-                  Red 500 / Light Blue 500
-                </li>
-                <li class="mdc-list-item" role="menuitem" tabindex="0" data-color="blue-500">
-                  <div class="mdc-list-item__start-detail">
-                    <i class="mdc-color-radio">
-                      <span class="mdc-color-radio__inner"></span>
-                    </i>
-                  </div>
-                  Blue 500 / Yellow 500
-                </li>
-                <li class="mdc-list-item" role="menuitem" tabindex="0" data-color="green-500">
-                  <div class="mdc-list-item__start-detail">
-                    <i class="mdc-color-radio">
-                      <span class="mdc-color-radio__inner"></span>
-                    </i>
-                  </div>
-                  Green 500 / Orange 500
+                  Deep Purple A700 / Teal A400
                 </li>
                 <li class="mdc-list-item" role="menuitem" tabindex="0" data-color="yellow-500">
                   <div class="mdc-list-item__start-detail">
@@ -97,7 +81,15 @@
                       <span class="mdc-color-radio__inner"></span>
                     </i>
                   </div>
-                  Yellow 500 / Brown 500
+                  Yellow 500 / Blue 500
+                </li>
+                <li class="mdc-list-item" role="menuitem" tabindex="0" data-color="white">
+                  <div class="mdc-list-item__start-detail">
+                    <i class="mdc-color-radio">
+                      <span class="mdc-color-radio__inner"></span>
+                    </i>
+                  </div>
+                  White / Orange 500
                 </li>
                 <li class="mdc-list-divider" role="separator"></li>
                 <li class="mdc-list-item" role="menuitem" tabindex="0" id="theme-toggle--dark-mode">
@@ -515,7 +507,7 @@
           }
 
           let span = document.createElement('span');
-          span.innerHTML = `<a href="#${newId}" id="${newId}" class="demo-component-section__permalink" title="Permalink to this component demo">#</a>`;
+          span.innerHTML = '<a href="#' + newId + '" id="' + newId + '" class="demo-component-section__permalink" title="Permalink to this component demo">#</a>';
           headingEl.appendChild(document.createTextNode(' '));
           headingEl.appendChild(span.firstElementChild);
         });
@@ -576,41 +568,17 @@
           }
         });
 
-        // TODO(acdvorak): This is probably a bad idea; it's tightly coupled to webpack's current implementation.
-        function swapTheme(color) {
-          function headElems(query) {
-            return qsAll(document.head, query);
+        // TODO(acdvorak): Add IE 11 support
+        window.addEventListener('message', function(event) {
+          if (typeof event.data === 'string' && event.data.indexOf('webpackHotUpdate') === 0) {
+            qsAll(document.head, 'link[data-hot]').forEach(function(link) {
+              link.href = link.href;
+            });
           }
+        });
 
-          const links = headElems('link[href^="blob:"]');
-          const styles = headElems('style');
-          const scripts = headElems('script[src*="demo-theme-"]');
-
-          const newScript = document.createElement('script');
-          newScript.src = '/assets/demo-theme-' + color + '.css.js';
-          document.head.appendChild(newScript);
-
-          setTimeout(function() {
-            links.forEach(function(link) {
-              link.parentElement.removeChild(link);
-            });
-
-            styles.forEach(function(style) {
-              // Keep it fast in IE 11
-              const first5000 = style.innerHTML.substring(0, 5000);
-              const first100 = first5000.substring(0, 100);
-
-              if ((first100.indexOf('@import') > -1 &&
-                      first100.indexOf('normalize') > -1) ||
-                  first5000.indexOf('.mdc-animation-') > -1) {
-                style.parentElement.removeChild(style);
-              }
-            });
-
-            scripts.forEach(function(script) {
-              script.parentElement.removeChild(script);
-            });
-          }, 1000);
+        function swapTheme(color) {
+          qs('#theme-stylesheet').href = '/assets/demo-theme-' + color + '.css';
         }
 
         /*

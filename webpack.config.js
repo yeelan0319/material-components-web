@@ -212,11 +212,6 @@ if (IS_DEV) {
     name: 'demo-css',
     entry: {
       'demo-styles': path.resolve('./demos/demos.scss'),
-      'demo-theme-grey-900': path.resolve('./demos/theme/theme-grey-900.scss'),
-      'demo-theme-red-500': path.resolve('./demos/theme/theme-red-500.scss'),
-      'demo-theme-blue-500': path.resolve('./demos/theme/theme-blue-500.scss'),
-      'demo-theme-green-500': path.resolve('./demos/theme/theme-green-500.scss'),
-      'demo-theme-yellow-500': path.resolve('./demos/theme/theme-yellow-500.scss'),
     },
     output: {
       path: OUT_PATH,
@@ -234,6 +229,37 @@ if (IS_DEV) {
       }],
     },
     plugins: [
+      createBannerPlugin(),
+    ],
+  }, {
+    name: 'demo-theme-css',
+    entry: {
+      'demo-theme-grey-900': path.resolve('./demos/theme/theme-grey-900.scss'),
+      'demo-theme-deep-purple-a700': path.resolve('./demos/theme/theme-deep-purple-a700.scss'),
+      'demo-theme-yellow-500': path.resolve('./demos/theme/theme-yellow-500.scss'),
+      'demo-theme-white': path.resolve('./demos/theme/theme-white.scss'),
+    },
+    output: {
+      path: OUT_PATH,
+      publicPath: PUBLIC_PATH,
+      filename: '[name].css.js',
+    },
+    devServer: {
+      disableHostCheck: true,
+    },
+    // TODO(acdvorak): Get source maps working
+    // devtool: 'source-map',
+    module: {
+      rules: [{
+        test: /\.scss$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: CSS_LOADER_CONFIG,
+        }),
+      }],
+    },
+    plugins: [
+      new ExtractTextPlugin('[name].' + (IS_PROD ? 'min.' : '') + 'css'),
       createBannerPlugin(),
     ],
   });
