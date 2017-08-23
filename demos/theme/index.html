@@ -20,32 +20,6 @@
     <title>Color Theming - Material Components Catalog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="/images/logo_components_color_2x_web_48dp.png" />
-    <link rel="stylesheet" href="/assets/mdc.animation.css" data-hot>
-    <link rel="stylesheet" href="/assets/mdc.button.css" data-hot>
-    <link rel="stylesheet" href="/assets/mdc.card.css" data-hot>
-    <link rel="stylesheet" href="/assets/mdc.checkbox.css" data-hot>
-    <link rel="stylesheet" href="/assets/mdc.dialog.css" data-hot>
-    <link rel="stylesheet" href="/assets/mdc.drawer.css" data-hot>
-    <link rel="stylesheet" href="/assets/mdc.elevation.css" data-hot>
-    <link rel="stylesheet" href="/assets/mdc.fab.css" data-hot>
-    <link rel="stylesheet" href="/assets/mdc.form-field.css" data-hot>
-    <link rel="stylesheet" href="/assets/mdc.grid-list.css" data-hot>
-    <link rel="stylesheet" href="/assets/mdc.icon-toggle.css" data-hot>
-    <link rel="stylesheet" href="/assets/mdc.layout-grid.css" data-hot>
-    <link rel="stylesheet" href="/assets/mdc.linear-progress.css" data-hot>
-    <link rel="stylesheet" href="/assets/mdc.list.css" data-hot>
-    <link rel="stylesheet" href="/assets/mdc.menu.css" data-hot>
-    <link rel="stylesheet" href="/assets/mdc.radio.css" data-hot>
-    <link rel="stylesheet" href="/assets/mdc.ripple.css" data-hot>
-    <link rel="stylesheet" href="/assets/mdc.select.css" data-hot>
-    <link rel="stylesheet" href="/assets/mdc.slider.css" data-hot>
-    <link rel="stylesheet" href="/assets/mdc.snackbar.css" data-hot>
-    <link rel="stylesheet" href="/assets/mdc.switch.css" data-hot>
-    <link rel="stylesheet" href="/assets/mdc.tabs.css" data-hot>
-    <link rel="stylesheet" href="/assets/mdc.textfield.css" data-hot>
-    <link rel="stylesheet" href="/assets/mdc.theme.css" data-hot>
-    <link rel="stylesheet" href="/assets/mdc.toolbar.css" data-hot>
-    <link rel="stylesheet" href="/assets/mdc.typography.css" data-hot>
     <script>
       (function() {
         let theme = 'grey-900';
@@ -67,7 +41,7 @@
           theme = values[values.length - 1];
         }
 
-//        document.write('<link rel="stylesheet" href="/assets/demo-theme-' + theme + '.css" id="theme-stylesheet" data-hot>');
+        document.write('<link rel="stylesheet" href="/assets/demo-theme-' + theme + '.css" id="theme-stylesheet" data-hot>');
       })();
     </script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
@@ -594,52 +568,14 @@
           }
         });
 
-        // IE 11 and Edge
-        var updateExternalCssSync = function(oldLink, linkIdx, newHref) {
-          oldLink.setAttribute('href', newHref);
-        };
-
-        // All browsers except IE 11 and Edge
-        var updateExternalCssAsync = function(oldLink, linkIdx, newHref) {
-          var newLink = oldLink.cloneNode(true);
-          newLink.setAttribute('href', newHref);
-          newLink.addEventListener('load', function() {
-            setTimeout(function() {
-              // For unknowable reasons, IE 11 automatically removes existing `<link rel="stylesheet">` elements when a
-              // new one is added with the same base URL but a different query string. As a result, `oldLink` becomes
-              // detached from the DOM, so we need to check that it has a parent before removing it. Otherwise, IE 11
-              // throws a NotFoundError.
-              if (oldLink.parentNode) {
-                oldLink.parentNode.removeChild(oldLink);
-              }
-            }, 0);
-          });
-
-          oldLink.parentNode.insertBefore(newLink, oldLink);
-        };
-
-        var updateCss = function() {
-          getAll(document.head, 'link[data-hot]').forEach(function(oldLink, linkIdx) {
-            var oldHref = oldLink.getAttribute('href');
-            var newHref = oldHref.replace(/[?].*$/, '') + '?timestamp=' + (new Date()).getTime();
-
-            // TODO(acdvorak): Try to feature-detect this instead.
-            if (navigator.userAgent.indexOf(' Trident/') > -1 || navigator.userAgent.indexOf(' Edge/') > -1) {
-              updateExternalCssSync(oldLink, linkIdx, newHref);
-            } else {
-              updateExternalCssAsync(oldLink, linkIdx, newHref);
-            }
-          });
-        };
-
         // TODO(acdvorak): Add IE 11 support
         window.addEventListener('message', function(event) {
           if (typeof event.data === 'string' && event.data.indexOf('webpackHotUpdate') === 0) {
-            updateCss();
+            getAll(document.head, 'link[data-hot]').forEach(function(link) {
+              link.href = link.href;
+            });
           }
         });
-
-        window.updateCss = updateCss;
 
         function swapTheme(color) {
           get('#theme-stylesheet').href = '/assets/demo-theme-' + color + '.css';
