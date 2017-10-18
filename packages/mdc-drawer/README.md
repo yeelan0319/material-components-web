@@ -37,6 +37,19 @@ user interaction.
 npm install --save @material/drawer
 ```
 
+## Usage
+
+### Sass Mixins
+
+The following mixins apply to _all_ types of drawers.
+
+Unless otherwise stated, mixins should be applied to the top-level drawer element
+(e.g., `mdc-persistent-drawer` or `mdc-temporary-drawer`).
+
+Mixin | Description
+--- | ---
+`mdc-drawer-selected-item-ink-color($color)` | Sets the ink color of the currently selected `mdc-list-item`
+
 ## Permanent drawer usage
 
 A permanent drawer is always open, sitting to the side of the content. It is appropriate for any display size larger
