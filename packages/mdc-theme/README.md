@@ -16,12 +16,15 @@ path: /catalog/theme/
   </a>
 </div>-->
 
-This color palette comprises primary and secondary colors that can be used for illustration or to develop your brand colors.
+This color palette comprises primary and secondary colors that can be used for illustration or to develop your brand
+colors.
 
-MDC Theme is a foundational module that themes MDC Web components. The colors in this module are derived from three theme colors:
+MDC Theme is a foundational module that themes MDC Web components. The colors in this module are derived from three
+theme colors:
 
 * Primary: the primary color used in your application, applies to a number of UI elements.
-* Secondary: the secondary color used in your application, applies to a number of UI elements. (Previously called "accent".)
+* Secondary: the secondary color used in your application, applies to a number of UI elements.
+  (Previously called "accent".)
 * Background: the background color for your application, aka the color on top of which your UI is drawn.
 
 and five text styles:
@@ -32,11 +35,18 @@ and five text styles:
 * Disabled: used for text in disabled components and content
 * Icon: used for icons
 
-> **A note about Primary and Secondary**, don't confuse primary/secondary _color_ with primary/secondary _text_. The former refers to the primary/secondary _theme_ color that is used to establish a visual identity and color many parts of your application. The latter refers to the style of text that is most prominent (low opacity, high contrast), and used to display most content.
+> **A note about Primary and Secondary**: don't confuse primary/secondary _color_ with primary/secondary _text_. The
+> former refers to the primary/secondary _theme_ color that is used to establish a visual identity and color many parts
+> of your application. The latter refers to the style of text that is most prominent (low opacity, high contrast), and
+> used to display most content.
 
-Some components can change their appearance when in a Dark Theme context, aka placed on top of a dark background. There are two ways to specify if a component is in a Dark Theme context. The first is to add `mdc-theme--dark` to a *container* element, which holds the component. The second way is to add `<component_name>--theme-dark` modifier class to the actual component element. For example, `mdc-button--theme-dark` would put the MDC Button in a Dark Theme context.
+Some components can change their appearance when in a Dark Theme context, aka placed on top of a dark background.
+There are two ways to specify if a component is in a Dark Theme context. The first is to add `mdc-theme--dark` to a
+*container* element, which holds the component. The second way is to add `<component_name>--theme-dark` modifier class
+to the actual component element. For example, `mdc-button--theme-dark` would put the MDC Button in a Dark Theme context.
 
-> **A note about Dark Theme context**, don't confuse Dark Theme context with a component that has a dark color. Dark Theme context means the component sits on top of a dark background.
+> **A note about Dark Theme context**: don't confuse Dark Theme context with a component that has a dark color.
+> Dark Theme context means the component sits on top of a dark background.
 
 ## Design & API Documentation
 
@@ -59,14 +69,16 @@ npm install --save @material/theme
 
 ### Change Theme Colors
 
-MDC Theme makes it easy to develop your brand colors. You override the default theme color through Sass variables or CSS custom properties. CSS custom properties enables runtime theming.
+MDC Theme makes it easy to develop your brand colors. You override the default theme color through Sass variables or CSS
+custom properties. CSS custom properties enables runtime theming.
 
-> **A note about Sass variables**, you need to define the three theme color variables before importing mdc-theme or any MDC-Web components that rely on it, like following:
+> **A note about Sass variables**: you need to define the three theme color variables before importing mdc-theme or any
+> MDC-Web components that rely on it, like following:
 
 ```scss
-$mdc-theme-primary: #9c27b0; // Purple 500
+$mdc-theme-primary: #9c27b0;   // Purple 500
 $mdc-theme-secondary: #ffab40; // Orange A200
-$mdc-theme-background: #fff; // White
+$mdc-theme-background: #fff;   // White
 
 @import "@material/theme/mdc-theme";
 ```
@@ -80,21 +92,24 @@ MDC Theme also exposes _light_ and _dark_ variants of the primary and secondary 
 computed by lightening and darkening the main primary/secondary colors in Sass, but you can override them if desired:
 
 ```scss
-$mdc-theme-primary-light: #ce93d8; // Purple 200
-$mdc-theme-primary-dark: #6a1b9a; // Purple 800
+$mdc-theme-primary-light: #ce93d8;   // Purple 200
+$mdc-theme-primary-dark: #6a1b9a;    // Purple 800
 $mdc-theme-secondary-light: #ffd180; // Orange A100
-$mdc-theme-secondary-dark: #ff6d00; // Orange A700
+$mdc-theme-secondary-dark: #ff6d00;  // Orange A700
 
 @import "@material/theme/mdc-theme";
 ```
 
-The text color, for text placed on top of these selected theme colors, is programmatically computed based on color contrast. We follow the Web Content Accessibility Guidelines 2.0.
+The text color, for text placed on top of these selected theme colors, is programmatically computed based on color
+contrast. We follow the Web Content Accessibility Guidelines 2.0.
 
 https://www.w3.org/TR/WCAG20
 
 #### CSS Custom Properties
 
-> **A note about `<TEXT_STYLE>` and `<THEME_COLOR>`**, `<TEXT_STYLE>` represents the lowercase name of the text styles listed above, e.g. `hint`. `<THEME_COLOR>` represents the lowercase name of the theme colors listed above, e.g. `secondary`. When you put it all together it would be `--mdc-theme-text-hint-on-secondary`.
+> **A note about `<TEXT_STYLE>` and `<THEME_COLOR>`**: `<TEXT_STYLE>` represents the lowercase name of the text styles
+> listed above, e.g., `hint`. `<THEME_COLOR>` represents the lowercase name of the theme colors listed above, e.g.,
+> `secondary`. When you put it all together it would be `--mdc-theme-text-hint-on-secondary`.
 
 CSS Custom property | Description
 --- | ---
@@ -111,11 +126,15 @@ CSS Custom property | Description
 
 ### CSS Classes
 
-MDC-Web provides SASS mixins, such as `mdc-button-filled-accessible`, to facilitate customization of some components. For more information, consult the documentation for each component.
+MDC-Web provides SASS mixins, such as `mdc-button-filled-accessible`, to facilitate customization of some components.
+For more information, consult the documentation for each component.
 
-If you want to modify an element, which is not a Material Design component, you can apply the following modifier CSS classes.
+If you want to modify an element, which is not a Material Design component, you can apply the following modifier CSS
+classes.
 
-> **A note about `<TEXT_STYLE>` and `<THEME_COLOR>`**, `<TEXT_STYLE>` represents the lowercase name of the text styles listed above, e.g. `hint`. `<THEME_COLOR>` represents the lowercase name of the theme colors listed above, e.g. `secondary`. When you put it all together it would be `mdc-theme--text-hint-on-secondary`.
+> **A note about `<TEXT_STYLE>` and `<THEME_COLOR>`**: `<TEXT_STYLE>` represents the lowercase name of the text styles
+> listed above, e.g., `hint`. `<THEME_COLOR>` represents the lowercase name of the theme colors listed above, e.g.,
+> `secondary`. When you put it all together it would be `mdc-theme--text-hint-on-secondary`.
 
 CSS Class | Description
 --- | ---
@@ -145,13 +164,19 @@ Mixin | Description
 
 #### `mdc-theme-dark($root-selector, $compound)`
 
-Creates a rule that is applied when the current selector is within an Dark Theme context. If you are using the mixin on anything other than the base selector of the component, e.g. `.mdc-button`, you need to specify `$root-selector` as the base selector as a parameter. You can also specify `$compound` to true if the the current selector is a compound selector with the base selector, e.g. a modifier class to the component root element.
+Creates a rule that is applied when the current selector is within an Dark Theme context. If you are using the mixin on
+anything other than the base selector of the component, e.g. `.mdc-button`, you need to specify `$root-selector` as the
+base selector as a parameter. You can also specify `$compound` to true if the the current selector is a compound
+selector with the base selector, e.g. a modifier class to the component root element.
 
 #### `mdc-theme-prop` Properties
 
-The properties below can be used as the `$style` argument for the `mdc-theme-prop` mixin. Literal color values (e.g., `rgba(0, 0, 0, .75)`) may also be used instead.
+The properties below can be used as the `$style` argument for the `mdc-theme-prop` mixin.
+Literal color values (e.g., `rgba(0, 0, 0, .75)`) may also be used instead.
 
-> **A note about `<TEXT_STYLE>` and `<THEME_COLOR>`**, `<TEXT_STYLE>` represents the lowercase name of the text styles listed above, e.g. `hint`. `<THEME_COLOR>` represents the lowercase name of the theme colors listed above, e.g. `secondary`. When you put it all together it would be `text-hint-on-secondary`.
+> **A note about `<TEXT_STYLE>` and `<THEME_COLOR>`**: `<TEXT_STYLE>` represents the lowercase name of the text styles
+> listed above, e.g., `hint`. `<THEME_COLOR>` represents the lowercase name of the theme colors listed above, e.g.,
+> `secondary`. When you put it all together it would be `text-hint-on-secondary`.
 
 Property Name | Description
 --- | ---
