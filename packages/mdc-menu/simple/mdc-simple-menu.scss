@@ -16,6 +16,7 @@
 
 @import "@material/animation/variables";
 @import "@material/elevation/mixins";
+@import "@material/list/mixins";
 @import "@material/theme/mixins";
 @import "@material/typography/mixins";
 
@@ -25,8 +26,12 @@ $mdc-simple-menu-item-fade-duration: .3s;
 // postcss-bem-linter: define simple-menu
 .mdc-simple-menu {
   @include mdc-elevation(2);
+  @include mdc-list-item-icon-ink-color(rgba(black, .54));
 
   @include mdc-theme-dark {
+    @include mdc-list-item-icon-ink-color(rgba(white, .54));
+    @include mdc-list-divider-ink-color(rgba(white, .12));
+
     background-color: #424242;
   }
 
@@ -144,27 +149,6 @@ $mdc-simple-menu-item-fade-duration: .3s;
     text-decoration: none;
     user-select: none;
   }
-
-  .mdc-list-divider {
-    @include mdc-theme-dark(".mdc-simple-menu", true) {
-      border-color: rgba(white, .12);
-    }
-  }
-
-  .mdc-list-item__start-detail {
-    color: rgba(black, .54);
-
-    @include mdc-theme-dark(".mdc-simple-menu", true) {
-      color: rgba(white, .54);
-    }
-  }
-
-  // stylelint-disable selector-no-qualifying-type
-  &--selected.mdc-list-item,
-  &--selected.mdc-list-item .mdc-list-item__start-detail {
-    @include mdc-theme-prop(color, primary);
-  }
-  // stylelint-enable selector-no-qualifying-type
 
   // TODO(sgomes): Revisit when we have interactive lists.
   .mdc-list-item::before {
