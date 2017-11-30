@@ -48,7 +48,7 @@ Unless otherwise stated, mixins should be applied to the top-level drawer elemen
 
 Mixin | Description
 --- | ---
-`mdc-drawer-selected-item-ink-color($color)` | Sets the ink color of the currently selected `mdc-list-item`
+`` |
 
 ## Permanent drawer usage
 
@@ -62,7 +62,7 @@ than mobile.
   <div class="mdc-permanent-drawer__toolbar-spacer"></div>
   <div class="mdc-permanent-drawer__content">
     <nav id="icon-with-text-demo" class="mdc-list">
-      <a class="mdc-list-item mdc-permanent-drawer--selected" href="#">
+      <a class="mdc-list-item mdc-list-item--selected" href="#">
         <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>Inbox
       </a>
       <a class="mdc-list-item" href="#">
@@ -88,7 +88,7 @@ Permanent drawers can also be set below the toolbar:
 <div class="content">
   <nav class="mdc-permanent-drawer mdc-typography">
     <nav id="icon-with-text-demo" class="mdc-list">
-      <a class="mdc-list-item mdc-permanent-drawer--selected" href="#">
+      <a class="mdc-list-item mdc-list-item--selected" href="#">
         <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>Inbox
       </a>
       <a class="mdc-list-item" href="#">
@@ -125,7 +125,7 @@ Persistent drawers are acceptable for all sizes larger than mobile.
       </div>
     </header>
     <nav id="icon-with-text-demo" class="mdc-persistent-drawer__content mdc-list">
-      <a class="mdc-list-item mdc-persistent-drawer--selected" href="#">
+      <a class="mdc-list-item mdc-list-item--selected" href="#">
         <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>Inbox
       </a>
       <a class="mdc-list-item" href="#">
@@ -259,7 +259,7 @@ for any display size.
       </div>
     </header>
     <nav id="icon-with-text-demo" class="mdc-temporary-drawer__content mdc-list">
-      <a class="mdc-list-item mdc-temporary-drawer--selected" href="#">
+      <a class="mdc-list-item mdc-list-item--selected" href="#">
         <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>Inbox
       </a>
       <a class="mdc-list-item" href="#">
@@ -289,7 +289,7 @@ very useful for visual alignment and consistency. Note that you can place conten
     <div class="mdc-temporary-drawer__toolbar-spacer"></div>
 
     <nav id="icon-with-text-demo" class="mdc-temporary-drawer__content mdc-list">
-      <a class="mdc-list-item mdc-temporary-drawer--selected" href="#">
+      <a class="mdc-list-item mdc-list-item--selected" href="#">
         <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>Inbox
       </a>
       <a class="mdc-list-item" href="#">
@@ -316,7 +316,7 @@ for placing the actual content, which will be bottom-aligned.
     </header>
 
     <nav id="icon-with-text-demo" class="mdc-temporary-drawer__content mdc-list">
-      <a class="mdc-list-item mdc-temporary-drawer--selected" href="#">
+      <a class="mdc-list-item mdc-list-item--selected" href="#">
         <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>Inbox
       </a>
       <a class="mdc-list-item" href="#">

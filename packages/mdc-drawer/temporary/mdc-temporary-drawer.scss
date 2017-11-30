@@ -24,7 +24,6 @@
 
 .mdc-temporary-drawer {
   @include mdc-drawer-base_;
-  @include mdc-drawer-selected-item-ink-color(primary);
 
   position: fixed;
   top: 0;

@@ -27,7 +27,6 @@ $mdc-permanent-drawer-dark-theme-bg-color: #212121 !default;
 
 .mdc-permanent-drawer {
   @include mdc-drawer-base_;
-  @include mdc-drawer-selected-item-ink-color(primary);
   @include mdc-theme-prop(background, background);
   @include mdc-rtl-reflexive-box(border, right, 1px solid #e4e4e4);
   @include mdc-rtl-reflexive-position(left, 0);

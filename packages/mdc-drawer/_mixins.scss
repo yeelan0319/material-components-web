@@ -23,15 +23,6 @@
 // Public
 //
 
-@mixin mdc-drawer-selected-item-ink-color($color) {
-  // stylelint-disable selector-no-qualifying-type
-  &--selected.mdc-list-item,
-  &--selected.mdc-list-item .mdc-list-item__start-detail {
-    @include mdc-theme-prop(color, $color);
-  }
-  // stylelint-enable selector-no-qualifying-type
-}
-
 //
 // Private
 //
@@ -117,13 +108,6 @@
       color: rgba(255, 255, 255, .54);
     }
   }
-
-  // stylelint-disable selector-no-qualifying-type
-  &--selected.mdc-list-item,
-  &--selected.mdc-list-item .mdc-list-item__start-detail {
-    @include mdc-theme-prop(color, primary);
-  }
-  // stylelint-enable selector-no-qualifying-type
 
   /* TODO(sgomes): Revisit when we have interactive lists. */
   .mdc-list-item::before {
