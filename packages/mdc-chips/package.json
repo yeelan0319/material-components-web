@@ -1,12 +1,12 @@
 {
-  "name": "@material/chip",
-  "description": "The Material Components for the web chip component",
+  "name": "@material/chips",
+  "description": "The Material Components for the web chips component",
   "version": "0.27.0",
   "license": "Apache 2.0",
   "keywords": [
     "material components",
     "material design",
-    "chip"
+    "chips"
   ],
   "repository": {
     "type": "git",
