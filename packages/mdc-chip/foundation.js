@@ -45,6 +45,9 @@ class MDCChipFoundation extends MDCFoundation {
   constructor(adapter = /** @type {!MDCChipAdapter} */ ({})) {
     super(Object.assign(MDCChipFoundation.defaultAdapter, adapter));
 
+    /** @private {boolean} */
+    this.selected_ = false;
+
     /** @private {function(!Event): undefined} */
     this.interactionHandler_ = (evt) => this.handleInteraction(evt);
   }
@@ -68,17 +71,14 @@ class MDCChipFoundation extends MDCFoundation {
   handleInteraction(evt) {
     if (evt.type === 'click' || evt.key === 'Enter' || evt.keyCode === 13) {
       this.toggleSelected_();
-      if (this.adapter_.hasClass('mdc-chip--choice')) {
-        this.deselectAll_();
-      }
     }
   }
 
   toggleSelected_() {
     if (this.selected_) {
-      this.adapter_.addClass('mdc-chip--selected');
-    } else {
       this.adapter_.removeClass('mdc-chip--selected');
+    } else {
+      this.adapter_.addClass('mdc-chip--selected');
     }
     this.selected_ = !this.selected_;
   }

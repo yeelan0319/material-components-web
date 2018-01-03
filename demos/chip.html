@@ -58,8 +58,12 @@
     <script src="/assets/material-components-web.js"></script>
     <script>
       (function() {
-        var chip = section.querySelector('.mdc-chip');
-
+        var chips = document.querySelectorAll(
+          '.mdc-chip:not([data-demo-no-auto-js])'
+        );
+        for (var i = 0, chip; chip = chips[i]; i++) {
+          mdc.chip.MDCChip.attachTo(chip);
+        }
       })();
     </script>
   </body>

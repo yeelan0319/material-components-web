@@ -47,6 +47,8 @@ class MDCChip extends MDCComponent {
     return new MDCChipFoundation(/** @type {!MDCChipAdapter} */ (Object.assign({
       addClass: (className) => this.root_.classList.add(className),
       removeClass: (className) => this.root_.classList.remove(className),
+      registerInteractionHandler: (evtType, handler) => this.root_.addEventListener(evtType, handler),
+      deregisterInteractionHandler: (evtType, handler) => this.root_.removeEventListener(evtType, handler),
     })));
   }
 }
