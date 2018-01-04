@@ -44,6 +44,22 @@
   @include mdc-checkbox--disabled_;
 }
 
+.mdc-checkbox__background {
+  @include mdc-checkbox__background_;
+}
+
+.mdc-checkbox__checkmark {
+  @include mdc-checkbox__checkmark_;
+}
+
+.mdc-checkbox__checkmark__path {
+  @include mdc-checkbox__checkmark__path_;
+}
+
+.mdc-checkbox__mixedmark {
+  @include mdc-checkbox__mixedmark_;
+}
+
 // JS checkbox
 .mdc-checkbox--upgraded {
   .mdc-checkbox__background,
@@ -54,29 +70,50 @@
   }
 }
 
-.mdc-checkbox--anim {
-  @include mdc-checkbox--anim_;
+.mdc-checkbox__native-control:checked ~ .mdc-checkbox__background,
+.mdc-checkbox__native-control:indeterminate ~ .mdc-checkbox__background {
+  @include mdc-checkbox__background--marked_;
+
+  // stylelint-disable-next-line selector-max-specificity
+  .mdc-checkbox__checkmark__path {
+    @include mdc-checkbox__checkmark__path--marked_;
+  }
 }
 
-.mdc-checkbox__background {
-  @include mdc-checkbox__background_;
-
-  .mdc-checkbox__native-control:enabled:checked ~ &,
-  .mdc-checkbox__native-control:enabled:indeterminate ~ & {
-    @include mdc-checkbox__background--marked_;
+.mdc-checkbox__native-control:checked ~ .mdc-checkbox__background {
+  .mdc-checkbox__checkmark {
+    @include mdc-checkbox__checkmark--checked_;
   }
+
+  .mdc-checkbox__mixedmark {
+    @include mdc-checkbox__mixedmark--checked_;
+  }
+}
+
+.mdc-checkbox__native-control:indeterminate ~ .mdc-checkbox__background {
+  .mdc-checkbox__checkmark {
+    @include mdc-checkbox__checkmark--indeterminate_;
+  }
+
+  .mdc-checkbox__mixedmark {
+    @include mdc-checkbox__mixedmark--indeterminate_;
+  }
+}
+
+.mdc-checkbox--anim {
+  @include mdc-checkbox--anim_;
 }
 
 // The frame's ::before element is used as a focus indicator for the checkbox
 .mdc-checkbox__background::before {
   @include mdc-checkbox__focus-indicator_;
 
-  .mdc-checkbox__native-control:focus ~ & {
-    @include mdc-checkbox__focus-indicator--focused_;
-  }
-
   .mdc-ripple-upgraded--unbounded & {
     @include mdc-checkbox__focus-indicator--ripple-upgraded-unbounded_;
+  }
+
+  .mdc-checkbox__native-control:focus ~ & {
+    @include mdc-checkbox__focus-indicator--focused_;
   }
 }
 
@@ -85,39 +122,6 @@
 
   &:disabled {
     @include mdc-checkbox--disabled_;
-  }
-}
-
-.mdc-checkbox__checkmark {
-  @include mdc-checkbox__checkmark_;
-
-  .mdc-checkbox__native-control:checked ~ .mdc-checkbox__background & {
-    @include mdc-checkbox__checkmark--checked_;
-  }
-
-  .mdc-checkbox__native-control:indeterminate ~ .mdc-checkbox__background & {
-    @include mdc-checkbox__checkmark--indeterminate_;
-  }
-}
-
-.mdc-checkbox__checkmark__path {
-  @include mdc-checkbox__checkmark__path_;
-
-  .mdc-checkbox__native-control:checked ~ .mdc-checkbox__background &,
-  .mdc-checkbox__native-control:indeterminate ~ .mdc-checkbox__background & {
-    @include mdc-checkbox__checkmark__path--marked_;
-  }
-}
-
-.mdc-checkbox__mixedmark {
-  @include mdc-checkbox__mixedmark_;
-
-  .mdc-checkbox__native-control:checked ~ .mdc-checkbox__background & {
-    @include mdc-checkbox__mixedmark--checked_;
-  }
-
-  .mdc-checkbox__native-control:indeterminate ~ .mdc-checkbox__background & {
-    @include mdc-checkbox__mixedmark--indeterminate_;
   }
 }
 
