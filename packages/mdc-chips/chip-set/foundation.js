@@ -17,7 +17,7 @@
 
 import MDCFoundation from '@material/base/foundation';
 import MDCChipSetAdapter from './adapter';
-import {cssClasses} from './constants';
+import {strings, cssClasses} from './constants';
 
 
 /**
@@ -25,6 +25,11 @@ import {cssClasses} from './constants';
  * @final
  */
 class MDCChipSetFoundation extends MDCFoundation {
+  /** @return enum {string} */
+  static get strings() {
+    return strings;
+  }
+
   /** @return enum {string} */
   static get cssClasses() {
     return cssClasses;
@@ -74,7 +79,7 @@ class MDCChipSetFoundation extends MDCFoundation {
   handleChipInteraction(evtData) {
     const targetChip = evtData.target;
     if (this.adapter_.hasClass(cssClasses.ENTRY)) {
-      
+      // do nothing, INTERACTION_EVENT can be captured by client for expanding into a card??
     } else if (this.adapter_.hasClass(cssClasses.CHOICE)) {
       if (this.selectedChips_[0] != targetChip) {
         this.selectedChips_[0].toggleSelected();
@@ -84,18 +89,14 @@ class MDCChipSetFoundation extends MDCFoundation {
       }
       targetChip.toggleSelected();
     } else if (this.adapter_.hasClass(cssClasses.FILTER)) {
-
+      
     } else if (this.adapter_.hasClass(cssClasses.ACTION)) {
       
     }
   }
 
   getSelectedChipValues() {
-    // TODO(bonniez): use the map function
-    let values = [];
-    this.selectedChips_.forEach(function(chip) {
-      values.append(chip.text);
-    });
+    return this.selectedChips_.map((chip) => chip.text);
   }
 }
 

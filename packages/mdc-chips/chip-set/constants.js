@@ -16,6 +16,11 @@
  */
 
 /** @enum {string} */
+const strings = {
+  CHIP_SELECTOR: '.mdc-chip',
+};
+
+/** @enum {string} */
 const cssClasses = {
   ENTRY: 'mdc-chip-set--entry',
   CHOICE: 'mdc-chip-set--choice',
@@ -23,4 +28,4 @@ const cssClasses = {
   ACTION: 'mdc-chip-set--action',
 };
 
-export {cssClasses};
+export {strings, cssClasses};

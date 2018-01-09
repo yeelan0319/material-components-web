@@ -33,6 +33,8 @@ class MDCChipSet extends MDCComponent {
     super(...args);
     /** @private {string} */
     this.type_;
+    this.chips_;
+    this.chipInteractionHandler_;
   }
 
   /**
@@ -50,7 +52,8 @@ class MDCChipSet extends MDCComponent {
     return this.foundation_.getSelectedChipValues();
   }
 
-  initialize() {
+  initialize(chipFactory = (el) => new MDCChip(el)) {
+    this.chips_ = this.createChips_(chipFactory);
     this.chipInteractionHandler_ = (evtData) => this.foundation_.handleChipInteraction(evtData);
   }
 
@@ -68,6 +71,12 @@ class MDCChipSet extends MDCComponent {
       // deregisterInteractionHandler: (evtType, handler) => this.listen(evtType, handler),
     })));
   }
+
+  createChips_(chipFactory) {
+    const chipElements = [].slice.call(this.root_.querySelectorAll(MDCChipSetFoundation.strings.CHIP_SELECTOR));
+    return chipElements.map((el) => chipFactory(el));
+  }
+
 }
 
 export {MDCChipSet, MDCChipSetFoundation};
