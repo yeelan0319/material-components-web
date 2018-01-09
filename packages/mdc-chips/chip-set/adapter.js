@@ -18,47 +18,34 @@
 /* eslint no-unused-vars: [2, {"args": "none"}] */
 
 /**
- * Adapter for MDC Chip.
+ * Adapter for MDC Chip Set.
  *
  * Defines the shape of the adapter expected by the foundation. Implement this
- * adapter to integrate the Chip into your framework. See
+ * adapter to integrate the Chip Set into your framework. See
  * https://github.com/material-components/material-components-web/blob/master/docs/authoring-components.md
  * for more information.
  *
  * @record
  */
-class MDCChipAdapter {
+class MDCChipSetAdapter {
   /**
-   * Adds a class to the label element.
    * @param {string} className
    */
-  addClass(className) {}
-
-  /**
-   * Removes a class from the label element.
-   * @param {string} className
-   */
-  removeClass(className) {}
+  hasClass(className) {}
 
   /**
    * Registers an event listener on the root element for a given event.
    * @param {string} evtType
    * @param {function(!Event): undefined} handler
    */
-  registerInteractionHandler(evtType, handler) {}
+  registerChipInteractionHandler(evtType, handler) {}
 
   /**
    * Deregisters an event listener on the root element for a given event.
    * @param {string} evtType
    * @param {function(!Event): undefined} handler
    */
-  deregisterInteractionHandler(evtType, handler) {}
-
-  notifyInteraction() {}
-
-  notifySelectionChange() {}
-
-  getText() {}
+  deregisterChipInteractionHandler(evtType, handler) {}
 }
 
 export {MDCChipAdapter};

@@ -1,5 +1,6 @@
 /**
- * Copyright 2017 Google Inc. All Rights Reserved.
+ * @license
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,5 +15,12 @@
  * limitations under the License.
  */
 
-export {MDCChipFoundation, MDCChip} from './chip';
-export {MDCChipSetFoundation, MDCChipSet} from './chip-set';
+/** @enum {string} */
+const cssClasses = {
+  ENTRY: 'mdc-chip-set--entry',
+  CHOICE: 'mdc-chip-set--choice',
+  FILTER: 'mdc-chip-set--filter',
+  ACTION: 'mdc-chip-set--action',
+};
+
+export {cssClasses};

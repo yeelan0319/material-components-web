@@ -17,6 +17,8 @@
 
 import MDCFoundation from '@material/base/foundation';
 import {MDCChipAdapter} from './adapter';
+/* eslint-enable no-unused-vars */
+import {cssClasses, strings} from './constants';
 
 
 /**
@@ -24,6 +26,15 @@ import {MDCChipAdapter} from './adapter';
  * @final
  */
 class MDCChipFoundation extends MDCFoundation {
+  /** @return enum {string} */
+  static get cssClasses() {
+    return cssClasses;
+  }
+
+  /** @return enum {string} */
+  static get strings() {
+    return strings;
+  }
 
   /**
    * {@see MDCChipAdapter} for typing information on parameters and return
@@ -70,17 +81,22 @@ class MDCChipFoundation extends MDCFoundation {
    */
   handleInteraction(evt) {
     if (evt.type === 'click' || evt.key === 'Enter' || evt.keyCode === 13) {
-      this.toggleSelected_();
+      this.adapter_.notifyInteraction();
     }
   }
 
-  toggleSelected_() {
+  toggleSelected() {
     if (this.selected_) {
       this.adapter_.removeClass('mdc-chip--selected');
     } else {
       this.adapter_.addClass('mdc-chip--selected');
     }
     this.selected_ = !this.selected_;
+    this.adapter_.notifySelectionChange();
+  }
+
+  getText() {
+    return this.adapter_.getText();
   }
 }
 

@@ -19,12 +19,22 @@ import MDCComponent from '@material/base/component';
 
 import MDCChipAdapter from './adapter';
 import MDCChipFoundation from './foundation';
+import {strings, cssClasses} from './constants';
 
 /**
  * @extends {MDCComponent<!MDCChipFoundation>}
  * @final
  */
 class MDCChip extends MDCComponent {
+  /**
+   * @param {...?} args
+   */
+  constructor(...args) {
+    super(...args);
+    /** @private {?Element} */
+    this.textEl_;
+  }
+
   /**
    * @param {!Element} root
    * @return {!MDCChip}
@@ -33,8 +43,19 @@ class MDCChip extends MDCComponent {
     return new MDCChip(root);
   }
 
+  initialize() {
+    this.textEl_ = this.root_.querySelector(cssClasses.TEXT_SELECTOR);
+  }
+  
   /**
-   * @return {!MDCChipFoundation}.
+   * @return {string}
+   */
+  get text() {
+    return this.foundation_.getText();
+  }
+
+  /**
+   * @return {!MDCChipFoundation}
    */
   get foundation() {
     return this.foundation_;
@@ -49,6 +70,13 @@ class MDCChip extends MDCComponent {
       removeClass: (className) => this.root_.classList.remove(className),
       registerInteractionHandler: (evtType, handler) => this.root_.addEventListener(evtType, handler),
       deregisterInteractionHandler: (evtType, handler) => this.root_.removeEventListener(evtType, handler),
+      notifyInteraction: () => {
+        this.emit(MDCChipFoundation.strings.INTERACTION_EVENT, {target: this}, true);
+      },
+      notifySelectionChange: () => {
+        this.emit(MDCChipFoundation.strings.SELECTION_CHANGE_EVENT, {});
+      },
+      getText: () => this.textEl_.textContent,
     })));
   }
 }

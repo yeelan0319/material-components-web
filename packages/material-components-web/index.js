@@ -38,6 +38,7 @@ import * as toolbar from '@material/toolbar';
 // Register all components
 autoInit.register('MDCCheckbox', checkbox.MDCCheckbox);
 autoInit.register('MDCChip', chips.MDCChip);
+autoInit.register('MDCChipSet', chips.MDCChipSet);
 autoInit.register('MDCDialog', dialog.MDCDialog);
 autoInit.register('MDCPersistentDrawer', drawer.MDCPersistentDrawer);
 autoInit.register('MDCTemporaryDrawer', drawer.MDCTemporaryDrawer);
