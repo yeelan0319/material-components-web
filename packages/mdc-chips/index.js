@@ -14,4 +14,4 @@
  * limitations under the License.
  */
 
-export {MDCChipFoundation, MDChip} from './chip';
+export {MDCChipFoundation, MDCChip} from './chip';
