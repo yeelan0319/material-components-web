@@ -25,7 +25,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="/assets/chips.css.js"></script>
     <style>
-
+      .demo-chip-set-entry {
+        margin-top: 20px;
+      }
     </style>
   </head>
   <body class="mdc-typography">
@@ -46,7 +48,8 @@
 
       <section class="example">
         <h2>Entry Chips</h2>
-        <div class="mdc-chip-set mdc-chip-set--entry">
+        Add entry: <input id="entry-chip-set-input">
+        <div class="demo-chip-set-entry mdc-chip-set mdc-chip-set--entry">
           <div class="demo-chip mdc-chip mdc-chip--with-leading-icon mdc-chip--with-trailing-icon">
             <i class="material-icons mdc-chip__icon" tabindex="0">face</i>
             <span class=".mdc-chip__text">Person 1</span>
@@ -127,12 +130,26 @@
     <script src="/assets/material-components-web.js"></script>
     <script>
       (function() {
+        var entryChipSet;
         var chipSets = document.querySelectorAll(
           '.mdc-chip-set:not([data-demo-no-auto-js])'
         );
         for (var i = 0, chipSet; chipSet = chipSets[i]; i++) {
-          mdc.chips.MDCChipSet.attachTo(chipSet);
+          if (i === 0) {
+            entryChipSet = mdc.chips.MDCChipSet.attachTo(chipSet);
+          } else {
+            mdc.chips.MDCChipSet.attachTo(chipSet);
+          }
         }
+
+        var handleInputEnter = (evt) => {
+          if (evt.key === 'Enter' || evt.keyCode === 13) {
+            entryChipSet.addChip(inputEl.value);
+            inputEl.value = '';
+          }
+        };
+        var inputEl = document.getElementById('entry-chip-set-input');
+        inputEl.addEventListener('keydown', handleInputEnter);
       })();
     </script>
   </body>

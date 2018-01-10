@@ -118,6 +118,10 @@ class MDCChipSetFoundation extends MDCFoundation {
   getSelectedChipValues() {
     return this.selectedChips_.map((chip) => chip.text);
   }
+
+  addChip(chipEl) {
+    this.adapter_.attachChip(chipEl);
+  }
 }
 
 export default MDCChipSetFoundation;

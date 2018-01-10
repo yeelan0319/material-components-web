@@ -15,6 +15,8 @@
  * limitations under the License.
  */
 
+import bel from 'bel';
+
 import MDCComponent from '@material/base/component';
 
 import MDCChipSetAdapter from './adapter';
@@ -73,8 +75,8 @@ class MDCChipSet extends MDCComponent {
   getDefaultFoundation() {
     return new MDCChipSetFoundation(/** @type {!MDCChipSetAdapter} */ (Object.assign({
       hasClass: (className) => this.root_.classList.contains(className),
-      attachChip: (chip) => this.root_.addChild(chip),
-      deleteChip: (chip) => this.root_.removeChild(chip),
+      attachChip: (chipEl) => this.root_.appendChild(chipEl),
+      deleteChip: (chipEl) => this.root_.removeChild(chipEl),
       // TODO(bonniez): figure out how to use registerInteractionHandler instead
       bindOnChipInteractionEvent: () => this.listen(
         MDCChipFoundation.strings.INTERACTION_EVENT, this.chipInteractionHandler_),
@@ -94,8 +96,19 @@ class MDCChipSet extends MDCComponent {
     return chipElements.map((el) => chipFactory(el));
   }
 
-  addChip(content) {
+  // TODO: add ability to add chip at index
+  addChip(content, chipFactory = (el) => new MDCChip(el)) {
+    const chipEl = bel `
+      <div class="demo-chip mdc-chip mdc-chip--with-leading-icon mdc-chip--with-trailing-icon">
+        <i class="material-icons mdc-chip__icon" tabindex="0">face</i>
+        <span class=".mdc-chip__text">${content}</span>
+        <i class="material-icons mdc-chip__icon mdc-chip__icon--trailing mdc-chip__icon--close" tabindex="0">cancel</i>
+      </div>
+    `;
+    const chip = chipFactory(chipEl);
 
+    this.foundation_.addChip(chipEl);
+    this.chips_.push(chip);
   }
 
   removeChip(index) {
