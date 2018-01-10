@@ -62,7 +62,7 @@ class MDCChipFoundation extends MDCFoundation {
     /** @private {function(!Event): undefined} */
     this.interactionHandler_ = (evt) => this.handleInteraction(evt);
     /** @private {function(!Event): undefined} */
-    this.exitHandler_ = (evt) => this.handleExit(evt);
+    this.closeHandler_ = (evt) => this.handleClose(evt);
     /** @private {function(!Event): undefined} */
     this.transitionEndHandler_ = (evt) => this.handleTransitionEnd(evt);
   }
@@ -70,7 +70,7 @@ class MDCChipFoundation extends MDCFoundation {
   init() {
     ['click', 'keydown'].forEach((evtType) => {
       this.adapter_.registerInteractionHandler(evtType, this.interactionHandler_);
-      this.adapter_.registerExitHandler(evtType, this.exitHandler_);
+      this.adapter_.registerCloseHandler(evtType, this.closeHandler_);
     });
     this.adapter_.registerInteractionHandler('transitionend', this.transitionEndHandler_);
   }
@@ -78,7 +78,7 @@ class MDCChipFoundation extends MDCFoundation {
   destroy() {
     ['click', 'keydown'].forEach((evtType) => {
       this.adapter_.deregisterInteractionHandler(evtType, this.interactionHandler_);
-      this.adapter_.deregisterExitHandler(evtType, this.exitHandler_);
+      this.adapter_.deregisterCloseHandler(evtType, this.closeHandler_);
     });
     this.adapter_.deregisterInteractionHandler('transitionend', this.transitionEndHandler_);
   }
@@ -97,10 +97,14 @@ class MDCChipFoundation extends MDCFoundation {
    * Handles an interaction event
    * @param {!Event} evt
    */
-  handleExit(evt) {
+  handleClose(evt) {
     if (evt.type === 'click' || evt.key === 'Enter' || evt.keyCode === 13) {
-      this.adapter_.addClass(cssClasses.EXIT);
+      this.exit();
     }
+  }
+
+  exit() {
+    this.adapter_.addClass(cssClasses.EXIT);
   }
 
   /**

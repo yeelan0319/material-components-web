@@ -62,7 +62,7 @@ class MDCChipSet extends MDCComponent {
   }
 
   initialize(chipFactory = (el) => new MDCChip(el)) {
-    this.chips_ = this.createChips_(chipFactory);
+    this.chips_ = this.instantiateChips_(chipFactory);
     this.chipInteractionHandler_ = (evtData) => this.foundation_.handleChipInteraction(evtData);
     this.chipAnimationEndHandler_ = (evtData) => this.foundation_.handleChipAnimationEnd(evtData);
   }
@@ -73,8 +73,8 @@ class MDCChipSet extends MDCComponent {
   getDefaultFoundation() {
     return new MDCChipSetFoundation(/** @type {!MDCChipSetAdapter} */ (Object.assign({
       hasClass: (className) => this.root_.classList.contains(className),
-      addChip: (chip) => this.root_.addChild(chip),
-      removeChip: (chip) => this.root_.removeChild(chip),
+      attachChip: (chip) => this.root_.addChild(chip),
+      deleteChip: (chip) => this.root_.removeChild(chip),
       // TODO(bonniez): figure out how to use registerInteractionHandler instead
       bindOnChipInteractionEvent: () => this.listen(
         MDCChipFoundation.strings.INTERACTION_EVENT, this.chipInteractionHandler_),
@@ -89,9 +89,17 @@ class MDCChipSet extends MDCComponent {
     })));
   }
 
-  createChips_(chipFactory) {
+  instantiateChips_(chipFactory) {
     const chipElements = [].slice.call(this.root_.querySelectorAll(MDCChipSetFoundation.strings.CHIP_SELECTOR));
     return chipElements.map((el) => chipFactory(el));
+  }
+
+  addChip(content) {
+
+  }
+
+  removeChip(index) {
+
   }
 
 }

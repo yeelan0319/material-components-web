@@ -58,13 +58,13 @@ class MDCChipAdapter {
    * @param {string} evtType
    * @param {function(!Event): undefined} handler
    */
-  registerExitHandler(evtType, handler) {}
+  registerCloseHandler(evtType, handler) {}
 
   /**
    * @param {string} evtType
    * @param {function(!Event): undefined} handler
    */
-  deregisterExitHandler(evtType, handler) {}
+  deregisterCloseHandler(evtType, handler) {}
 
   notifyInteraction() {}
 

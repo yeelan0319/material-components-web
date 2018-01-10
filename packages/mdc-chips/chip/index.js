@@ -73,12 +73,12 @@ class MDCChip extends MDCComponent {
       removeClass: (className) => this.root_.classList.remove(className),
       registerInteractionHandler: (evtType, handler) => this.root_.addEventListener(evtType, handler),
       deregisterInteractionHandler: (evtType, handler) => this.root_.removeEventListener(evtType, handler),
-      registerExitHandler: (evtType, handler) => {
+      registerCloseHandler: (evtType, handler) => {
         if (this.closeEl_) {
           this.closeEl_.addEventListener(evtType, handler);
         }
       },
-      deregisterExitHandler: (evtType, handler) => {
+      deregisterCloseHandler: (evtType, handler) => {
         if (this.closeEl_) {
           this.closeEl_.removeEventListener(evtType, handler);
         }

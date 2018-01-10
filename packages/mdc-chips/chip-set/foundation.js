@@ -112,7 +112,7 @@ class MDCChipSetFoundation extends MDCFoundation {
    */
   handleChipAnimationEnd(evtData) {
     const {chip} = evtData.detail;
-    this.adapter_.removeChip(chip);
+    this.adapter_.deleteChip(chip);
   }
 
   getSelectedChipValues() {
