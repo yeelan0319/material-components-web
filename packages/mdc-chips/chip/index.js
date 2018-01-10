@@ -85,8 +85,6 @@ class MDCChip extends MDCComponent {
       },
       notifyInteraction: () => this.emit(
         MDCChipFoundation.strings.INTERACTION_EVENT, {chip: this}, true /* shouldBubble */),
-      notifySelectionChange: () => this.emit(
-        MDCChipFoundation.strings.SELECTION_CHANGE_EVENT, {} /* evtData */, true /* shouldBubble */),
       notifyAnimationEnd: () => this.emit(MDCChipFoundation.strings.ANIMATION_END_EVENT, {chip: this.root_}, true /* shouldBubble */),
       getText: () => this.textEl_.textContent,
     })));

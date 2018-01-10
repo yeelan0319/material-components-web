@@ -126,7 +126,6 @@ class MDCChipFoundation extends MDCFoundation {
       this.adapter_.addClass('mdc-chip--selected');
     }
     this.selected_ = !this.selected_;
-    this.adapter_.notifySelectionChange();
   }
 
   getText() {
