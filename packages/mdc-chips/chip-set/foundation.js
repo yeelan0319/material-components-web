@@ -102,7 +102,7 @@ class MDCChipSetFoundation extends MDCFoundation {
       }
       chip.toggleSelected();
     } else if (this.adapter_.hasClass(cssClasses.ACTION)) {
-      chip.notifyAction();
+      // do nothing, INTERACTION_EVENT can be captured by client for triggering action
     }
   }
 

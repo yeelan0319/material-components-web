@@ -125,10 +125,6 @@ class MDCChipFoundation extends MDCFoundation {
     this.adapter_.notifySelectionChange();
   }
 
-  notifyAction() {
-    this.adapter_.notifyAction();
-  }
-
   getText() {
     return this.adapter_.getText();
   }
