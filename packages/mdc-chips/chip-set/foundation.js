@@ -77,21 +77,30 @@ class MDCChipSetFoundation extends MDCFoundation {
    * @param {!Object} evtData
    */
   handleChipInteraction(evtData) {
-    const targetChip = evtData.target;
+    const {chip} = evtData.detail;
     if (this.adapter_.hasClass(cssClasses.ENTRY)) {
       // do nothing, INTERACTION_EVENT can be captured by client for expanding into a card??
     } else if (this.adapter_.hasClass(cssClasses.CHOICE)) {
-      if (this.selectedChips_[0] != targetChip) {
+      // Multi-select is prohibited for choice chips.
+      if (this.selectedChips_.length == 0) {
+        this.selectedChips_[0] = chip;
+      } else if (this.selectedChips_[0] != chip) {
         this.selectedChips_[0].toggleSelected();
-        this.selectedChips_[0] = targetChip;
+        this.selectedChips_[0] = chip;
       } else {
         this.selectedChips_ = [];
       }
-      targetChip.toggleSelected();
+      chip.toggleSelected();
     } else if (this.adapter_.hasClass(cssClasses.FILTER)) {
-      
+      const index = this.selectedChips_.indexOf(chip);
+      if (index > 0) {
+        this.selectedChips_.splice(index, 1);
+      } else {
+        this.selectedChips_.push(chip);
+      }
+      chip.toggleSelected();
     } else if (this.adapter_.hasClass(cssClasses.ACTION)) {
-      
+      chip.notifyAction();
     }
   }
 

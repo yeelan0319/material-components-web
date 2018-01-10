@@ -19,6 +19,7 @@
 const strings = {
   INTERACTION_EVENT: 'MDCChip:interaction',
   SELECTION_CHANGE_EVENT: 'MDCChip:selectionChange',
+  ACTION_EVENT: 'MDCChip:action',
 };
 
 /** @enum {string} */

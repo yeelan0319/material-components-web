@@ -33,7 +33,9 @@ class MDCChipSet extends MDCComponent {
     super(...args);
     /** @private {string} */
     this.type_;
+    /** @private {!Array<!Element>} */
     this.chips_;
+    /** @private {function(!Event): undefined} */
     this.chipInteractionHandler_;
   }
 
@@ -43,6 +45,13 @@ class MDCChipSet extends MDCComponent {
    */
   static attachTo(root) {
     return new MDCChipSet(root);
+  }
+
+  /**
+   * @return {!Array<!Element>}
+   */
+  get chips() {
+    return this.chips_;
   }
 
   /**
@@ -63,6 +72,8 @@ class MDCChipSet extends MDCComponent {
   getDefaultFoundation() {
     return new MDCChipSetFoundation(/** @type {!MDCChipSetAdapter} */ (Object.assign({
       hasClass: (className) => this.root_.classList.contains(className),
+
+      // TODO(bonniez): figure out how to use registerInteractionHandler instead
       bindOnChipInteractionEvent: () => this.listen(
         MDCChipFoundation.strings.INTERACTION_EVENT, this.chipInteractionHandler_),
       unbindOnChipInteractionEvent: () => this.unlisten(

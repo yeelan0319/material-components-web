@@ -57,6 +57,8 @@ class MDCChipAdapter {
   notifyInteraction() {}
 
   notifySelectionChange() {}
+  
+  notifyAction() {}
 
   getText() {}
 }

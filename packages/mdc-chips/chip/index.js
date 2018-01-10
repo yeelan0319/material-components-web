@@ -70,14 +70,21 @@ class MDCChip extends MDCComponent {
       removeClass: (className) => this.root_.classList.remove(className),
       registerInteractionHandler: (evtType, handler) => this.root_.addEventListener(evtType, handler),
       deregisterInteractionHandler: (evtType, handler) => this.root_.removeEventListener(evtType, handler),
-      notifyInteraction: () => {
-        this.emit(MDCChipFoundation.strings.INTERACTION_EVENT, {target: this}, true);
-      },
-      notifySelectionChange: () => {
-        this.emit(MDCChipFoundation.strings.SELECTION_CHANGE_EVENT, {});
-      },
+      notifyInteraction: () => this.emit(
+        MDCChipFoundation.strings.INTERACTION_EVENT, {chip: this}, true /* shouldBubble */),
+      notifySelectionChange: () => this.emit(
+        MDCChipFoundation.strings.SELECTION_CHANGE_EVENT, {} /* evtData */, true /* shouldBubble */),
+      notifyAction: () => this.emit(MDCChipFoundation.strings.ACTION_EVENT, {chip: this}, true /* shouldBubble */),
       getText: () => this.textEl_.textContent,
     })));
+  }
+
+  toggleSelected() {
+    this.foundation_.toggleSelected();
+  }
+
+  notifyAction() {
+    this.foundation_.notifyAction();
   }
 }
 
