@@ -64,11 +64,13 @@ class MDCChipSetFoundation extends MDCFoundation {
 
   init() {
     this.adapter_.bindOnChipInteractionEvent();
+    this.adapter_.bindOnChipAnimationEndEvent();
     // this.adapter_.registerInteractionHandler(strings.CHIP_INTERACTION_EVENT, this.chipInteractionHandler_);
   }
 
   destroy() {
     this.adapter_.unbindOnChipInteractionEvent();
+    this.adapter_.unbindOnChipAnimationEndEvent();
     // this.adapter_.deregisterInteractionHandler(strings.CHIP_INTERACTION_EVENT, this.chipInteractionHandler_);
   }
 
@@ -102,6 +104,15 @@ class MDCChipSetFoundation extends MDCFoundation {
     } else if (this.adapter_.hasClass(cssClasses.ACTION)) {
       chip.notifyAction();
     }
+  }
+
+  /**
+   * Handles a chip interaction event
+   * @param {!Object} evtData
+   */
+  handleChipAnimationEnd(evtData) {
+    const {chip} = evtData.detail;
+    this.adapter_.removeChip(chip);
   }
 
   getSelectedChipValues() {

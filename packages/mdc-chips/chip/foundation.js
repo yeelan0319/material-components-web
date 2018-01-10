@@ -61,18 +61,26 @@ class MDCChipFoundation extends MDCFoundation {
 
     /** @private {function(!Event): undefined} */
     this.interactionHandler_ = (evt) => this.handleInteraction(evt);
+    /** @private {function(!Event): undefined} */
+    this.exitHandler_ = (evt) => this.handleExit(evt);
+    /** @private {function(!Event): undefined} */
+    this.transitionEndHandler_ = (evt) => this.handleTransitionEnd(evt);
   }
 
   init() {
     ['click', 'keydown'].forEach((evtType) => {
       this.adapter_.registerInteractionHandler(evtType, this.interactionHandler_);
+      this.adapter_.registerExitHandler(evtType, this.exitHandler_);
     });
+    this.adapter_.registerInteractionHandler('transitionend', this.transitionEndHandler_);
   }
 
   destroy() {
     ['click', 'keydown'].forEach((evtType) => {
       this.adapter_.deregisterInteractionHandler(evtType, this.interactionHandler_);
+      this.adapter_.deregisterExitHandler(evtType, this.exitHandler_);
     });
+    this.adapter_.deregisterInteractionHandler('transitionend', this.transitionEndHandler_);
   }
 
   /**
@@ -82,6 +90,28 @@ class MDCChipFoundation extends MDCFoundation {
   handleInteraction(evt) {
     if (evt.type === 'click' || evt.key === 'Enter' || evt.keyCode === 13) {
       this.adapter_.notifyInteraction();
+    }
+  }
+
+  /**
+   * Handles an interaction event
+   * @param {!Event} evt
+   */
+  handleExit(evt) {
+    if (evt.type === 'click' || evt.key === 'Enter' || evt.keyCode === 13) {
+      this.adapter_.addClass(cssClasses.EXIT);
+    }
+  }
+
+  /**
+   * Handles an interaction event
+   * @param {!Event} evt
+   */
+  handleTransitionEnd(evt) {
+    // TODO: === ?
+    if (evt.propertyName == 'opacity') {
+      this.adapter_.removeClass(cssClasses.EXIT);
+      this.adapter_.notifyAnimationEnd();
     }
   }
 

@@ -33,6 +33,8 @@ class MDCChip extends MDCComponent {
     super(...args);
     /** @private {?Element} */
     this.textEl_;
+    /** @private {?Element} */
+    this.closeEl_;
   }
 
   /**
@@ -45,6 +47,7 @@ class MDCChip extends MDCComponent {
 
   initialize() {
     this.textEl_ = this.root_.querySelector(cssClasses.TEXT_SELECTOR);
+    this.closeEl_ = this.root_.querySelector(cssClasses.CLOSE_ICON_SELECTOR);
   }
   
   /**
@@ -70,11 +73,22 @@ class MDCChip extends MDCComponent {
       removeClass: (className) => this.root_.classList.remove(className),
       registerInteractionHandler: (evtType, handler) => this.root_.addEventListener(evtType, handler),
       deregisterInteractionHandler: (evtType, handler) => this.root_.removeEventListener(evtType, handler),
+      registerExitHandler: (evtType, handler) => {
+        if (this.closeEl_) {
+          this.closeEl_.addEventListener(evtType, handler);
+        }
+      },
+      deregisterExitHandler: (evtType, handler) => {
+        if (this.closeEl_) {
+          this.closeEl_.removeEventListener(evtType, handler);
+        }
+      },
       notifyInteraction: () => this.emit(
         MDCChipFoundation.strings.INTERACTION_EVENT, {chip: this}, true /* shouldBubble */),
       notifySelectionChange: () => this.emit(
         MDCChipFoundation.strings.SELECTION_CHANGE_EVENT, {} /* evtData */, true /* shouldBubble */),
       notifyAction: () => this.emit(MDCChipFoundation.strings.ACTION_EVENT, {chip: this}, true /* shouldBubble */),
+      notifyAnimationEnd: () => this.emit(MDCChipFoundation.strings.ANIMATION_END_EVENT, {chip: this.root_}, true /* shouldBubble */),
       getText: () => this.textEl_.textContent,
     })));
   }

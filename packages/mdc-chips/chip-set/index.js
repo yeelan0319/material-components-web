@@ -64,6 +64,7 @@ class MDCChipSet extends MDCComponent {
   initialize(chipFactory = (el) => new MDCChip(el)) {
     this.chips_ = this.createChips_(chipFactory);
     this.chipInteractionHandler_ = (evtData) => this.foundation_.handleChipInteraction(evtData);
+    this.chipAnimationEndHandler_ = (evtData) => this.foundation_.handleChipAnimationEnd(evtData);
   }
 
   /**
@@ -72,12 +73,17 @@ class MDCChipSet extends MDCComponent {
   getDefaultFoundation() {
     return new MDCChipSetFoundation(/** @type {!MDCChipSetAdapter} */ (Object.assign({
       hasClass: (className) => this.root_.classList.contains(className),
-
+      addChip: (chip) => this.root_.addChild(chip),
+      removeChip: (chip) => this.root_.removeChild(chip),
       // TODO(bonniez): figure out how to use registerInteractionHandler instead
       bindOnChipInteractionEvent: () => this.listen(
         MDCChipFoundation.strings.INTERACTION_EVENT, this.chipInteractionHandler_),
       unbindOnChipInteractionEvent: () => this.unlisten(
         MDCChipFoundation.strings.INTERACTION_EVENT, this.chipInteractionHandler_),
+      bindOnChipAnimationEndEvent: () => this.listen(
+        MDCChipFoundation.strings.ANIMATION_END_EVENT, this.chipAnimationEndHandler_),
+      unbindOnChipAnimationEndEvent: () => this.unlisten(
+        MDCChipFoundation.strings.ANIMATION_END_EVENT, this.chipAnimationEndHandler_),
       // registerInteractionHandler: (evtType, handler) => this.listen(evtType, handler),
       // deregisterInteractionHandler: (evtType, handler) => this.listen(evtType, handler),
     })));

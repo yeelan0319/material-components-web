@@ -20,11 +20,15 @@ const strings = {
   INTERACTION_EVENT: 'MDCChip:interaction',
   SELECTION_CHANGE_EVENT: 'MDCChip:selectionChange',
   ACTION_EVENT: 'MDCChip:action',
+  ANIMATION_END_EVENT: 'MDCChip:animationEnd',
 };
 
 /** @enum {string} */
 const cssClasses = {
+  // TODO: move selectors to strings
   TEXT_SELECTOR: '.mdc-chip__text',
+  CLOSE_ICON_SELECTOR: '.mdc-chip__icon--close',
+  EXIT: 'mdc-chip--exit',
 }
 
 export {strings, cssClasses};

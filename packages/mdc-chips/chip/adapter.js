@@ -54,6 +54,18 @@ class MDCChipAdapter {
    */
   deregisterInteractionHandler(evtType, handler) {}
 
+  /**
+   * @param {string} evtType
+   * @param {function(!Event): undefined} handler
+   */
+  registerExitHandler(evtType, handler) {}
+
+  /**
+   * @param {string} evtType
+   * @param {function(!Event): undefined} handler
+   */
+  deregisterExitHandler(evtType, handler) {}
+
   notifyInteraction() {}
 
   notifySelectionChange() {}
