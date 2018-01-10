@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="/assets/chips.css.js"></script>
     <style>
-      .demo-chip-set-entry {
+      #entry-chip-set {
         margin-top: 20px;
       }
     </style>
@@ -49,7 +49,7 @@
       <section class="example">
         <h2>Entry Chips</h2>
         Add entry: <input id="entry-chip-set-input">
-        <div class="demo-chip-set-entry mdc-chip-set mdc-chip-set--entry">
+        <div id="entry-chip-set" class="mdc-chip-set mdc-chip-set--entry">
           <div class="demo-chip mdc-chip mdc-chip--with-leading-icon mdc-chip--with-trailing-icon">
             <i class="material-icons mdc-chip__icon" tabindex="0">face</i>
             <span class=".mdc-chip__text">Person 1</span>
@@ -94,13 +94,18 @@
       <section class="example">
         <h2>Filter Chips</h2>
         <div class="mdc-chip-set mdc-chip-set--filter">
-          <div class="demo-chip mdc-chip mdc-chip--with-leading-icon">
-            <i class="material-icons mdc-chip__icon" tabindex="0">check</i>
-            <span class=".mdc-chip__text">Item One</span>
+          <div class="demo-chip mdc-chip">
+            <span class=".mdc-chip__text">Accessories</span>
           </div>
-          <div class="demo-chip mdc-chip">Item Two</div>
-          <div class="demo-chip mdc-chip">Item Three</div>
-          <div class="demo-chip mdc-chip">Item Four</div>
+          <div class="demo-chip mdc-chip">
+            <span class=".mdc-chip__text">Shoes</span>
+          </div>
+          <div class="demo-chip mdc-chip">
+            <span class=".mdc-chip__text">Bottoms</span>
+          </div>
+          <div class="demo-chip mdc-chip">
+            <span class=".mdc-chip__text">Tops</span>
+            </div>
         </div>
       </section>
 
