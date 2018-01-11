@@ -57,11 +57,12 @@ class MDCChip extends MDCComponent {
     return this.foundation_.getText();
   }
 
-  /**
-   * @return {!MDCChipFoundation}
-   */
-  get foundation() {
-    return this.foundation_;
+  toggleSelected() {
+    this.foundation_.toggleSelected();
+  }
+
+  exit() {
+    this.foundation_.exit();
   }
 
   /**
@@ -85,17 +86,9 @@ class MDCChip extends MDCComponent {
       },
       notifyInteraction: () => this.emit(
         MDCChipFoundation.strings.INTERACTION_EVENT, {chip: this}, true /* shouldBubble */),
-      notifyAnimationEnd: () => this.emit(MDCChipFoundation.strings.ANIMATION_END_EVENT, {chip: this.root_}, true /* shouldBubble */),
+      notifyAnimationEnd: () => this.emit(MDCChipFoundation.strings.ANIMATION_END_EVENT, {chipEl: this.root_}, true /* shouldBubble */),
       getText: () => this.textEl_.textContent,
     })));
-  }
-
-  toggleSelected() {
-    this.foundation_.toggleSelected();
-  }
-
-  notifyAction() {
-    this.foundation_.notifyAction();
   }
 }
 

@@ -60,11 +60,11 @@ class MDCChipFoundation extends MDCFoundation {
     this.selected_ = false;
 
     /** @private {function(!Event): undefined} */
-    this.interactionHandler_ = (evt) => this.handleInteraction(evt);
+    this.interactionHandler_ = (evt) => this.handleInteraction_(evt);
     /** @private {function(!Event): undefined} */
-    this.closeHandler_ = (evt) => this.handleClose(evt);
+    this.closeHandler_ = (evt) => this.handleClose_(evt);
     /** @private {function(!Event): undefined} */
-    this.transitionEndHandler_ = (evt) => this.handleTransitionEnd(evt);
+    this.transitionEndHandler_ = (evt) => this.handleTransitionEnd_(evt);
   }
 
   init() {
@@ -83,40 +83,8 @@ class MDCChipFoundation extends MDCFoundation {
     this.adapter_.deregisterInteractionHandler('transitionend', this.transitionEndHandler_);
   }
 
-  /**
-   * Handles an interaction event
-   * @param {!Event} evt
-   */
-  handleInteraction(evt) {
-    if (evt.type === 'click' || evt.key === 'Enter' || evt.keyCode === 13) {
-      this.adapter_.notifyInteraction();
-    }
-  }
-
-  /**
-   * Handles an interaction event
-   * @param {!Event} evt
-   */
-  handleClose(evt) {
-    if (evt.type === 'click' || evt.key === 'Enter' || evt.keyCode === 13) {
-      this.exit();
-    }
-  }
-
   exit() {
     this.adapter_.addClass(cssClasses.EXIT);
-  }
-
-  /**
-   * Handles an interaction event
-   * @param {!Event} evt
-   */
-  handleTransitionEnd(evt) {
-    // TODO: === ?
-    if (evt.propertyName == 'opacity') {
-      this.adapter_.removeClass(cssClasses.EXIT);
-      this.adapter_.notifyAnimationEnd();
-    }
   }
 
   toggleSelected() {
@@ -130,6 +98,38 @@ class MDCChipFoundation extends MDCFoundation {
 
   getText() {
     return this.adapter_.getText();
+  }
+
+  /**
+   * Handles an interaction event
+   * @param {!Event} evt
+   */
+  handleInteraction_(evt) {
+    if (evt.type === 'click' || evt.key === 'Enter' || evt.keyCode === 13) {
+      this.adapter_.notifyInteraction();
+    }
+  }
+
+  /**
+   * Handles an interaction event
+   * @param {!Event} evt
+   */
+  handleClose_(evt) {
+    if (evt.type === 'click' || evt.key === 'Enter' || evt.keyCode === 13) {
+      this.exit();
+    }
+  }
+
+  /**
+   * Handles an interaction event
+   * @param {!Event} evt
+   */
+  handleTransitionEnd_(evt) {
+    // TODO: === ?
+    if (evt.propertyName == 'opacity') {
+      this.adapter_.removeClass(cssClasses.EXIT);
+      this.adapter_.notifyAnimationEnd();
+    }
   }
 }
 

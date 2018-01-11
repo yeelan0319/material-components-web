@@ -59,7 +59,7 @@ class MDCChipSetFoundation extends MDCFoundation {
     /** @private {!Array<!MDCChip>} */
     this.selectedChips_ = [];
     // /** @private {function(!Event): undefined} */
-    // this.chipInteractionHandler = (evtData) => this.handleChipInteraction(evtData);
+    // this.chipInteractionHandler = (evt) => this.handleChipInteraction(evt);
   }
 
   init() {
@@ -74,12 +74,20 @@ class MDCChipSetFoundation extends MDCFoundation {
     // this.adapter_.deregisterInteractionHandler(strings.CHIP_INTERACTION_EVENT, this.chipInteractionHandler_);
   }
 
+  getSelectedChipValues() {
+    return this.selectedChips_.map((chip) => chip.text);
+  }
+
+  addChip(chipEl) {
+    this.adapter_.attachChip(chipEl);
+  }
+
   /**
    * Handles a chip interaction event
-   * @param {!Object} evtData
+   * @param {!Object} evt
    */
-  handleChipInteraction(evtData) {
-    const {chip} = evtData.detail;
+  handleChipInteraction(evt) {
+    const {chip} = evt.detail;
     if (this.adapter_.hasClass(cssClasses.ENTRY)) {
       // do nothing, INTERACTION_EVENT can be captured by client for expanding into a card??
     } else if (this.adapter_.hasClass(cssClasses.CHOICE)) {
@@ -108,19 +116,11 @@ class MDCChipSetFoundation extends MDCFoundation {
 
   /**
    * Handles a chip interaction event
-   * @param {!Object} evtData
+   * @param {!Object} evt
    */
-  handleChipAnimationEnd(evtData) {
-    const {chip} = evtData.detail;
-    this.adapter_.deleteChip(chip);
-  }
-
-  getSelectedChipValues() {
-    return this.selectedChips_.map((chip) => chip.text);
-  }
-
-  addChip(chipEl) {
-    this.adapter_.attachChip(chipEl);
+  handleChipAnimationEnd(evt) {
+    const {chipEl} = evt.detail;
+    this.adapter_.deleteChip(chipEl);
   }
 }
 
