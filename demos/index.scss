@@ -15,12 +15,34 @@
 //
 
 @import "./common";
-@import "../packages/mdc-list/mdc-list";
+@import "../packages/mdc-grid-list/mdc-grid-list";
+@import "../packages/mdc-ripple/mixins";
 
-.demo-catalog-list a {
-  color: $material-color-grey-900;
+.grid-list-wrapper {
+  padding: 20px 70px;
 }
 
-.demo-catalog-list-icon {
-  margin: 0 24px 0 12px;
+.mdc-grid-list .mdc-grid-tile {
+  width: 180px;
+  padding: 0;
+  margin: 0;
+}
+
+.mdc-grid-tile__primary {
+  @include mdc-ripple-surface;
+  @include mdc-ripple-radius;
+  @include mdc-states;
+  overflow: hidden;
+}
+
+.mdc-grid-tile__primary-content {
+  top: 40px;
+  margin: 0 auto;
+  width: 80px;
+  height: 80px;
+}
+
+.mdc-grid-tile__secondary {
+  background-color: transparent;
+  color: black;
 }

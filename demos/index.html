@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="/assets/index.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+    <script src="/ready.js"></script>
   </head>
   <body class="mdc-typography">
     <header class="mdc-toolbar mdc-toolbar--fixed">
@@ -37,7 +38,135 @@
     </header>
     <main>
       <nav class="mdc-toolbar-fixed-adjust">
-        <div role="list" class="demo-catalog-list mdc-list mdc-list--two-line">
+        <div class="grid-list-wrapper">
+          <div class="mdc-grid-list">
+            <ul class="mdc-grid-list__tiles">
+              <li class="mdc-grid-tile">
+                <a href="button.html">
+                  <div class="mdc-grid-tile__primary">
+                      <img class="mdc-grid-tile__primary-content" src="/images/ic_button_24px.svg" />
+                  </div>
+                  <span class="mdc-grid-tile__secondary">
+                    <span class="mdc-grid-tile__title">Button</span>
+                  </span>
+                </a>
+              </li>
+              <li class="mdc-grid-tile">
+                <a href="card.html">
+                  <div class="mdc-grid-tile__primary">
+                      <img class="mdc-grid-tile__primary-content" src="/images/ic_card_24px.svg" />
+                  </div>
+                  <span class="mdc-grid-tile__secondary">
+                    <span class="mdc-grid-tile__title">Card</span>
+                  </span>
+                </a>
+              </li>
+              <li class="mdc-grid-tile">
+                <a href="checkbox.html">
+                  <div class="mdc-grid-tile__primary">
+                      <img class="mdc-grid-tile__primary-content" src="/images/ic_selection_control_24px.svg" />
+                  </div>
+                  <span class="mdc-grid-tile__secondary">
+                    <span class="mdc-grid-tile__title">Checkbox</span>
+                  </span>
+                </a>
+              </li>
+              <li class="mdc-grid-tile">
+                <a href="dialog.html">
+                  <div class="mdc-grid-tile__primary">
+                      <img class="mdc-grid-tile__primary-content" src="/images/ic_dialog_24px.svg" />
+                  </div>
+                  <span class="mdc-grid-tile__secondary">
+                    <span class="mdc-grid-tile__title">Dialog</span>
+                  </span>
+                </a>
+              </li>
+              <li class="mdc-grid-tile">
+                <a href="drawer/temporary-drawer.html">
+                  <div class="mdc-grid-tile__primary">
+                      <img class="mdc-grid-tile__primary-content" src="/images/ic_side_navigation_24px.svg" />
+                  </div>
+                  <span class="mdc-grid-tile__secondary">
+                    <span class="mdc-grid-tile__title">Drawer (Temporary)</span>
+                  </span>
+                </a>
+              </li>
+              <li class="mdc-grid-tile">
+                <a href="drawer/persistent-drawer.html">
+                  <div class="mdc-grid-tile__primary">
+                      <img class="mdc-grid-tile__primary-content" src="/images/ic_side_navigation_24px.svg" />
+                  </div>
+                  <span class="mdc-grid-tile__secondary">
+                    <span class="mdc-grid-tile__title">Drawer (Persistent)</span>
+                  </span>
+                </a>
+              </li>
+              <li class="mdc-grid-tile">
+                <a href="elevation.html">
+                  <div class="mdc-grid-tile__primary">
+                      <img class="mdc-grid-tile__primary-content" src="/images/ic_shadow_24px.svg" />
+                  </div>
+                  <span class="mdc-grid-tile__secondary">
+                    <span class="mdc-grid-tile__title">Elevation</span>
+                  </span>
+                </a>
+              </li>
+              <li class="mdc-grid-tile">
+                <a href="fab.html">
+                  <div class="mdc-grid-tile__primary">
+                      <img class="mdc-grid-tile__primary-content" src="/images/ic_button_24px.svg" />
+                  </div>
+                  <span class="mdc-grid-tile__secondary">
+                    <span class="mdc-grid-tile__title">Floating Action Button</span>
+                  </span>
+                </a>
+              </li>
+              <li class="mdc-grid-tile">
+                <a href="grid-list.html">
+                  <div class="mdc-grid-tile__primary">
+                      <img class="mdc-grid-tile__primary-content" src="/images/ic_card_24px.svg" />
+                  </div>
+                  <span class="mdc-grid-tile__secondary">
+                    <span class="mdc-grid-tile__title">Grid List</span>
+                  </span>
+                </a>
+              </li>
+              <li class="mdc-grid-tile">
+                <a href="icon-toggle.html">
+                  <div class="mdc-grid-tile__primary">
+                      <img class="mdc-grid-tile__primary-content" src="/images/ic_component_24px.svg" />
+                  </div>
+                  <span class="mdc-grid-tile__secondary">
+                    <span class="mdc-grid-tile__title">Icon Toggle</span>
+                  </span>
+                </a>
+              </li>
+              <li class="mdc-grid-tile">
+                <a href="layout-grid.html">
+                  <div class="mdc-grid-tile__primary">
+                      <img class="mdc-grid-tile__primary-content" src="/images/ic_card_24px.svg" />
+                  </div>
+                  <span class="mdc-grid-tile__secondary">
+                    <span class="mdc-grid-tile__title">Layout Grid</span>
+                  </span>
+                </a>
+              </li>
+              <li class="mdc-grid-tile">
+                <a href="linear-progress.html">
+                  <div class="mdc-grid-tile__primary">
+                      <img class="mdc-grid-tile__primary-content" src="/images/ic_progress_activity.svg" />
+                  </div>
+                  <span class="mdc-grid-tile__secondary">
+                    <span class="mdc-grid-tile__title">Linear Progress</span>
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+
+        <!-- <div role="list" class="demo-catalog-list mdc-list mdc-list--two-line">
           <a href="button.html" role="listitem" class="mdc-list-item">
             <span class="demo-catalog-list-icon mdc-list-item__graphic"><img src="/images/ic_button_24px.svg" /></span>
             <span class="mdc-list-item__text">
@@ -245,9 +374,22 @@
               <span class="mdc-list-item__secondary-text">Type hierarchy</span>
             </span>
           </a>
-        </div>
+        </div> -->
       </nav>
     </main>
-    <script src="/assets/material-components-web.js"></script>
+    <script src="/assets/material-components-web.js" async></script>
+    <script>
+      demoReady(function() {
+        var nodes = document.querySelectorAll('.mdc-grid-list');
+        for (var i = 0, node; node = nodes[i]; i++) {
+          mdc.gridList.MDCGridList.attachTo(node);
+        }
+
+        var tiles = document.querySelectorAll('.mdc-grid-tile__primary');
+        for (var i = 0, tile; tile = tiles[i]; i++) {
+          mdc.ripple.MDCRipple.attachTo(tile);
+        }
+      });
+    </script>
   </body>
 </html>
