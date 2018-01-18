@@ -131,6 +131,19 @@ class MDCChipFoundation extends MDCFoundation {
       this.adapter_.notifyAnimationEnd();
     }
   }
+
+  setLeadingIcon(iconEl) {
+    // If no leading icon currently exists
+    this.adapter_.insertLeadingIcon(iconEl);
+    this.adapter_.addClass(cssClasses.WITH_LEADING_ICON);
+
+    // TODO: if leading icon already exists, replace it
+  }
+
+  removeLeadingIcon() {
+    this.adapter_.removeLeadingIcon();
+    this.adapter_.removeClass(cssClasses.WITH_LEADING_ICON);
+  }
 }
 
 export default MDCChipFoundation;

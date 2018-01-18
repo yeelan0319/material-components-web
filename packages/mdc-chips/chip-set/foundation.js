@@ -15,6 +15,8 @@
  * limitations under the License.
  */
 
+import bel from 'bel';
+
 import MDCFoundation from '@material/base/foundation';
 import MDCChipSetAdapter from './adapter';
 import {strings, cssClasses} from './constants';
@@ -103,9 +105,21 @@ class MDCChipSetFoundation extends MDCFoundation {
       chip.toggleSelected();
     } else if (this.adapter_.hasClass(cssClasses.FILTER)) {
       const index = this.selectedChips_.indexOf(chip);
-      if (index > 0) {
+      if (index >= 0) {
+        // Remove leading icon (checkmark)
+        chip.removeLeadingIcon();
+        // TODO: if chip has leading icon, replace it back
+
         this.selectedChips_.splice(index, 1);
       } else {
+        // If chip doesn't have leading icon
+        // TODO: maybe move this to foundation or chip logic?
+        const iconEl = bel `
+          <i class="material-icons mdc-chip__icon" tabindex="0">check</i>
+        `;
+        chip.setLeadingIcon(iconEl);
+        // TODO: if chip already has leading icon, replace it
+
         this.selectedChips_.push(chip);
       }
       chip.toggleSelected();

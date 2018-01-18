@@ -57,6 +57,15 @@ class MDCChip extends MDCComponent {
     return this.foundation_.getText();
   }
 
+  setLeadingIcon(iconEl) {
+    this.foundation_.setLeadingIcon(iconEl);
+  }
+
+  // TODO: consolidate this into setLeadingIcon?
+  removeLeadingIcon(){
+    this.foundation_.removeLeadingIcon();
+  }
+
   toggleSelected() {
     this.foundation_.toggleSelected();
   }
@@ -88,6 +97,9 @@ class MDCChip extends MDCComponent {
         MDCChipFoundation.strings.INTERACTION_EVENT, {chip: this}, true /* shouldBubble */),
       notifyAnimationEnd: () => this.emit(MDCChipFoundation.strings.ANIMATION_END_EVENT, {chipEl: this.root_}, true /* shouldBubble */),
       getText: () => this.textEl_.textContent,
+      insertLeadingIcon: (iconEl) => this.root_.insertBefore(iconEl, this.root_.firstChild),
+      replaceLeadingIcon: (iconEl) => {},
+      removeLeadingIcon: () => this.root_.removeChild(this.root_.firstChild),
     })));
   }
 }

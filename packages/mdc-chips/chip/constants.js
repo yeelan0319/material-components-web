@@ -28,6 +28,7 @@ const cssClasses = {
   TEXT_SELECTOR: '.mdc-chip__text',
   CLOSE_ICON_SELECTOR: '.mdc-chip__icon--close',
   EXIT: 'mdc-chip--exit',
+  WITH_LEADING_ICON: 'mdc-chip--with-leading-icon',
 }
 
 export {strings, cssClasses};
