@@ -14,6 +14,24 @@
 // limitations under the License.
 //
 
-.mdc-chip-set--entry {
-  
+@keyframes mdc-chip-icon-entry {
+  from {
+    width: 5px;
+    opacity: 0.2;
+  }
+
+  to {
+    width: 24px;
+    opacity: 1;
+  }
+}
+
+.mdc-chip-set--filter {
+  .mdc-chip--with-leading-icon {
+    transition: width 150ms linear;
+
+    .mdc-chip__icon {
+      animation: mdc-chip-icon-entry 150ms ease;
+    }
+  }
 }
