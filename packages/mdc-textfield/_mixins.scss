@@ -209,14 +209,12 @@
 }
 
 @mixin mdc-text-field-outlined-dense_ {
+  @include mdc-text-field-label-vertical-position_(18px);
+
   height: 48px;
 
   .mdc-text-field__input {
     padding: 12px 12px 7px;
-  }
-
-  .mdc-text-field__label {
-    bottom: 18px;
   }
 
   .mdc-text-field__label--float-above {
@@ -237,6 +235,7 @@
   @include mdc-text-field-outline-color($mdc-text-field-outlined-idle-border);
   @include mdc-text-field-hover-outline-color($mdc-text-field-outlined-hover-border);
   @include mdc-text-field-focused-outline-color(primary);
+  @include mdc-text-field-label-vertical-position_(20px);
 
   height: 56px;
   border: none;
@@ -260,7 +259,6 @@
     @include mdc-rtl-reflexive-position(left, 16px);
 
     position: absolute;
-    bottom: 20px;
     transition: transform 260ms ease;
   }
 
@@ -298,9 +296,8 @@
   @include mdc-states(text-primary-on-light, $has-nested-focusable-element: true);
   @include mdc-ripple-radius;
   @include mdc-text-field-box-corner-radius($mdc-text-field-border-radius);
-
-  // Colors
   @include mdc-text-field-box-fill-color($mdc-text-field-box-background);
+  @include mdc-text-field-label-vertical-position_(20px);
 
   display: inline-flex;
   position: relative;
@@ -327,7 +324,6 @@
     @include mdc-rtl-reflexive-position(left, 16px);
 
     position: absolute;
-    bottom: 20px;
     width: calc(100% - #{$mdc-text-field-icon-padding});
     text-overflow: ellipsis;
     white-space: nowrap;

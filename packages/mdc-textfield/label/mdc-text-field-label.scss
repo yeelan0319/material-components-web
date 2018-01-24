@@ -23,7 +23,6 @@
 // postcss-bem-linter: define text-field-label
 .mdc-text-field__label {
   position: absolute;
-  bottom: 8px;
   left: 0;
   transform-origin: left top;
   transition: mdc-text-field-transition(transform), mdc-text-field-transition(color);
@@ -36,6 +35,10 @@
     transform-origin: right top;
   }
   // stylelint-enable plugin/selector-bem-pattern
+}
+
+@at-root {
+  @include mdc-text-field-label-vertical-position_(8px);
 }
 
 .mdc-text-field__label--float-above {
