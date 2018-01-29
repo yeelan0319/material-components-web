@@ -27,8 +27,12 @@ export class MDCToolbar extends MDCComponent {
     return new MDCToolbar(root);
   }
 
+  getFoundation() {
+    return this.foundation_;
+  }
+
   get firstRowElement_() {
-    return this.root_.querySelector(MDCToolbarFoundation.strings.FIRST_ROW_SELECTOR);
+    return 0;
   }
 
   get titleElement_() {
