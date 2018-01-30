@@ -16,8 +16,6 @@
  */
 
 import * as dom from '../../../demos/dom.js';
-import * as pony from '../../../demos/ponyfill.js';
-import * as util from '../../../demos/util.js';
 
 demoReady((root, mdc) => {
   dom.getAll('.mdc-button', root).forEach((el) => {
