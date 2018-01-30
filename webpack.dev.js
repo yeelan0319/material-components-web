@@ -41,8 +41,9 @@ const MAIN_OUTPUT_DIR_ABS = resolvePath('./test/screenshot', MAIN_OUTPUT_DIR_REL
 const TEST_OUTPUT_DIR_REL = '/out/test/';
 const TEST_OUTPUT_DIR_ABS = resolvePath('./test/screenshot', TEST_OUTPUT_DIR_REL);
 
-const CSS_JS_FILENAME_OUTPUT_PATTERN = '[name].css.js';
+const JS_FILENAME_OUTPUT_PATTERN = '[name].js';
 const CSS_FILENAME_OUTPUT_PATTERN = '[name].css';
+const CSS_JS_FILENAME_OUTPUT_PATTERN = '[name].css.js';
 
 const CSS_SOURCE_MAP = false;
 const JS_SOURCE_MAP = true;
@@ -151,12 +152,6 @@ function createMainJsEntry() {
   };
 }
 
-function createTestJsEntry() {
-  return {
-    name: '',
-  };
-}
-
 function createMainCssEntry() {
   return {
     name: 'main-css',
@@ -207,9 +202,10 @@ function createMainCssEntry() {
   };
 }
 
-function createTestCssEntry() {
-  const testCssEntry = {};
-  glob.sync('test/screenshot/**/*.scss').forEach((relativeFilePath) => {
+function createTestEntry(extensionWithoutDot) {
+  const entry = {};
+
+  glob.sync(`test/screenshot/**/*.test.${extensionWithoutDot}`).forEach((relativeFilePath) => {
     const filename = path.basename(relativeFilePath);
 
     // Ignore import-only Sass files.
@@ -217,20 +213,60 @@ function createTestCssEntry() {
       return;
     }
 
-    // The Webpack entry key for each Sass file is the relative path of the file with its leading "demo/" and trailing
-    // ".scss" affixes removed.
-    // E.g., "demos/foo/bar.scss" becomes {"foo/bar": "/absolute/path/to/demos/foo/bar.scss"}.
-    const entryName = relativeFilePath.replace(new RegExp('^test/screenshot/|\\.scss$', 'g'), '');
-    testCssEntry[entryName] = path.resolve(relativeFilePath);
+    // The Webpack entry key for each Sass file is the relative path of the file with its leading "test/screenshot/" and
+    // trailing ".scss"/".js" affixes removed.
+    // E.g., "test/screenshot/foo/bar.scss" becomes {"foo/bar": "/absolute/path/to/test/screenshot/foo/bar.scss"}.
+    const entryName = relativeFilePath.replace(new RegExp(`^test/screenshot/|\\.${extensionWithoutDot}`, 'g'), '');
+    entry[entryName] = resolvePath(relativeFilePath);
   });
 
+  return entry;
+}
+
+function createTestJsEntry() {
+  return {
+    name: 'test-js',
+    entry: createTestEntry('js'),
+    output: {
+      path: TEST_OUTPUT_DIR_ABS,
+      publicPath: TEST_OUTPUT_DIR_REL,
+      filename: JS_FILENAME_OUTPUT_PATTERN,
+      libraryTarget: 'umd',
+      library: ['demo', '[name]'],
+    },
+    // See https://github.com/webpack/webpack-dev-server/issues/882
+    // Because we only spin up dev servers temporarily, and all of our assets are publicly
+    // available on GitHub, we can safely disable this check.
+    devServer: {
+      disableHostCheck: true,
+    },
+    devtool: JS_DEVTOOL,
+    module: {
+      rules: [{
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        options: {
+          cacheDirectory: true,
+        },
+      }],
+    },
+    plugins: [
+      createBannerPlugin(),
+    ],
+  };
+}
+
+function createTestCssEntry() {
   return {
     name: 'test-css',
-    entry: testCssEntry,
+    entry: createTestEntry('scss'),
     output: {
       path: TEST_OUTPUT_DIR_ABS,
       publicPath: TEST_OUTPUT_DIR_REL,
       filename: CSS_JS_FILENAME_OUTPUT_PATTERN,
+      libraryTarget: 'umd',
+      library: ['test', '[name]'],
     },
     devtool: CSS_DEVTOOL,
     module: {
@@ -256,8 +292,8 @@ function runLocalDevServer() {
 
 module.exports = [
   createMainJsEntry(),
-  // createTestJsEntry(),
   createMainCssEntry(),
+  createTestJsEntry(),
   createTestCssEntry(),
 ];
 

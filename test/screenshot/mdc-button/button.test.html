@@ -24,9 +24,10 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="../out/main/mdc.button.css">
     <link rel="stylesheet" href="../out/main/mdc.typography.css">
-    <link rel="stylesheet" href="../out/test/common.css">
+    <link rel="stylesheet" href="../out/test/common.test.css">
     <link rel="stylesheet" href="../out/test/mdc-button/button.test.css">
     <script src="../../../demos/ready.js"></script>
+    <script src="../../../demos/uri.js"></script>
   </head>
 
   <body class="mdc-typography">
@@ -175,40 +176,7 @@
     </main>
 
     <script src="../out/main/material-components-web.js" async></script>
-    <script>
-      demoReady(function() {
-        function matches(elem, selector) {
-          const nativeMatches = elem.matches
-            || elem.webkitMatchesSelector
-            || elem.mozMatchesSelector
-            || elem.msMatchesSelector
-            || elem.oMatchesSelector;
-          return nativeMatches.call(elem, selector);
-        }
-
-        function closest(elem, selector) {
-          if (elem.closest) {
-            return elem.closest(selector);
-          }
-          while (elem) {
-            if (matches(elem, selector)) {
-              return elem;
-            }
-            elem = elem.parentElement;
-          }
-          return null;
-        }
-
-        document.addEventListener('click', function(evt) {
-          if (closest(evt.target, 'a[href^="#"]')) {
-            evt.preventDefault();
-          }
-        });
-
-        [].forEach.call(document.querySelectorAll('.mdc-button'), function(el) {
-          mdc.ripple.MDCRipple.attachTo(el);
-        });
-      });
-    </script>
+    <script src="../out/test/common.test.js" async></script>
+    <script src="../out/test/mdc-button/button.test.js" async></script>
   </body>
 </html>
