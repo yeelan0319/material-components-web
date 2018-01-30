@@ -286,7 +286,8 @@ function createTestCssEntry() {
 function runLocalDevServer() {
   const app = express();
   const port = process.env.MDC_PORT || 8090;
-  app.use(express.static(__dirname));
+  app.use('/demos', express.static(resolvePath('./demos')));
+  app.use('/test', express.static(resolvePath('./test')));
   app.listen(port, () => console.log(`Local development server listening on port ${port}!`));
 }
 
