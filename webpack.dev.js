@@ -232,7 +232,7 @@ function createTestJsEntry() {
       publicPath: TEST_OUTPUT_DIR_REL,
       filename: JS_FILENAME_OUTPUT_PATTERN,
       libraryTarget: 'umd',
-      library: ['demo', '[name]'],
+      library: ['test', '[name]'],
     },
     // See https://github.com/webpack/webpack-dev-server/issues/882
     // Because we only spin up dev servers temporarily, and all of our assets are publicly
