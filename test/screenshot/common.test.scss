@@ -16,6 +16,7 @@
 
 @import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css");
 
+// Mixins
 @import "../../packages/mdc-theme/mixins";
 @import "../../packages/mdc-typography/mixins";
 
@@ -25,6 +26,7 @@ body {
 }
 
 // Used by ready.js to test whether the CSS has finished loading.
+// stylelint-disable-next-line selector-class-pattern
 .demo-ready-detect {
   position: relative;
 }
