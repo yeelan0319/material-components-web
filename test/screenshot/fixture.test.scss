@@ -32,21 +32,16 @@ body {
 }
 
 .test-main {
-  padding: 48px;
+  padding: 16px;
 }
 
-.test-heading {
-  margin-top: 0;
+.test-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0 0 24px 0;
 }
 
-.test-heading--main {
-  @include mdc-typography(display1);
-}
-
-.test-heading--section {
-  @include mdc-typography(headline);
-}
-
-.test-section {
-  margin-top: 48px;
+.test-row > * {
+  margin: 8px;
 }

@@ -17,35 +17,54 @@
 @import "../../../packages/mdc-button/mixins";
 @import "../../../packages/mdc-ripple/mixins";
 @import "../../../packages/mdc-theme/color-palette";
+@import "../../../packages/mdc-theme/variables"; // for mdc-theme-accessible-ink-color()
 
-$test-button-color: $material-color-red-500;
-
-.test-button-row {
-  margin: 1em 0 0 0;
-}
-
-.test-button-row__label {
-  display: block;
-  width: 6em;
-  vertical-align: middle;
-}
+$test-button-custom-color: $material-color-red-500;
+$test-button-contrast-color: mdc-theme-accessible-ink-color($test-button-custom-color);
+$test-button-custom-corner-radius: 8px;
+$test-button-custom-stroke-width: 4px;
 
 .test-button {
-  margin: 5px;
+  @include mdc-states($test-button-custom-color);
 }
 
-.test-button--custom {
-  @include mdc-button-corner-radius(8px);
-  @include mdc-button-stroke-width(4px);
-  @include mdc-button-ink-color($test-button-color);
-  @include mdc-states($test-button-color);
+.test-button--filled-accessible {
+  @include mdc-button-filled-accessible($test-button-custom-color);
 }
 
-.test-button--custom.mdc-button--raised,
-.test-button--custom.mdc-button--unelevated {
-  @include mdc-button-filled-accessible($test-button-color);
+.test-button--container-fill-color {
+  @include mdc-button-container-fill-color($test-button-custom-color);
+
+  // Needed to match CSS specificity of baseline mdc-button rule
+  &:not(:disabled) {
+    color: $test-button-contrast-color;
+  }
 }
 
-.test-button--custom.mdc-button--stroked {
-  @include mdc-button-stroke-color($test-button-color);
+.test-button--stroke-color {
+  @include mdc-button-stroke-color($test-button-custom-color);
+}
+
+.test-button--ink-color {
+  @include mdc-button-ink-color($test-button-custom-color);
+}
+
+.test-button--corner-radius {
+  @include mdc-button-corner-radius($test-button-custom-corner-radius);
+}
+
+.test-button--stroke-width {
+  @include mdc-button-stroke-width($test-button-custom-stroke-width);
+}
+
+.test-button--all-mixins {
+  @include mdc-button-ink-color($test-button-custom-color);
+  @include mdc-button-stroke-color($test-button-custom-color);
+  @include mdc-button-corner-radius($test-button-custom-corner-radius);
+  @include mdc-button-stroke-width($test-button-custom-stroke-width);
+}
+
+.test-button--all-mixins.mdc-button--raised {
+  @include mdc-button-container-fill-color($test-button-custom-color);
+  @include mdc-button-ink-color($test-button-contrast-color);
 }
