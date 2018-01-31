@@ -44,3 +44,54 @@
 .mdc-button.thick-stroke-button {
   @include mdc-button-stroke-width(4px);
 }
+
+.hero button {
+  margin-left: 32px;
+  margin-right: 32px;
+}
+
+.hero {
+  position: relative;
+}
+
+.hero .note {
+  position: absolute;
+  bottom: 10px;
+  left: 36px;
+  color: rgba(33, 33, 33, .38);
+}
+
+.demo-wrapper {
+  margin: 40px auto 0;
+  max-width: 1200px; // TODO: change this to use layout-grid
+  padding-bottom: 100px;
+}
+
+.demo-title {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 20px 0 10px;
+}
+
+.button-wrapper {
+  margin: 0 auto; // TODO: fix this
+}
+
+.demo-wrapper h3 {
+  margin-top: 20px;
+}
+
+.demo-wrapper button {
+  margin: 0 10px;
+}
+
+.demo-wrapper a {
+  color: $material-color-grey-900;
+  text-decoration: none;
+  display: block;
+  margin: 20px 0;
+}
+
+.demo-icon {
+  margin-right: 10px;
+  vertical-align: middle;
+}
