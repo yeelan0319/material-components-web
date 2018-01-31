@@ -22,6 +22,7 @@ const express = require('express');
 const fsx = require('fs-extra');
 const glob = require('glob');
 const webpack = require('webpack');
+const serveIndex = require('serve-index');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const LIFECYCLE_EVENT = process.env.npm_lifecycle_event;
@@ -279,11 +280,19 @@ function createTestCssEntry() {
   };
 }
 
+function serveStatic(app, urlPath, fsPathRel) {
+  const fsPathAbs = resolvePath(fsPathRel);
+  const indexOpts = {
+    icons: true,
+  };
+  app.use(urlPath, express.static(fsPathAbs), serveIndex(fsPathAbs, indexOpts));
+}
+
 function runLocalDevServer() {
   const app = express();
   const port = process.env.MDC_PORT || 8090;
-  app.use('/demos', express.static(resolvePath('./demos')));
-  app.use('/test', express.static(resolvePath('./test')));
+  serveStatic(app, '/demos', './demos');
+  serveStatic(app, '/test', './test');
   app.listen(port, () => console.log(`Local development server listening on port ${port}!`));
 }
 
