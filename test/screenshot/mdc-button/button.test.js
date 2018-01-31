@@ -30,4 +30,3 @@ demoReady((root, mdc) => {
     mdc.ripple.MDCRipple.attachTo(el);
   });
 });
-
