@@ -51,18 +51,20 @@ const JS_SOURCE_MAP = true;
 const CSS_DEVTOOL = CSS_SOURCE_MAP ? 'source-map' : false;
 const JS_DEVTOOL = JS_SOURCE_MAP ? 'source-map' : false;
 
-class PostCompilePlugin {
-  constructor(fn) {
-    this.fn = fn;
-  }
+function createWebpackPlugin(eventName, callback) {
+  return {
+    apply(compiler) {
+      compiler.plugin(eventName, (...args) => callback(...args));
+    },
+  };
+}
 
-  apply(compiler) {
-    compiler.plugin('done', (stats) => this.fn(stats));
-  }
+function createCssExtractTextPlugin() {
+  return new ExtractTextPlugin(CSS_FILENAME_OUTPUT_PATTERN);
 }
 
 function createCssJsCleanupPlugin() {
-  return new PostCompilePlugin(() => {
+  return createWebpackPlugin('done', () => {
     glob.sync(path.join(MAIN_OUTPUT_DIR_ABS, '**/*.css.js')).forEach((absPath) => {
       fsx.removeSync(absPath);
     });
@@ -112,10 +114,6 @@ function createCssLoaderConfig() {
       },
     ],
   });
-}
-
-function createCssExtractTextPlugin() {
-  return new ExtractTextPlugin(CSS_FILENAME_OUTPUT_PATTERN);
 }
 
 function createMainJsEntry() {
@@ -265,8 +263,6 @@ function createTestCssEntry() {
       path: TEST_OUTPUT_DIR_ABS,
       publicPath: TEST_OUTPUT_DIR_REL,
       filename: CSS_JS_FILENAME_OUTPUT_PATTERN,
-      libraryTarget: 'umd',
-      library: ['test', '[name]'],
     },
     devtool: CSS_DEVTOOL,
     module: {
