@@ -51,18 +51,16 @@ const JS_SOURCE_MAP = true;
 const CSS_DEVTOOL = CSS_SOURCE_MAP ? 'source-map' : false;
 const JS_DEVTOOL = JS_SOURCE_MAP ? 'source-map' : false;
 
-class PostCompilePlugin {
-  constructor(fn) {
-    this.fn = fn;
-  }
-
-  apply(compiler) {
-    compiler.plugin('done', (stats) => this.fn(stats));
-  }
+function createWebpackPlugin(eventName, callback) {
+  return {
+    apply(compiler) {
+      compiler.plugin(eventName, (...args) => callback(...args));
+    },
+  };
 }
 
 function createCssJsCleanupPlugin() {
-  return new PostCompilePlugin(() => {
+  return createWebpackPlugin('done', () => {
     glob.sync(path.join(MAIN_OUTPUT_DIR_ABS, '**/*.css.js')).forEach((absPath) => {
       fsx.removeSync(absPath);
     });
