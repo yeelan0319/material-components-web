@@ -59,6 +59,10 @@ function createWebpackPlugin(eventName, callback) {
   };
 }
 
+function createCssExtractTextPlugin() {
+  return new ExtractTextPlugin(CSS_FILENAME_OUTPUT_PATTERN);
+}
+
 function createCssJsCleanupPlugin() {
   return createWebpackPlugin('done', () => {
     glob.sync(path.join(MAIN_OUTPUT_DIR_ABS, '**/*.css.js')).forEach((absPath) => {
@@ -110,10 +114,6 @@ function createCssLoaderConfig() {
       },
     ],
   });
-}
-
-function createCssExtractTextPlugin() {
-  return new ExtractTextPlugin(CSS_FILENAME_OUTPUT_PATTERN);
 }
 
 function createMainJsEntry() {
@@ -263,8 +263,6 @@ function createTestCssEntry() {
       path: TEST_OUTPUT_DIR_ABS,
       publicPath: TEST_OUTPUT_DIR_REL,
       filename: CSS_JS_FILENAME_OUTPUT_PATTERN,
-      libraryTarget: 'umd',
-      library: ['test', '[name]'],
     },
     devtool: CSS_DEVTOOL,
     module: {
