@@ -30,9 +30,9 @@
     <header class="mdc-toolbar mdc-toolbar--fixed">
       <div class="mdc-toolbar__row">
         <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
-          <span class="catalog-back">
-            <a href="/" class="mdc-toolbar__menu-icon"><i class="material-icons">&#xE5C4;</i></a>
-          </span>
+          <a href="/" class="catalog-logo mdc-toolbar__menu-icon">
+            <img src="/images/ic_component_24px_white.svg">
+          </a>
           <span class="mdc-toolbar__title catalog-title">Buttons</span>
         </section>
       </div>
@@ -54,106 +54,110 @@
         </button>
       </section>
 
-      <section class="demo-wrapper">
-        <h1 class="mdc-typography--headline">Buttons</h2>
-        <p class="mdc-typography--body1">
-          Buttons communicate an action a user can take. They are typically placed throughout your UI, in places
-          like dialogs, forms, cards, and toolbars.
-        </p>
+      <div class="mdc-layout-grid">
+        <div class="mdc-layout-grid__inner">
+          <section class="sidebar mdc-layout-grid__cell mdc-layout-grid__cell--span-2">
+            <a href="/button.html" role="listitem" class="sidebar-active mdc-list-item">Buttons</a>
+            <a href="card.html" role="listitem" class="mdc-list-item">Card</a>
+            <a href="checkbox.html" role="listitem" class="mdc-list-item">Checkboxes</a>
+            <a href="dialog.html" role="listitem" class="mdc-list-item">Dialog</a>
+            <a href="elevation.html" role="listitem" class="mdc-list-item">Elevation</a>
+            <a href="fab.html" role="listitem" class="mdc-list-item">FAB</a>
+            <a href="grid-list.html" role="listitem" class="mdc-list-item">Grid List</a>
+            <a href="icon-toggle.html" role="listitem" class="mdc-list-item">Icon Toggle</a>
+            <a href="layout-grid.html" role="listitem" class="mdc-list-item">Layout Grid</a>
+            <a href="linear-progress.html" role="listitem" class="mdc-list-item">Linear Progress</a>
+            <a href="list.html" role="listitem" class="mdc-list-item">List</a>
+            <a href="menu.html" role="listitem" class="mdc-list-item">Menu</a>
+            <a href="radio.html" role="listitem" class="mdc-list-item">Radio</a>
+            <a href="ripple.html" role="listitem" class="mdc-list-item">Ripple</a>
+            <a href="select.html" role="listitem" class="mdc-list-item">Select</a>
+            <a href="slider.html" role="listitem" class="mdc-list-item">Slider</a>
+            <a href="snackbar.html" role="listitem" class="mdc-list-item">Snackbar</a>
+            <a href="switch.html" role="listitem" class="mdc-list-item">Switch</a>
+            <a href="tabs.html" role="listitem" class="mdc-list-item">Tabs</a>
+            <a href="text-field.html" role="listitem" class="mdc-list-item">Text Field</a>
+            <a href="typography.html" role="listitem" class="mdc-list-item">Typography</a>
+          </section>
 
-        <h2 class="demo-title mdc-typography--title">Resources</h2>
-        <a href="https://material.io/guidelines/components/buttons.html" role="listitem" class="mdc-list-item">
-          <span class="mdc-list-item__graphic"><img src="/images/ic_material_design_black_24dp.svg" class="demo-icon"/></span>
-          <span class="mdc-list-item__text">Material Design Guidelines</span>
-        </a>
-        <a href="https://material.io/components/web/catalog/buttons/" role="listitem" class="mdc-list-item">
-          <span class="mdc-list-item__graphic"><img src="/images/ic_drive_document_black_24dp.svg" class="demo-icon"/></span>
-          <span class="mdc-list-item__text">Documentation</span>
-        </a>
-        <a href="https://github.com/material-components/material-components-web/tree/master/packages/mdc-button" role="listitem" class="mdc-list-item">
-          <span class="mdc-list-item__graphic"><img src="/images/ic_code_black_24dp.svg" class="demo-icon"/></span>
-          <span class="mdc-list-item__text">Source Code</span>
-        </a>
+          <section class="demo-wrapper mdc-layout-grid__cell mdc-layout-grid__cell--span-10">
+            <h1 class="mdc-typography--headline">Buttons</h2>
+            <p class="mdc-typography--body1">
+              Buttons communicate an action a user can take. They are typically placed throughout your UI, in places
+              like dialogs, forms, cards, and toolbars.
+            </p>
 
-        <h2 class="demo-title mdc-typography--title">Demos</h2>
-        <h3 class="mdc-typography--subheading2">Text Button</h3>
-        <div class="button-wrapper">
-          <button class="mdc-button">
-            Default
-          </button>
-          <button class="mdc-button mdc-button--compact">
-            Compact
-          </button>
-          <button class="mdc-button mdc-button--dense">
-            Dense
-          </button>
-          <button class="mdc-button" disabled>
-            Disabled
-          </button>
-          <button class="mdc-button">
-            <i class="material-icons mdc-button__icon">favorite</i>
-            Icon
-          </button>
-        </div>
+            <h2 class="demo-title mdc-list mdc-typography--title">Resources</h2>
+            <a href="https://material.io/guidelines/components/buttons.html" role="listitem" class="mdc-list-item" target="_blank">
+              <span class="mdc-list-item__graphic"><img src="/images/ic_material_design_black_24dp.svg" class="demo-icon"/></span>
+              <span class="mdc-list-item__text">Material Design Guidelines</span>
+            </a>
+            <a href="https://material.io/components/web/catalog/buttons/" role="listitem" class="mdc-list-item" target="_blank">
+              <span class="mdc-list-item__graphic"><img src="/images/ic_drive_document_black_24dp.svg" class="demo-icon"/></span>
+              <span class="mdc-list-item__text">Documentation</span>
+            </a>
+            <a href="https://github.com/material-components/material-components-web/tree/master/packages/mdc-button" role="listitem" class="mdc-list-item" target="_blank">
+              <span class="mdc-list-item__graphic"><img src="/images/ic_code_black_24dp.svg" class="demo-icon"/></span>
+              <span class="mdc-list-item__text">Source Code</span>
+            </a>
 
-        <h3 class="mdc-typography--subheading2">Raised Button</h3>
-        <div class="button-wrapper">
-          <button class="mdc-button mdc-button--raised">
-            Default
-          </button>
-          <button class="mdc-button mdc-button--raised mdc-button--compact">
-            Compact
-          </button>
-          <button class="mdc-button mdc-button--raised mdc-button--dense">
-            Dense
-          </button>
-          <button class="mdc-button mdc-button--raised" disabled>
-            Disabled
-          </button>
-          <button class="mdc-button mdc-button--raised">
-            <i class="material-icons mdc-button__icon">favorite</i>
-            Icon
-          </button>
-        </div>
+            <h2 class="demo-title mdc-typography--title">Demos</h2>
+            <h3 class="mdc-typography--subheading2">Text Button</h3>
+            <div class="button-wrapper">
+              <button class="mdc-button">
+                Default
+              </button>
+              <button class="mdc-button mdc-button--dense">
+                Dense
+              </button>
+              <button class="mdc-button">
+                <i class="material-icons mdc-button__icon">favorite</i>
+                Icon
+              </button>
+            </div>
 
-        <h3 class="mdc-typography--subheading2">Unelevated Button</h3>
-        <div class="button-wrapper">
-          <button class="mdc-button mdc-button--unelevated">
-            Default
-          </button>
-          <button class="mdc-button mdc-button--unelevated mdc-button--compact">
-            Compact
-          </button>
-          <button class="mdc-button mdc-button--unelevated mdc-button--dense">
-            Dense
-          </button>
-          <button class="mdc-button mdc-button--unelevated" disabled>
-            Disabled
-          </button>
-          <button class="mdc-button mdc-button--unelevated">
-            <i class="material-icons mdc-button__icon">favorite</i>
-            Icon
-          </button>
-        </div>
+            <h3 class="mdc-typography--subheading2">Raised Button</h3>
+            <div class="button-wrapper">
+              <button class="mdc-button mdc-button--raised">
+                Default
+              </button>
+              <button class="mdc-button mdc-button--raised mdc-button--dense">
+                Dense
+              </button>
+              <button class="mdc-button mdc-button--raised">
+                <i class="material-icons mdc-button__icon">favorite</i>
+                Icon
+              </button>
+            </div>
 
-        <h3 class="mdc-typography--subheading2">Unelevated Button</h3>
-        <div class="button-wrapper">
-          <button class="mdc-button mdc-button--stroked">
-            Default
-          </button>
-          <button class="mdc-button mdc-button--stroked mdc-button--compact">
-            Compact
-          </button>
-          <button class="mdc-button mdc-button--stroked mdc-button--dense">
-            Dense
-          </button>
-          <button class="mdc-button mdc-button--stroked" disabled>
-            Disabled
-          </button>
-          <button class="mdc-button mdc-button--stroked">
-            <i class="material-icons mdc-button__icon">favorite</i>
-            Icon
-          </button>
+            <h3 class="mdc-typography--subheading2">Unelevated Button</h3>
+            <div class="button-wrapper">
+              <button class="mdc-button mdc-button--unelevated">
+                Default
+              </button>
+              <button class="mdc-button mdc-button--unelevated mdc-button--dense">
+                Dense
+              </button>
+              <button class="mdc-button mdc-button--unelevated">
+                <i class="material-icons mdc-button__icon">favorite</i>
+                Icon
+              </button>
+            </div>
+
+            <h3 class="mdc-typography--subheading2">Unelevated Button</h3>
+            <div class="button-wrapper">
+              <button class="mdc-button mdc-button--stroked">
+                Default
+              </button>
+              <button class="mdc-button mdc-button--stroked mdc-button--dense">
+                Dense
+              </button>
+              <button class="mdc-button mdc-button--stroked">
+                <i class="material-icons mdc-button__icon">favorite</i>
+                Icon
+              </button>
+            </div>
+          </div>
         </div>
       </section>
     </main>

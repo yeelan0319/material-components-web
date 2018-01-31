@@ -22,29 +22,6 @@
 @import "../packages/mdc-form-field/mdc-form-field";
 @import "../packages/mdc-ripple/mixins";
 
-.mdc-button.secondary-text-button {
-  @include mdc-button-ink-color($mdc-theme-secondary);
-  @include mdc-states(secondary);
-}
-
-.mdc-button.secondary-filled-button {
-  @include mdc-button-filled-accessible($mdc-theme-secondary);
-}
-
-.mdc-button.secondary-stroked-button {
-  @include mdc-button-ink-color($mdc-theme-secondary);
-  @include mdc-button-stroke-color($mdc-theme-secondary);
-
-}
-
-.mdc-button.big-round-corner-button {
-  @include mdc-button-corner-radius(8px);
-}
-
-.mdc-button.thick-stroke-button {
-  @include mdc-button-stroke-width(4px);
-}
-
 .hero button {
   margin-left: 32px;
   margin-right: 32px;
@@ -62,8 +39,6 @@
 }
 
 .demo-wrapper {
-  margin: 40px auto 0;
-  max-width: 1200px; // TODO: change this to use layout-grid
   padding-bottom: 100px;
 }
 
@@ -84,7 +59,7 @@
   margin: 0 10px;
 }
 
-.demo-wrapper a {
+a {
   color: $material-color-grey-900;
   text-decoration: none;
   display: block;
