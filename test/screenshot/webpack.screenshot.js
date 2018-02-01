@@ -47,8 +47,8 @@ if (RUN_SERVER) {
 function createMainJsBundle() {
   return BundleBuilder.createMainJsBundle({
     output: {
-      fsDirAbs: MAIN_OUTPUT_DIR_ABS,
-      httpDirAbs: MAIN_HTTP_DIR_ABS,
+      fsDirAbsolutePath: MAIN_OUTPUT_DIR_ABS,
+      httpDirAbsolutePath: MAIN_HTTP_DIR_ABS,
     },
   });
 }
@@ -56,8 +56,8 @@ function createMainJsBundle() {
 function createMainCssBundle() {
   return BundleBuilder.createMainCssBundle({
     output: {
-      fsDirAbs: MAIN_OUTPUT_DIR_ABS,
-      httpDirAbs: MAIN_HTTP_DIR_ABS,
+      fsDirAbsolutePath: MAIN_OUTPUT_DIR_ABS,
+      httpDirAbsolutePath: MAIN_HTTP_DIR_ABS,
     },
   });
 }
@@ -65,13 +65,13 @@ function createMainCssBundle() {
 function createTestJsBundle() {
   return BundleBuilder.createCustomJsBundle({
     bundleName: 'test-js',
-    chunks: BundleBuilder.globBundleChunks({
-      inputPathPattern: '/test/screenshot/**/*.test.js',
+    chunks: PathResolver.globChunks({
+      relativeInputFilePathPattern: '/test/screenshot/**/*.test.js',
       removeChunkNamePrefix: 'test/screenshot/',
     }),
     output: {
-      fsDirAbs: TEST_OUTPUT_DIR_ABS,
-      httpDirAbs: TEST_HTTP_DIR_ABS,
+      fsDirAbsolutePath: TEST_OUTPUT_DIR_ABS,
+      httpDirAbsolutePath: TEST_HTTP_DIR_ABS,
       library: ['test', '[name]'],
     },
   });
@@ -80,13 +80,13 @@ function createTestJsBundle() {
 function createTestCssBundle() {
   return BundleBuilder.createCustomCssBundle({
     bundleName: 'test-css',
-    chunks: BundleBuilder.globBundleChunks({
-      inputPathPattern: '/test/screenshot/**/*.test.scss',
+    chunks: PathResolver.globChunks({
+      relativeInputFilePathPattern: '/test/screenshot/**/*.test.scss',
       removeChunkNamePrefix: 'test/screenshot/',
     }),
     output: {
-      fsDirAbs: TEST_OUTPUT_DIR_ABS,
-      httpDirAbs: TEST_HTTP_DIR_ABS,
+      fsDirAbsolutePath: TEST_OUTPUT_DIR_ABS,
+      httpDirAbsolutePath: TEST_HTTP_DIR_ABS,
     },
   });
 }

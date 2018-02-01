@@ -16,10 +16,9 @@
 
 'use strict';
 
+const PathResolver = require('../../scripts/build/path-resolver');
 const express = require('express');
 const serveIndex = require('serve-index');
-
-const PathResolver = require('../../scripts/build/path-resolver');
 
 module.exports = {
   runLocalDevServer,

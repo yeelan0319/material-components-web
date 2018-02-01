@@ -16,31 +16,15 @@
 
 'use strict';
 
-const path = require('path');
-
 const fsx = require('fs-extra');
 const glob = require('glob');
+const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  createWebpackCompilerPlugin,
-  createCssExtractTextPlugin,
   createCssJsCleanupPlugin,
   createCopyrightBannerPlugin,
 };
-
-function createWebpackCompilerPlugin(eventName, callback) {
-  return {
-    apply(compiler) {
-      compiler.plugin(eventName, (...args) => callback(...args, compiler));
-    },
-  };
-}
-
-function createCssExtractTextPlugin(cssFilenameOutputPattern) {
-  return new ExtractTextPlugin(cssFilenameOutputPattern);
-}
 
 function createCssJsCleanupPlugin(outputDirAbsolutePath) {
   return createWebpackCompilerPlugin('done', () => {
@@ -62,4 +46,12 @@ function createCopyrightBannerPlugin() {
     raw: true,
     entryOnly: true,
   });
+}
+
+function createWebpackCompilerPlugin(eventName, callback) {
+  return {
+    apply(compiler) {
+      compiler.plugin(eventName, (...args) => callback(...args, compiler));
+    },
+  };
 }

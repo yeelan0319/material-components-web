@@ -16,8 +16,7 @@
 
 'use strict';
 
-const path = require('path');
-
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const glob = require('glob');
 
@@ -35,7 +34,6 @@ module.exports = {
   createCustomJsBundle,
   createMainCssBundle,
   createCustomCssBundle,
-  globBundleChunks,
 };
 
 function createMainJsBundle(
@@ -163,7 +161,7 @@ function createCustomCssBundle({
     },
     plugins = [],
   }) {
-  const extractTextPlugin = PluginFactory.createCssExtractTextPlugin(filenamePattern);
+  const extractTextPlugin = new ExtractTextPlugin(filenamePattern);
 
   return {
     name: bundleName,
@@ -188,35 +186,6 @@ function createCustomCssBundle({
       ...plugins
     ],
   };
-}
-
-function getRelativePathWithoutExtension(relativePath) {
-  return relativePath.replace(/\.\w+$/, '');
-}
-
-function globBundleChunks({inputPathPattern, removeChunkNamePrefix = ''}) {
-  const chunks = {};
-
-  glob.sync(PathResolver.getAbsolutePath(inputPathPattern)).forEach((absolutePath) => {
-    const relativePath = PathResolver.getRelativePath(absolutePath);
-    const filename = path.basename(absolutePath);
-
-    // Ignore import-only Sass files.
-    if (filename.charAt(0) === '_') {
-      return;
-    }
-
-    // The Webpack `entry` property for a Sass file is the relative path of the file with its leading "test/screenshot/" and
-    // trailing ".scss"/".js" affixes removed.
-    // E.g., "test/screenshot/foo/bar.scss" becomes {"foo/bar": "/absolute/path/to/test/screenshot/foo/bar.scss"}.
-    let entryName = getRelativePathWithoutExtension(relativePath, absolutePath);
-    if (removeChunkNamePrefix && entryName.startsWith(removeChunkNamePrefix)) {
-      entryName = entryName.substr(removeChunkNamePrefix.length);
-    }
-    chunks[entryName] = absolutePath;
-  });
-
-  return chunks;
 }
 
 function createCssLoader_(extractTextPlugin) {
