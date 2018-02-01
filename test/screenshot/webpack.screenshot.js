@@ -33,15 +33,24 @@ const RUN_SERVER = /^dev(:|$)/.test(EnvConfig.getNpmLifecycleEvent());
 EnvConfig.setBabelEnv();
 
 module.exports = [
-  createMainJsBundle(),
   createMainCssBundle(),
-  createTestJsBundle(),
+  createMainJsBundle(),
   createTestCssBundle(),
+  createTestJsBundle(),
 ];
 
 if (RUN_SERVER) {
   StaticServer.runLocalDevServer({
     relativeDirectoryPaths: ['/demos', '/test'],
+  });
+}
+
+function createMainCssBundle() {
+  return CssBundleFactory.createMainCssBundle({
+    output: {
+      fsDirAbsolutePath: MAIN_OUTPUT_DIR_ABS,
+      httpDirAbsolutePath: MAIN_HTTP_DIR_ABS,
+    },
   });
 }
 
@@ -54,11 +63,16 @@ function createMainJsBundle() {
   });
 }
 
-function createMainCssBundle() {
-  return CssBundleFactory.createMainCssBundle({
+function createTestCssBundle() {
+  return CssBundleFactory.createCustomCssBundle({
+    bundleName: 'test-css',
+    chunks: PathResolver.globChunks({
+      relativeInputFilePathPattern: '/test/screenshot/**/*.test.scss',
+      removeChunkNamePrefix: 'test/screenshot/',
+    }),
     output: {
-      fsDirAbsolutePath: MAIN_OUTPUT_DIR_ABS,
-      httpDirAbsolutePath: MAIN_HTTP_DIR_ABS,
+      fsDirAbsolutePath: TEST_OUTPUT_DIR_ABS,
+      httpDirAbsolutePath: TEST_HTTP_DIR_ABS,
     },
   });
 }
@@ -74,20 +88,6 @@ function createTestJsBundle() {
       fsDirAbsolutePath: TEST_OUTPUT_DIR_ABS,
       httpDirAbsolutePath: TEST_HTTP_DIR_ABS,
       library: ['test', '[name]'],
-    },
-  });
-}
-
-function createTestCssBundle() {
-  return CssBundleFactory.createCustomCssBundle({
-    bundleName: 'test-css',
-    chunks: PathResolver.globChunks({
-      relativeInputFilePathPattern: '/test/screenshot/**/*.test.scss',
-      removeChunkNamePrefix: 'test/screenshot/',
-    }),
-    output: {
-      fsDirAbsolutePath: TEST_OUTPUT_DIR_ABS,
-      httpDirAbsolutePath: TEST_HTTP_DIR_ABS,
     },
   });
 }

@@ -23,30 +23,9 @@ const JS_SOURCE_MAP = true;
 const JS_DEVTOOL = JS_SOURCE_MAP ? 'source-map' : false;
 
 module.exports = {
-  createMainJsBundle,
   createCustomJsBundle,
+  createMainJsBundle,
 };
-
-function createMainJsBundle(
-  {
-    output: {
-      fsDirAbsolutePath,
-      httpDirAbsolutePath,
-      ...customOutputProps
-    }
-  }) {
-  return createCustomJsBundle({
-    bundleName: 'main-js',
-    chunks: PathResolver.getAbsolutePath('/packages/material-components-web/index.js'),
-    output: {
-      fsDirAbsolutePath,
-      httpDirAbsolutePath,
-      filenamePattern: 'material-components-web.js',
-      library: 'mdc',
-      ...customOutputProps
-    },
-  });
-}
 
 function createCustomJsBundle(
   {
@@ -57,7 +36,7 @@ function createCustomJsBundle(
       httpDirAbsolutePath,
       filenamePattern = '[name].js',
       library,
-      ...customOutputProps
+      ...customOutputProps // TODO(acdvorak): Figure out how to disable eslint comma-dangle rule for this line
     },
     plugins = [],
   }) {
@@ -70,7 +49,7 @@ function createCustomJsBundle(
       filename: filenamePattern,
       libraryTarget: 'umd',
       library,
-      ...customOutputProps
+      ...customOutputProps,
     },
     // See https://github.com/webpack/webpack-dev-server/issues/882
     // Because we only spin up dev servers temporarily, and all of our assets are publicly
@@ -91,7 +70,28 @@ function createCustomJsBundle(
     },
     plugins: [
       new CopyrightBannerPlugin(),
-      ...plugins
+      ...plugins,
     ],
   };
+}
+
+function createMainJsBundle(
+  {
+    output: {
+      fsDirAbsolutePath,
+      httpDirAbsolutePath,
+      ...customOutputProps
+    }
+  }) {
+  return createCustomJsBundle({
+    bundleName: 'main-js',
+    chunks: PathResolver.getAbsolutePath('/packages/material-components-web/index.js'),
+    output: {
+      fsDirAbsolutePath,
+      httpDirAbsolutePath,
+      filenamePattern: 'material-components-web.js',
+      library: 'mdc',
+      ...customOutputProps,
+    },
+  });
 }

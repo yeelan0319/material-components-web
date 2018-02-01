@@ -27,9 +27,48 @@ const CSS_SOURCE_MAP = true;
 const CSS_DEVTOOL = CSS_SOURCE_MAP ? 'source-map' : false;
 
 module.exports = {
-  createMainCssBundle,
   createCustomCssBundle,
+  createMainCssBundle,
 };
+
+function createCustomCssBundle(
+  {
+    bundleName,
+    chunks,
+    output: {
+      fsDirAbsolutePath,
+      httpDirAbsolutePath,
+      filenamePattern = '[name].css',
+      ...customOutputProps // TODO(acdvorak): Figure out how to disable eslint comma-dangle rule for this line
+    },
+    plugins = [],
+  }) {
+  const extractTextPlugin = new ExtractTextPlugin(filenamePattern);
+
+  return {
+    name: bundleName,
+    entry: chunks,
+    output: {
+      path: fsDirAbsolutePath,
+      publicPath: httpDirAbsolutePath,
+      filename: `${filenamePattern}.js`, // Webpack 3.x emits CSS wrapped in a JS file (extractTextPlugin extracts it)
+      ...customOutputProps,
+    },
+    devtool: CSS_DEVTOOL,
+    module: {
+      rules: [{
+        test: /\.scss$/,
+        use: createCssLoader_(extractTextPlugin),
+      }],
+    },
+    plugins: [
+      extractTextPlugin,
+      new CssCleanupPlugin(fsDirAbsolutePath),
+      new CopyrightBannerPlugin(),
+      ...plugins,
+    ],
+  };
+}
 
 function createMainCssBundle(
   {
@@ -71,47 +110,9 @@ function createMainCssBundle(
     output: {
       fsDirAbsolutePath,
       httpDirAbsolutePath,
-      ...customOutputProps
+      ...customOutputProps,
     },
   });
-}
-
-function createCustomCssBundle({
-    bundleName,
-    chunks,
-    output: {
-      fsDirAbsolutePath,
-      httpDirAbsolutePath,
-      filenamePattern = '[name].css',
-      ...customOutputProps
-    },
-    plugins = [],
-  }) {
-  const extractTextPlugin = new ExtractTextPlugin(filenamePattern);
-
-  return {
-    name: bundleName,
-    entry: chunks,
-    output: {
-      path: fsDirAbsolutePath,
-      publicPath: httpDirAbsolutePath,
-      filename: `${filenamePattern}.js`, // Webpack 3.x emits CSS wrapped in a JS file
-      ...customOutputProps
-    },
-    devtool: CSS_DEVTOOL,
-    module: {
-      rules: [{
-        test: /\.scss$/,
-        use: createCssLoader_(extractTextPlugin),
-      }],
-    },
-    plugins: [
-      extractTextPlugin,
-      new CssCleanupPlugin(fsDirAbsolutePath),
-      new CopyrightBannerPlugin(),
-      ...plugins
-    ],
-  };
 }
 
 function createCssLoader_(extractTextPlugin) {
