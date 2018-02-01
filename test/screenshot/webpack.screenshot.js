@@ -21,10 +21,10 @@ const EnvConfig = require('../../scripts/build/env-config');
 const PathResolver = require('../../scripts/build/path-resolver');
 const StaticServer = require('../../scripts/build/static-server');
 
-const MAIN_OUTPUT_DIR_ABS = PathResolver.absolutePath('/test/screenshot/out/main');
+const MAIN_OUTPUT_DIR_ABS = PathResolver.getAbsolutePath('/test/screenshot/out/main');
 const MAIN_HTTP_DIR_ABS = '/out/main';
 
-const TEST_OUTPUT_DIR_ABS = PathResolver.absolutePath('/test/screenshot/out/test');
+const TEST_OUTPUT_DIR_ABS = PathResolver.getAbsolutePath('/test/screenshot/out/test');
 const TEST_HTTP_DIR_ABS = '/out/test';
 
 const RUN_SERVER = /^dev(:|$)/.test(EnvConfig.getNpmLifecycleEvent());

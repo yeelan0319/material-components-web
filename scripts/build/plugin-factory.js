@@ -42,10 +42,10 @@ function createCssExtractTextPlugin(cssFilenameOutputPattern) {
   return new ExtractTextPlugin(cssFilenameOutputPattern);
 }
 
-function createCssJsCleanupPlugin(outputDirAbs) {
+function createCssJsCleanupPlugin(outputDirAbsolutePath) {
   return createWebpackCompilerPlugin('done', () => {
-    glob.sync(path.join(outputDirAbs, '**/*.css.js*')).forEach((absPath) => {
-      fsx.removeSync(absPath);
+    glob.sync(path.join(outputDirAbsolutePath, '**/*.css.js*')).forEach((absolutePath) => {
+      fsx.removeSync(absolutePath);
     });
   });
 }

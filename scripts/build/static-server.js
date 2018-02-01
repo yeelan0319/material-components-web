@@ -33,12 +33,12 @@ function runLocalDevServer({relativeDirectoryPaths, port = process.env.MDC_PORT 
   app.listen(port, () => logLocalDevServerRunning(port));
 }
 
-function serveStatic(app, urlPath, fsPathRel = urlPath) {
-  const fsPathAbs = PathResolver.absolutePath(fsPathRel);
+function serveStatic(app, urlPath, fsRelativePath = urlPath) {
+  const fsAbsolutePath = PathResolver.getAbsolutePath(fsRelativePath);
   const indexOpts = {
     icons: true,
   };
-  app.use(urlPath, express.static(fsPathAbs), serveIndex(fsPathAbs, indexOpts));
+  app.use(urlPath, express.static(fsAbsolutePath), serveIndex(fsAbsolutePath, indexOpts));
 }
 
 function logLocalDevServerRunning(port) {

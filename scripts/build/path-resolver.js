@@ -20,11 +20,11 @@ const path = require('path');
 const fsx = require('fs-extra');
 
 module.exports = {
-  absolutePath,
-  relativePath,
+  getAbsolutePath,
+  getRelativePath,
 };
 
-function absolutePath(...pathParts) {
+function getAbsolutePath(...pathParts) {
   // First argument is already an absolute path
   if (fsx.existsSync(pathParts[0])) {
     return path.resolve(path.join(...pathParts));
@@ -33,10 +33,10 @@ function absolutePath(...pathParts) {
   return path.resolve(path.join(__dirname, '../../', ...pathParts));
 }
 
-function relativePath(absPath) {
-  const absRoot = path.resolve(path.join(__dirname, '../../'));
-  if (absPath.indexOf(absRoot) === 0) {
-    return absPath.substr(absRoot.length + 1);
+function getRelativePath(absolutePath) {
+  const rootAbsolutePath = path.resolve(path.join(__dirname, '../../'));
+  if (absolutePath.indexOf(rootAbsolutePath) === 0) {
+    return absolutePath.substr(rootAbsolutePath.length + 1);
   }
-  return absPath;
+  return absolutePath;
 }
