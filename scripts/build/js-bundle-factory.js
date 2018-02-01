@@ -16,8 +16,8 @@
 
 'use strict';
 
+const CopyrightBannerPlugin = require('./copyright-banner-plugin');
 const PathResolver = require('./path-resolver');
-const PluginFactory = require('./plugin-factory');
 
 const JS_SOURCE_MAP = true;
 const JS_DEVTOOL = JS_SOURCE_MAP ? 'source-map' : false;
@@ -90,7 +90,7 @@ function createCustomJsBundle(
       }],
     },
     plugins: [
-      PluginFactory.createCopyrightBannerPlugin(),
+      new CopyrightBannerPlugin(),
       ...plugins
     ],
   };

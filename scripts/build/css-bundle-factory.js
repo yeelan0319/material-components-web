@@ -16,12 +16,12 @@
 
 'use strict';
 
+const CopyrightBannerPlugin = require('./copyright-banner-plugin');
+const CssCleanupPlugin = require('./css-cleanup-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const PathResolver = require('./path-resolver');
 const autoprefixer = require('autoprefixer');
 const glob = require('glob');
-
-const PathResolver = require('./path-resolver');
-const PluginFactory = require('./plugin-factory');
 
 const CSS_SOURCE_MAP = true;
 const CSS_DEVTOOL = CSS_SOURCE_MAP ? 'source-map' : false;
@@ -107,8 +107,8 @@ function createCustomCssBundle({
     },
     plugins: [
       extractTextPlugin,
-      PluginFactory.createCssJsCleanupPlugin(fsDirAbsolutePath),
-      PluginFactory.createCopyrightBannerPlugin(),
+      new CssCleanupPlugin(fsDirAbsolutePath),
+      new CopyrightBannerPlugin(),
       ...plugins
     ],
   };
