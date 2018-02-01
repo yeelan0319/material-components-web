@@ -67,10 +67,6 @@ function getRelativePath(absolutePath) {
   return absolutePath;
 }
 
-function stripFileExtension(filePath) {
-  return filePath.replace(/\.\w+$/, '');
-}
-
 function globChunks({relativeInputFilePathPattern, removeChunkNamePrefix = ''}) {
   const chunks = {};
 
@@ -83,7 +79,7 @@ function globChunks({relativeInputFilePathPattern, removeChunkNamePrefix = ''}) 
       return;
     }
 
-    let entryName = stripFileExtension(relativePath);
+    let entryName = stripFileExtension_(relativePath);
     if (removeChunkNamePrefix && entryName.startsWith(removeChunkNamePrefix)) {
       entryName = entryName.substr(removeChunkNamePrefix.length);
     }
@@ -91,4 +87,8 @@ function globChunks({relativeInputFilePathPattern, removeChunkNamePrefix = ''}) 
   });
 
   return chunks;
+}
+
+function stripFileExtension_(filePath) {
+  return filePath.replace(/\.\w+$/, '');
 }

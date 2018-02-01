@@ -16,8 +16,9 @@
 
 'use strict';
 
-const BundleBuilder = require('../../scripts/build/bundle-builder');
+const CssBundleFactory = require('../../scripts/build/css-bundle-factory');
 const EnvConfig = require('../../scripts/build/env-config');
+const JsBundleFactory = require('../../scripts/build/js-bundle-factory');
 const PathResolver = require('../../scripts/build/path-resolver');
 const StaticServer = require('../../scripts/build/static-server');
 
@@ -45,7 +46,7 @@ if (RUN_SERVER) {
 }
 
 function createMainJsBundle() {
-  return BundleBuilder.createMainJsBundle({
+  return JsBundleFactory.createMainJsBundle({
     output: {
       fsDirAbsolutePath: MAIN_OUTPUT_DIR_ABS,
       httpDirAbsolutePath: MAIN_HTTP_DIR_ABS,
@@ -54,7 +55,7 @@ function createMainJsBundle() {
 }
 
 function createMainCssBundle() {
-  return BundleBuilder.createMainCssBundle({
+  return CssBundleFactory.createMainCssBundle({
     output: {
       fsDirAbsolutePath: MAIN_OUTPUT_DIR_ABS,
       httpDirAbsolutePath: MAIN_HTTP_DIR_ABS,
@@ -63,7 +64,7 @@ function createMainCssBundle() {
 }
 
 function createTestJsBundle() {
-  return BundleBuilder.createCustomJsBundle({
+  return JsBundleFactory.createCustomJsBundle({
     bundleName: 'test-js',
     chunks: PathResolver.globChunks({
       relativeInputFilePathPattern: '/test/screenshot/**/*.test.js',
@@ -78,7 +79,7 @@ function createTestJsBundle() {
 }
 
 function createTestCssBundle() {
-  return BundleBuilder.createCustomCssBundle({
+  return CssBundleFactory.createCustomCssBundle({
     bundleName: 'test-css',
     chunks: PathResolver.globChunks({
       relativeInputFilePathPattern: '/test/screenshot/**/*.test.scss',
