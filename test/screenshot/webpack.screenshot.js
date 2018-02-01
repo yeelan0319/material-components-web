@@ -32,21 +32,34 @@ if (LIFECYCLE_EVENT === 'test' || LIFECYCLE_EVENT === 'test:watch') {
 
 const RUN_SERVER = /^dev($|:)/.test(LIFECYCLE_EVENT);
 
-function resolvePath(...relativePathParts) {
-  return path.resolve(path.join(__dirname, ...relativePathParts));
+function resolvePath(...pathParts) {
+  // First argument is already an absolute path
+  if (fsx.existsSync(pathParts[0])) {
+    return path.resolve(path.join(...pathParts));
+  }
+  // First argument is a path relative to the repo root
+  return path.resolve(path.join(__dirname, '../../', ...pathParts));
+}
+
+function relativePath(absolutePath) {
+  const rootDirAbsPath = path.resolve(path.join(__dirname, '../../'));
+  if (absolutePath.indexOf(rootDirAbsPath) === 0) {
+    return absolutePath.substr(rootDirAbsPath.length + 1);
+  }
+  return absolutePath;
 }
 
 const MAIN_OUTPUT_DIR_REL = '/out/main/';
-const MAIN_OUTPUT_DIR_ABS = resolvePath('./test/screenshot', MAIN_OUTPUT_DIR_REL);
+const MAIN_OUTPUT_DIR_ABS = resolvePath('/test/screenshot', MAIN_OUTPUT_DIR_REL);
 
 const TEST_OUTPUT_DIR_REL = '/out/test/';
-const TEST_OUTPUT_DIR_ABS = resolvePath('./test/screenshot', TEST_OUTPUT_DIR_REL);
+const TEST_OUTPUT_DIR_ABS = resolvePath('/test/screenshot', TEST_OUTPUT_DIR_REL);
 
 const JS_FILENAME_OUTPUT_PATTERN = '[name].js';
 const CSS_FILENAME_OUTPUT_PATTERN = '[name].css';
 const CSS_JS_FILENAME_OUTPUT_PATTERN = '[name].css.js';
 
-const CSS_SOURCE_MAP = false;
+const CSS_SOURCE_MAP = true;
 const JS_SOURCE_MAP = true;
 
 const CSS_DEVTOOL = CSS_SOURCE_MAP ? 'source-map' : false;
@@ -66,10 +79,19 @@ function createCssExtractTextPlugin() {
 
 function createCssJsCleanupPlugin() {
   return createWebpackPlugin('done', () => {
+    // Core library files
     glob.sync(path.join(MAIN_OUTPUT_DIR_ABS, '**/*.css.js')).forEach((absPath) => {
       fsx.removeSync(absPath);
     });
+    glob.sync(path.join(MAIN_OUTPUT_DIR_ABS, '**/*.css.js.map')).forEach((absPath) => {
+      fsx.removeSync(absPath);
+    });
+
+    // Test-specific files
     glob.sync(path.join(TEST_OUTPUT_DIR_ABS, '**/*.css.js')).forEach((absPath) => {
+      fsx.removeSync(absPath);
+    });
+    glob.sync(path.join(TEST_OUTPUT_DIR_ABS, '**/*.css.js.map')).forEach((absPath) => {
       fsx.removeSync(absPath);
     });
   });
@@ -89,8 +111,8 @@ function createBannerPlugin() {
   });
 }
 
-function createCssLoaderConfig() {
-  return ExtractTextPlugin.extract({
+function createCssLoader(extractTextPlugin) {
+  return extractTextPlugin.extract({
     fallback: 'style-loader',
     use: [
       {
@@ -110,17 +132,17 @@ function createCssLoaderConfig() {
         loader: 'sass-loader',
         options: {
           sourceMap: CSS_SOURCE_MAP,
-          includePaths: glob.sync('./packages/*/node_modules').map((relPath) => resolvePath(relPath)),
+          includePaths: glob.sync(resolvePath('/packages/*/node_modules')).map((relPath) => resolvePath(relPath)),
         },
       },
     ],
   });
 }
 
-function createMainJsEntry() {
+function createMainJsBundle() {
   return {
     name: 'main-js',
-    entry: resolvePath('./packages/material-components-web/index.js'),
+    entry: resolvePath('/packages/material-components-web/index.js'),
     output: {
       path: MAIN_OUTPUT_DIR_ABS,
       publicPath: MAIN_OUTPUT_DIR_REL,
@@ -151,35 +173,36 @@ function createMainJsEntry() {
   };
 }
 
-function createMainCssEntry() {
+function createMainCssBundle() {
+  const extractTextPlugin = createCssExtractTextPlugin();
   return {
     name: 'main-css',
     entry: {
-      'mdc.button': resolvePath('./packages/mdc-button/mdc-button.scss'),
-      'mdc.card': resolvePath('./packages/mdc-card/mdc-card.scss'),
-      'mdc.checkbox': resolvePath('./packages/mdc-checkbox/mdc-checkbox.scss'),
-      'mdc.dialog': resolvePath('./packages/mdc-dialog/mdc-dialog.scss'),
-      'mdc.drawer': resolvePath('./packages/mdc-drawer/mdc-drawer.scss'),
-      'mdc.elevation': resolvePath('./packages/mdc-elevation/mdc-elevation.scss'),
-      'mdc.fab': resolvePath('./packages/mdc-fab/mdc-fab.scss'),
-      'mdc.form-field': resolvePath('./packages/mdc-form-field/mdc-form-field.scss'),
-      'mdc.grid-list': resolvePath('./packages/mdc-grid-list/mdc-grid-list.scss'),
-      'mdc.icon-toggle': resolvePath('./packages/mdc-icon-toggle/mdc-icon-toggle.scss'),
-      'mdc.layout-grid': resolvePath('./packages/mdc-layout-grid/mdc-layout-grid.scss'),
-      'mdc.linear-progress': resolvePath('./packages/mdc-linear-progress/mdc-linear-progress.scss'),
-      'mdc.list': resolvePath('./packages/mdc-list/mdc-list.scss'),
-      'mdc.menu': resolvePath('./packages/mdc-menu/mdc-menu.scss'),
-      'mdc.radio': resolvePath('./packages/mdc-radio/mdc-radio.scss'),
-      'mdc.ripple': resolvePath('./packages/mdc-ripple/mdc-ripple.scss'),
-      'mdc.select': resolvePath('./packages/mdc-select/mdc-select.scss'),
-      'mdc.slider': resolvePath('./packages/mdc-slider/mdc-slider.scss'),
-      'mdc.snackbar': resolvePath('./packages/mdc-snackbar/mdc-snackbar.scss'),
-      'mdc.switch': resolvePath('./packages/mdc-switch/mdc-switch.scss'),
-      'mdc.tabs': resolvePath('./packages/mdc-tabs/mdc-tabs.scss'),
-      'mdc.textfield': resolvePath('./packages/mdc-textfield/mdc-text-field.scss'),
-      'mdc.theme': resolvePath('./packages/mdc-theme/mdc-theme.scss'),
-      'mdc.toolbar': resolvePath('./packages/mdc-toolbar/mdc-toolbar.scss'),
-      'mdc.typography': resolvePath('./packages/mdc-typography/mdc-typography.scss'),
+      'mdc.button': resolvePath('/packages/mdc-button/mdc-button.scss'),
+      'mdc.card': resolvePath('/packages/mdc-card/mdc-card.scss'),
+      'mdc.checkbox': resolvePath('/packages/mdc-checkbox/mdc-checkbox.scss'),
+      'mdc.dialog': resolvePath('/packages/mdc-dialog/mdc-dialog.scss'),
+      'mdc.drawer': resolvePath('/packages/mdc-drawer/mdc-drawer.scss'),
+      'mdc.elevation': resolvePath('/packages/mdc-elevation/mdc-elevation.scss'),
+      'mdc.fab': resolvePath('/packages/mdc-fab/mdc-fab.scss'),
+      'mdc.form-field': resolvePath('/packages/mdc-form-field/mdc-form-field.scss'),
+      'mdc.grid-list': resolvePath('/packages/mdc-grid-list/mdc-grid-list.scss'),
+      'mdc.icon-toggle': resolvePath('/packages/mdc-icon-toggle/mdc-icon-toggle.scss'),
+      'mdc.layout-grid': resolvePath('/packages/mdc-layout-grid/mdc-layout-grid.scss'),
+      'mdc.linear-progress': resolvePath('/packages/mdc-linear-progress/mdc-linear-progress.scss'),
+      'mdc.list': resolvePath('/packages/mdc-list/mdc-list.scss'),
+      'mdc.menu': resolvePath('/packages/mdc-menu/mdc-menu.scss'),
+      'mdc.radio': resolvePath('/packages/mdc-radio/mdc-radio.scss'),
+      'mdc.ripple': resolvePath('/packages/mdc-ripple/mdc-ripple.scss'),
+      'mdc.select': resolvePath('/packages/mdc-select/mdc-select.scss'),
+      'mdc.slider': resolvePath('/packages/mdc-slider/mdc-slider.scss'),
+      'mdc.snackbar': resolvePath('/packages/mdc-snackbar/mdc-snackbar.scss'),
+      'mdc.switch': resolvePath('/packages/mdc-switch/mdc-switch.scss'),
+      'mdc.tabs': resolvePath('/packages/mdc-tabs/mdc-tabs.scss'),
+      'mdc.textfield': resolvePath('/packages/mdc-textfield/mdc-text-field.scss'),
+      'mdc.theme': resolvePath('/packages/mdc-theme/mdc-theme.scss'),
+      'mdc.toolbar': resolvePath('/packages/mdc-toolbar/mdc-toolbar.scss'),
+      'mdc.typography': resolvePath('/packages/mdc-typography/mdc-typography.scss'),
     },
     output: {
       path: MAIN_OUTPUT_DIR_ABS,
@@ -190,22 +213,23 @@ function createMainCssEntry() {
     module: {
       rules: [{
         test: /\.scss$/,
-        use: createCssLoaderConfig(),
+        use: createCssLoader(extractTextPlugin),
       }],
     },
     plugins: [
-      createCssExtractTextPlugin(),
+      extractTextPlugin,
       createCssJsCleanupPlugin(),
       createBannerPlugin(),
     ],
   };
 }
 
-function createTestEntry(extensionWithoutDot) {
+function createTestChunks(extensionWithoutDot) {
   const entry = {};
 
-  glob.sync(`test/screenshot/**/*.test.${extensionWithoutDot}`).forEach((relativeFilePath) => {
-    const filename = path.basename(relativeFilePath);
+  glob.sync(resolvePath(`/test/screenshot/**/*.test.${extensionWithoutDot}`)).forEach((absoluteFilePath) => {
+    const relativeFilePath = relativePath(absoluteFilePath);
+    const filename = path.basename(absoluteFilePath);
 
     // Ignore import-only Sass files.
     if (filename.charAt(0) === '_') {
@@ -216,16 +240,16 @@ function createTestEntry(extensionWithoutDot) {
     // trailing ".scss"/".js" affixes removed.
     // E.g., "test/screenshot/foo/bar.scss" becomes {"foo/bar": "/absolute/path/to/test/screenshot/foo/bar.scss"}.
     const entryName = relativeFilePath.replace(new RegExp(`^test/screenshot/|\\.${extensionWithoutDot}`, 'g'), '');
-    entry[entryName] = resolvePath(relativeFilePath);
+    entry[entryName] = absoluteFilePath;
   });
 
   return entry;
 }
 
-function createTestJsEntry() {
+function createTestJsBundle() {
   return {
     name: 'test-js',
-    entry: createTestEntry('js'),
+    entry: createTestChunks('js'),
     output: {
       path: TEST_OUTPUT_DIR_ABS,
       publicPath: TEST_OUTPUT_DIR_REL,
@@ -256,10 +280,11 @@ function createTestJsEntry() {
   };
 }
 
-function createTestCssEntry() {
+function createTestCssBundle() {
+  const extractTextPlugin = createCssExtractTextPlugin();
   return {
     name: 'test-css',
-    entry: createTestEntry('scss'),
+    entry: createTestChunks('scss'),
     output: {
       path: TEST_OUTPUT_DIR_ABS,
       publicPath: TEST_OUTPUT_DIR_REL,
@@ -269,18 +294,32 @@ function createTestCssEntry() {
     module: {
       rules: [{
         test: /\.scss$/,
-        use: createCssLoaderConfig(),
+        use: createCssLoader(extractTextPlugin),
       }],
     },
     plugins: [
-      createCssExtractTextPlugin(),
+      extractTextPlugin,
       createCssJsCleanupPlugin(),
       createBannerPlugin(),
     ],
   };
 }
 
-function serveStatic(app, urlPath, fsPathRel) {
+function logLocalDevServerRunning(port) {
+  const message = `Local development server running on http://localhost:${port}/`;
+  const ch = '=';
+  const divider = ch.repeat(message.length + 6);
+  const spacer = ' '.repeat(message.length);
+  console.log(`
+${divider}
+${ch}  ${spacer}  ${ch}
+${ch}  ${message}  ${ch}
+${ch}  ${spacer}  ${ch}
+${divider}
+`);
+}
+
+function serveStatic(app, urlPath, fsPathRel = urlPath) {
   const fsPathAbs = resolvePath(fsPathRel);
   const indexOpts = {
     icons: true,
@@ -291,16 +330,16 @@ function serveStatic(app, urlPath, fsPathRel) {
 function runLocalDevServer() {
   const app = express();
   const port = process.env.MDC_PORT || 8090;
-  serveStatic(app, '/demos', './demos');
-  serveStatic(app, '/test', './test');
-  app.listen(port, () => console.log(`Local development server listening on port ${port}!`));
+  serveStatic(app, '/demos');
+  serveStatic(app, '/test');
+  app.listen(port, () => logLocalDevServerRunning(port));
 }
 
 module.exports = [
-  createMainJsEntry(),
-  createMainCssEntry(),
-  createTestJsEntry(),
-  createTestCssEntry(),
+  createMainJsBundle(),
+  createMainCssBundle(),
+  createTestJsBundle(),
+  createTestCssBundle(),
 ];
 
 if (RUN_SERVER) {
