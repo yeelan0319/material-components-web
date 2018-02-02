@@ -16,16 +16,19 @@
 
 'use strict';
 
-const LIFECYCLE_EVENT = process.env.npm_lifecycle_event;
-
 module.exports = class Environment {
-  getNpmLifecycleEvent() {
-    return LIFECYCLE_EVENT;
-  }
-
   setBabelEnv() {
-    if (LIFECYCLE_EVENT === 'test' || LIFECYCLE_EVENT === 'test:watch') {
+    const event = this.getNpmLifecycleEvent_();
+    if (event === 'test' || event === 'test:watch') {
       process.env.BABEL_ENV = 'test';
     }
+  }
+
+  isDevCommand() {
+    return /^dev(:|$)/.test(this.getNpmLifecycleEvent_());
+  }
+
+  getNpmLifecycleEvent_() {
+    return process.env.npm_lifecycle_event;
   }
 };
