@@ -81,7 +81,7 @@ function createMainJsBundle(
       fsDirAbsolutePath,
       httpDirAbsolutePath,
       ...customOutputProps
-    }
+    },
   }) {
   return createCustomJsBundle({
     bundleName: 'main-js',

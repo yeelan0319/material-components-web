@@ -76,7 +76,7 @@ function createMainCssBundle(
       fsDirAbsolutePath,
       httpDirAbsolutePath,
       ...customOutputProps
-    }
+    },
   }) {
   return createCustomCssBundle({
     bundleName: 'main-css',
