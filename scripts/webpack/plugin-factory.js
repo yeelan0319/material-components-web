@@ -16,33 +16,28 @@
 
 'use strict';
 
-module.exports = class CssCleanupPlugin {
-  constructor({
+const CopyrightBannerPlugin = require('./copyright-banner-plugin');
+const CssCleanupPlugin = require('./css-cleanup-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+module.exports = class PluginFactory {
+  createCopyrightBannerPlugin() {
+    return new CopyrightBannerPlugin();
+  }
+
+  createCssCleanupPlugin({
     outputDirRelativePath,
     pathResolver,
     globber,
-    fsExtraLib = require('fs-extra'),
-  } = {}) {
-    this.outputDirRelativePath_ = outputDirRelativePath;
-
-    /** @type {!PathResolver} */
-    this.pathResolver_ = pathResolver;
-
-    /** @type {!Globber} */
-    this.globber_ = globber;
-
-    /** @type {!FsExtraLib} */
-    this.fsExtraLib_ = fsExtraLib;
-  }
-
-  apply(compiler) {
-    compiler.plugin('done', () => this.nukeEm_());
-  }
-
-  // https://youtu.be/SNAK21fcVzU
-  nukeEm_() {
-    this.globber_.getAbsolutePaths(this.outputDirRelativePath_, '**/*.css.js*').forEach((absolutePath) => {
-      this.fsExtraLib_.removeSync(absolutePath);
+  }) {
+    return new CssCleanupPlugin({
+      outputDirRelativePath,
+      pathResolver,
+      globber,
     });
+  }
+
+  createExtractTextPlugin(outputFilenamePattern) {
+    return new ExtractTextPlugin(outputFilenamePattern);
   }
 };

@@ -16,41 +16,45 @@
 
 'use strict';
 
-const PathResolver = require('../../scripts/build/path-resolver');
-const express = require('express');
-const serveIndex = require('serve-index');
+module.exports = class StaticServer {
+  constructor({
+    pathResolver,
+    expressLib = require('express'),
+    serveIndexLib = require('serve-index'),
+  } = {}) {
+    this.pathResolver_ = pathResolver;
+    this.expressLib_ = expressLib;
+    this.serveIndexLib_ = serveIndexLib;
+  }
 
-// TODO(acdvorak): For better testability, export a class instead
-module.exports = {
-  runLocalDevServer,
-};
+  runLocalDevServer({relativeDirectoryPaths, port = process.env.MDC_PORT || 8090}) {
+    const app = this.expressLib_();
+    relativeDirectoryPaths.forEach((relativeDirectoryPath) => {
+      this.serveStatic_(app, relativeDirectoryPath);
+    });
+    app.listen(port, () => this.logLocalDevServerRunning_(port));
+  }
 
-function runLocalDevServer({relativeDirectoryPaths, port = process.env.MDC_PORT || 8090}) {
-  const app = express();
-  relativeDirectoryPaths.forEach((relativeDirectoryPath) => {
-    serveStatic(app, relativeDirectoryPath);
-  });
-  app.listen(port, () => logLocalDevServerRunning(port));
-}
+  serveStatic_(app, urlPath, fsRelativePath = urlPath) {
+    const fsAbsolutePath = this.pathResolver_.getAbsolutePath(fsRelativePath);
+    const indexOpts = {
+      icons: true,
+    };
+    app.use(urlPath, this.expressLib_.static(fsAbsolutePath), this.serveIndexLib_(fsAbsolutePath, indexOpts));
+  }
 
-function serveStatic(app, urlPath, fsRelativePath = urlPath) {
-  const fsAbsolutePath = PathResolver.getAbsolutePath(fsRelativePath);
-  const indexOpts = {
-    icons: true,
-  };
-  app.use(urlPath, express.static(fsAbsolutePath), serveIndex(fsAbsolutePath, indexOpts));
-}
+  logLocalDevServerRunning_(port) {
+    const message = `Local development server running on http://localhost:${port}/`;
+    const ch = '=';
+    const divider = ch.repeat(message.length + 6);
+    const spacer = ' '.repeat(message.length);
 
-function logLocalDevServerRunning(port) {
-  const message = `Local development server running on http://localhost:${port}/`;
-  const ch = '=';
-  const divider = ch.repeat(message.length + 6);
-  const spacer = ' '.repeat(message.length);
-  console.log(`
+    console.log(`
 ${divider}
 ${ch}  ${spacer}  ${ch}
 ${ch}  ${message}  ${ch}
 ${ch}  ${spacer}  ${ch}
 ${divider}
 `);
-}
+  }
+};

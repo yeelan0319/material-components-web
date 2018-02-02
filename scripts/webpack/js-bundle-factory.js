@@ -16,86 +16,93 @@
 
 'use strict';
 
-const ChunkGlobber = require('./chunk-globber');
-const CopyrightBannerPlugin = require('./copyright-banner-plugin');
-const PathResolver = require('../build/path-resolver');
-
 const JS_SOURCE_MAP = true;
 const JS_DEVTOOL = JS_SOURCE_MAP ? 'source-map' : false;
 
-// TODO(acdvorak): For better testability, export a class instead
-module.exports = {
-  createCustomJs,
-  createMainJs,
+module.exports = class JsBundleFactory {
+  constructor({
+    pathResolver,
+    globber,
+    pluginFactory,
+  } = {}) {
+    /** @type {!PathResolver} */
+    this.pathResolver_ = pathResolver;
+
+    /** @type {!Globber} */
+    this.globber_ = globber;
+
+    /** @type {!PluginFactory} */
+    this.pluginFactory_ = pluginFactory;
+  }
+
+  createCustomJs(
+    {
+      bundleName,
+      chunks,
+      chunkGlobConfig: {
+        inputDirectory = null,
+        filePathPattern = null,
+      } = {},
+      output: {
+        fsDirAbsolutePath,
+        httpDirAbsolutePath,
+        filenamePattern = '[name].js',
+        library,
+      },
+      plugins = [],
+    }) {
+    chunks = chunks || this.globber_.getChunks({inputDirectory, filePathPattern});
+
+    return {
+      name: bundleName,
+      entry: chunks,
+      output: {
+        path: fsDirAbsolutePath,
+        publicPath: httpDirAbsolutePath,
+        filename: filenamePattern,
+        libraryTarget: 'umd',
+        library,
+      },
+      // See https://github.com/webpack/webpack-dev-server/issues/882
+      // Because we only spin up dev servers temporarily, and all of our assets are publicly
+      // available on GitHub, we can safely disable this check.
+      devServer: {
+        disableHostCheck: true,
+      },
+      devtool: JS_DEVTOOL,
+      module: {
+        rules: [{
+          test: /\.js$/,
+          exclude: /node_modules/,
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true,
+          },
+        }],
+      },
+      plugins: [
+        this.pluginFactory_.createCopyrightBannerPlugin(),
+        ...plugins,
+      ],
+    };
+  }
+
+  createMainJs(
+    {
+      output: {
+        fsDirAbsolutePath,
+        httpDirAbsolutePath,
+      },
+    }) {
+    return this.createCustomJs({
+      bundleName: 'main-js',
+      chunks: this.pathResolver_.getAbsolutePath('/packages/material-components-web/index.js'),
+      output: {
+        fsDirAbsolutePath,
+        httpDirAbsolutePath,
+        filenamePattern: 'material-components-web.js',
+        library: 'mdc',
+      },
+    });
+  }
 };
-
-function createCustomJs(
-  {
-    bundleName,
-    chunks,
-    chunkGlobConfig: {
-      inputDirectory = null,
-      filePathPattern = null,
-    } = {},
-    output: {
-      fsDirAbsolutePath,
-      httpDirAbsolutePath,
-      filenamePattern = '[name].js',
-      library,
-    },
-    plugins = [],
-  }) {
-  chunks = chunks || ChunkGlobber.globChunks({inputDirectory, filePathPattern});
-
-  return {
-    name: bundleName,
-    entry: chunks,
-    output: {
-      path: fsDirAbsolutePath,
-      publicPath: httpDirAbsolutePath,
-      filename: filenamePattern,
-      libraryTarget: 'umd',
-      library,
-    },
-    // See https://github.com/webpack/webpack-dev-server/issues/882
-    // Because we only spin up dev servers temporarily, and all of our assets are publicly
-    // available on GitHub, we can safely disable this check.
-    devServer: {
-      disableHostCheck: true,
-    },
-    devtool: JS_DEVTOOL,
-    module: {
-      rules: [{
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-        options: {
-          cacheDirectory: true,
-        },
-      }],
-    },
-    plugins: [
-      new CopyrightBannerPlugin(),
-      ...plugins,
-    ],
-  };
-}
-
-function createMainJs(
-  {
-    output: {
-      fsDirAbsolutePath,
-      httpDirAbsolutePath,
-    },
-  }) {
-  return createCustomJs({
-    bundleName: 'main-js',
-    chunks: PathResolver.getAbsolutePath('/packages/material-components-web/index.js'),
-    output: {
-      fsDirAbsolutePath,
-      httpDirAbsolutePath,
-      filenamePattern: 'material-components-web.js',
-      library: 'mdc',
-    },
-  });
-}

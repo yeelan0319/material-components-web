@@ -16,21 +16,42 @@
 
 'use strict';
 
-const CssBundleFactory = require('../../scripts/webpack/css-bundle-factory');
 const Environment = require('../../scripts/build/environment');
-const JsBundleFactory = require('../../scripts/webpack/js-bundle-factory');
 const PathResolver = require('../../scripts/build/path-resolver');
 const StaticServer = require('../../scripts/build/static-server');
 
-const MAIN_OUTPUT_DIR_ABS = PathResolver.getAbsolutePath('/test/screenshot/out/main');
+const CssBundleFactory = require('../../scripts/webpack/css-bundle-factory');
+const Globber = require('../../scripts/webpack/globber');
+const JsBundleFactory = require('../../scripts/webpack/js-bundle-factory');
+const PluginFactory = require('../../scripts/webpack/plugin-factory');
+
+const environment = new Environment();
+const pathResolver = new PathResolver();
+const globber = new Globber({pathResolver});
+const pluginFactory = new PluginFactory();
+const staticServer = new StaticServer({pathResolver});
+
+const cssBundleFactory = new CssBundleFactory({
+  pathResolver,
+  globber,
+  pluginFactory,
+});
+
+const jsBundleFactory = new JsBundleFactory({
+  pathResolver,
+  globber,
+  pluginFactory,
+});
+
+const MAIN_OUTPUT_DIR_ABS = pathResolver.getAbsolutePath('/test/screenshot/out/main');
 const MAIN_HTTP_DIR_ABS = '/out/main';
 
-const TEST_OUTPUT_DIR_ABS = PathResolver.getAbsolutePath('/test/screenshot/out/test');
+const TEST_OUTPUT_DIR_ABS = pathResolver.getAbsolutePath('/test/screenshot/out/test');
 const TEST_HTTP_DIR_ABS = '/out/test';
 
-const RUN_SERVER = /^dev(:|$)/.test(Environment.getNpmLifecycleEvent());
+const RUN_SERVER = /^dev(:|$)/.test(environment.getNpmLifecycleEvent());
 
-Environment.setBabelEnv();
+environment.setBabelEnv();
 
 module.exports = [
   createMainCss(),
@@ -39,14 +60,16 @@ module.exports = [
   createTestJs(),
 ];
 
+console.log(module.exports);
+
 if (RUN_SERVER) {
-  StaticServer.runLocalDevServer({
+  staticServer.runLocalDevServer({
     relativeDirectoryPaths: ['/demos', '/test'],
   });
 }
 
 function createMainCss() {
-  return CssBundleFactory.createMainCss({
+  return cssBundleFactory.createMainCss({
     output: {
       fsDirAbsolutePath: MAIN_OUTPUT_DIR_ABS,
       httpDirAbsolutePath: MAIN_HTTP_DIR_ABS,
@@ -55,7 +78,7 @@ function createMainCss() {
 }
 
 function createMainJs() {
-  return JsBundleFactory.createMainJs({
+  return jsBundleFactory.createMainJs({
     output: {
       fsDirAbsolutePath: MAIN_OUTPUT_DIR_ABS,
       httpDirAbsolutePath: MAIN_HTTP_DIR_ABS,
@@ -64,7 +87,7 @@ function createMainJs() {
 }
 
 function createTestCss() {
-  return CssBundleFactory.createCustomCss({
+  return cssBundleFactory.createCustomCss({
     bundleName: 'test-css',
     chunkGlobConfig: {
       inputDirectory: '/test/screenshot',
@@ -78,7 +101,7 @@ function createTestCss() {
 }
 
 function createTestJs() {
-  return JsBundleFactory.createCustomJs({
+  return jsBundleFactory.createCustomJs({
     bundleName: 'test-js',
     chunkGlobConfig: {
       inputDirectory: '/test/screenshot',
