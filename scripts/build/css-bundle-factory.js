@@ -36,6 +36,10 @@ function createCustomCssBundle(
   {
     bundleName,
     chunks,
+    chunkGlobConfig: {
+      inputDirectory = null,
+      filePathPattern = null,
+    },
     output: {
       fsDirAbsolutePath,
       httpDirAbsolutePath,
@@ -45,6 +49,7 @@ function createCustomCssBundle(
     plugins = [],
   }) {
   const extractTextPlugin = new ExtractTextPlugin(filenamePattern);
+  chunks = chunks || PathResolver.globChunks({inputDirectory, filePathPattern});
 
   return {
     name: bundleName,

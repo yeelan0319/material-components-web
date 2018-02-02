@@ -32,6 +32,10 @@ function createCustomJsBundle(
   {
     bundleName,
     chunks,
+    chunkGlobConfig: {
+      inputDirectory = null,
+      filePathPattern = null,
+    },
     output: {
       fsDirAbsolutePath,
       httpDirAbsolutePath,
@@ -41,6 +45,8 @@ function createCustomJsBundle(
     },
     plugins = [],
   }) {
+  chunks = chunks || PathResolver.globChunks({inputDirectory, filePathPattern});
+
   return {
     name: bundleName,
     entry: chunks,
