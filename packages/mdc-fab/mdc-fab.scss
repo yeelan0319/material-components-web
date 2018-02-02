@@ -38,4 +38,12 @@
   @include mdc-fab--exited_;
 }
 
+.mdc-fab--extended {
+  @include mdc-fab--extended_;
+}
+
+.mdc-fab__label {
+  @include mdc-fab__label_;
+}
+
 // postcss-bem-linter: end

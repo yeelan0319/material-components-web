@@ -19,6 +19,7 @@
 @import "@material/ripple/variables";
 @import "@material/theme/functions";
 @import "@material/theme/mixins";
+@import "@material/typography/mixins";
 
 @mixin mdc-fab-accessible($container-color) {
   $fill-tone: mdc-theme-tone($container-color);
@@ -133,4 +134,20 @@ $mdc-fab-icon-enter-duration_: 180ms;
     transform: scale(0);
     transition: mdc-animation-exit-permanent(transform, 135ms);
   }
+}
+
+@mixin mdc-fab--extended_ {
+  width: inherit;
+  height: 48px;
+  padding-right: 20px;
+  padding-left: 16px;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+}
+
+@mixin mdc-fab__label_ {
+  @include mdc-typography(button);
+
+  padding-left: 8px;
 }
