@@ -16,6 +16,7 @@
 
 'use strict';
 
+const ChunkGlobber = require('./chunk-globber');
 const CopyrightBannerPlugin = require('./copyright-banner-plugin');
 const PathResolver = require('../build/path-resolver');
 
@@ -45,7 +46,7 @@ function createCustomJs(
     },
     plugins = [],
   }) {
-  chunks = chunks || PathResolver.globChunks({inputDirectory, filePathPattern});
+  chunks = chunks || ChunkGlobber.globChunks({inputDirectory, filePathPattern});
 
   return {
     name: bundleName,

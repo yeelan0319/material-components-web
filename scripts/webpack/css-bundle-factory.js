@@ -16,6 +16,7 @@
 
 'use strict';
 
+const ChunkGlobber = require('./chunk-globber');
 const CopyrightBannerPlugin = require('./copyright-banner-plugin');
 const CssCleanupPlugin = require('./css-cleanup-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -49,7 +50,7 @@ function createCustomCss(
     plugins = [],
   }) {
   const extractTextPlugin = new ExtractTextPlugin(filenamePattern);
-  chunks = chunks || PathResolver.globChunks({inputDirectory, filePathPattern});
+  chunks = chunks || ChunkGlobber.globChunks({inputDirectory, filePathPattern});
 
   return {
     name: bundleName,

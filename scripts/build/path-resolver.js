@@ -17,7 +17,6 @@
 'use strict';
 
 const fsx = require('fs-extra');
-const glob = require('glob');
 const path = require('path');
 
 const PROJECT_ROOT_ABSOLUTE_PATH = path.resolve(path.join(__dirname, '../../'));
@@ -26,7 +25,6 @@ const PROJECT_ROOT_ABSOLUTE_PATH = path.resolve(path.join(__dirname, '../../'));
 module.exports = {
   getAbsolutePath,
   getRelativePath,
-  globChunks,
 };
 
 /**
@@ -64,28 +62,4 @@ function getAbsolutePath(...pathPartsRelativeToProjectRoot) {
 
 function getRelativePath(absolutePathToFile, absolutePathToRoot = PROJECT_ROOT_ABSOLUTE_PATH) {
   return path.relative(absolutePathToRoot, absolutePathToFile);
-}
-
-function globChunks({filePathPattern, inputDirectory = PROJECT_ROOT_ABSOLUTE_PATH}) {
-  const chunks = {};
-  inputDirectory = getAbsolutePath(inputDirectory);
-
-  glob.sync(getAbsolutePath(inputDirectory, filePathPattern)).forEach((absolutePathToFile) => {
-    const relativePath = getRelativePath(absolutePathToFile, inputDirectory);
-    const filename = path.basename(absolutePathToFile);
-
-    // Ignore import-only Sass files.
-    if (filename.charAt(0) === '_') {
-      return;
-    }
-
-    const entryName = stripFileExtension_(relativePath);
-    chunks[entryName] = absolutePathToFile;
-  });
-
-  return chunks;
-}
-
-function stripFileExtension_(filePath) {
-  return filePath.replace(/\.\w+$/, '');
 }
