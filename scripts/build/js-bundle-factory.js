@@ -35,7 +35,7 @@ function createCustomJsBundle(
     chunkGlobConfig: {
       inputDirectory = null,
       filePathPattern = null,
-    },
+    } = {},
     output: {
       fsDirAbsolutePath,
       httpDirAbsolutePath,
