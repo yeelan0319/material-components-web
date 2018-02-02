@@ -67,8 +67,8 @@ function createTestCssBundle() {
   return CssBundleFactory.createCustomCssBundle({
     bundleName: 'test-css',
     chunks: PathResolver.globChunks({
-      relativeInputFilePathPattern: '/test/screenshot/**/*.test.scss',
-      removeChunkNamePrefix: 'test/screenshot/',
+      inputDirectory: '/test/screenshot',
+      filePathPattern: '**/*.test.scss',
     }),
     output: {
       fsDirAbsolutePath: TEST_OUTPUT_DIR_ABS,
@@ -81,8 +81,8 @@ function createTestJsBundle() {
   return JsBundleFactory.createCustomJsBundle({
     bundleName: 'test-js',
     chunks: PathResolver.globChunks({
-      relativeInputFilePathPattern: '/test/screenshot/**/*.test.js',
-      removeChunkNamePrefix: 'test/screenshot/',
+      inputDirectory: '/test/screenshot',
+      filePathPattern: '**/*.test.js',
     }),
     output: {
       fsDirAbsolutePath: TEST_OUTPUT_DIR_ABS,

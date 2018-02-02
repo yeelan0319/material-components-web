@@ -20,6 +20,8 @@ const fsx = require('fs-extra');
 const glob = require('glob');
 const path = require('path');
 
+const PROJECT_ROOT_ABSOLUTE_PATH = path.resolve(path.join(__dirname, '../../'));
+
 // TODO(acdvorak): For better testability, export a class instead
 module.exports = {
   getAbsolutePath,
@@ -57,34 +59,28 @@ function getAbsolutePath(...pathPartsRelativeToProjectRoot) {
     return path.resolve(path.join(...pathPartsRelativeToProjectRoot));
   }
   // First argument is a path relative to the repo root
-  return path.resolve(path.join(__dirname, '../../', ...pathPartsRelativeToProjectRoot));
+  return path.resolve(path.join(PROJECT_ROOT_ABSOLUTE_PATH, ...pathPartsRelativeToProjectRoot));
 }
 
-function getRelativePath(absolutePath) {
-  const rootAbsolutePath = path.resolve(path.join(__dirname, '../../'));
-  if (absolutePath.indexOf(rootAbsolutePath) === 0) {
-    return absolutePath.substr(rootAbsolutePath.length + 1);
-  }
-  return absolutePath;
+function getRelativePath(absolutePathToFile, absolutePathToRoot = PROJECT_ROOT_ABSOLUTE_PATH) {
+  return path.relative(absolutePathToRoot, absolutePathToFile);
 }
 
-function globChunks({relativeInputFilePathPattern, removeChunkNamePrefix = ''}) {
+function globChunks({filePathPattern, inputDirectory = PROJECT_ROOT_ABSOLUTE_PATH}) {
   const chunks = {};
+  inputDirectory = getAbsolutePath(inputDirectory);
 
-  glob.sync(getAbsolutePath(relativeInputFilePathPattern)).forEach((absolutePath) => {
-    const relativePath = getRelativePath(absolutePath);
-    const filename = path.basename(absolutePath);
+  glob.sync(getAbsolutePath(inputDirectory, filePathPattern)).forEach((absolutePathToFile) => {
+    const relativePath = getRelativePath(absolutePathToFile, inputDirectory);
+    const filename = path.basename(absolutePathToFile);
 
     // Ignore import-only Sass files.
     if (filename.charAt(0) === '_') {
       return;
     }
 
-    let entryName = stripFileExtension_(relativePath);
-    if (removeChunkNamePrefix && entryName.startsWith(removeChunkNamePrefix)) {
-      entryName = entryName.substr(removeChunkNamePrefix.length);
-    }
-    chunks[entryName] = absolutePath;
+    const entryName = stripFileExtension_(relativePath);
+    chunks[entryName] = absolutePathToFile;
   });
 
   return chunks;
