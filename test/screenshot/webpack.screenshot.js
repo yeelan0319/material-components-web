@@ -17,7 +17,7 @@
 'use strict';
 
 const CssBundleFactory = require('../../scripts/webpack/css-bundle-factory');
-const EnvConfig = require('../../scripts/build/env-config');
+const Environment = require('../../scripts/build/environment');
 const JsBundleFactory = require('../../scripts/webpack/js-bundle-factory');
 const PathResolver = require('../../scripts/build/path-resolver');
 const StaticServer = require('../../scripts/build/static-server');
@@ -28,9 +28,9 @@ const MAIN_HTTP_DIR_ABS = '/out/main';
 const TEST_OUTPUT_DIR_ABS = PathResolver.getAbsolutePath('/test/screenshot/out/test');
 const TEST_HTTP_DIR_ABS = '/out/test';
 
-const RUN_SERVER = /^dev(:|$)/.test(EnvConfig.getNpmLifecycleEvent());
+const RUN_SERVER = /^dev(:|$)/.test(Environment.getNpmLifecycleEvent());
 
-EnvConfig.setBabelEnv();
+Environment.setBabelEnv();
 
 module.exports = [
   createMainCss(),
