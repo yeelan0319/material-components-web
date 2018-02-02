@@ -42,7 +42,6 @@ function createCustomJs(
       httpDirAbsolutePath,
       filenamePattern = '[name].js',
       library,
-      ...customOutputProps
     },
     plugins = [],
   }) {
@@ -57,7 +56,6 @@ function createCustomJs(
       filename: filenamePattern,
       libraryTarget: 'umd',
       library,
-      ...customOutputProps,
     },
     // See https://github.com/webpack/webpack-dev-server/issues/882
     // Because we only spin up dev servers temporarily, and all of our assets are publicly
@@ -88,7 +86,6 @@ function createMainJs(
     output: {
       fsDirAbsolutePath,
       httpDirAbsolutePath,
-      ...customOutputProps
     },
   }) {
   return createCustomJs({
@@ -99,7 +96,6 @@ function createMainJs(
       httpDirAbsolutePath,
       filenamePattern: 'material-components-web.js',
       library: 'mdc',
-      ...customOutputProps,
     },
   });
 }

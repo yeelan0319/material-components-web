@@ -45,7 +45,6 @@ function createCustomCss(
       fsDirAbsolutePath,
       httpDirAbsolutePath,
       filenamePattern = '[name].css',
-      ...customOutputProps
     },
     plugins = [],
   }) {
@@ -59,7 +58,6 @@ function createCustomCss(
       path: fsDirAbsolutePath,
       publicPath: httpDirAbsolutePath,
       filename: `${filenamePattern}.js`, // Webpack 3.x emits CSS wrapped in a JS file (extractTextPlugin extracts it)
-      ...customOutputProps,
     },
     devtool: CSS_DEVTOOL,
     module: {
@@ -82,7 +80,6 @@ function createMainCss(
     output: {
       fsDirAbsolutePath,
       httpDirAbsolutePath,
-      ...customOutputProps
     },
   }) {
   return createCustomCss({
@@ -117,7 +114,6 @@ function createMainCss(
     output: {
       fsDirAbsolutePath,
       httpDirAbsolutePath,
-      ...customOutputProps,
     },
   });
 }
