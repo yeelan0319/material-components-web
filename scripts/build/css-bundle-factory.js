@@ -26,6 +26,7 @@ const glob = require('glob');
 const CSS_SOURCE_MAP = true;
 const CSS_DEVTOOL = CSS_SOURCE_MAP ? 'source-map' : false;
 
+// TODO(acdvorak): For better testability, export a class instead
 module.exports = {
   createCustomCssBundle,
   createMainCssBundle,

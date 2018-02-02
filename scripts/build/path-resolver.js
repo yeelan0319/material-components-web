@@ -20,6 +20,7 @@ const fsx = require('fs-extra');
 const glob = require('glob');
 const path = require('path');
 
+// TODO(acdvorak): For better testability, export a class instead
 module.exports = {
   getAbsolutePath,
   getRelativePath,

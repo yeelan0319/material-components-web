@@ -20,6 +20,7 @@ const PathResolver = require('../../scripts/build/path-resolver');
 const express = require('express');
 const serveIndex = require('serve-index');
 
+// TODO(acdvorak): For better testability, export a class instead
 module.exports = {
   runLocalDevServer,
 };

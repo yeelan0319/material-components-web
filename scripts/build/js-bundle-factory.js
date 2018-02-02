@@ -22,6 +22,7 @@ const PathResolver = require('./path-resolver');
 const JS_SOURCE_MAP = true;
 const JS_DEVTOOL = JS_SOURCE_MAP ? 'source-map' : false;
 
+// TODO(acdvorak): For better testability, export a class instead
 module.exports = {
   createCustomJsBundle,
   createMainJsBundle,

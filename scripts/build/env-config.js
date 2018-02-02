@@ -18,6 +18,7 @@
 
 const LIFECYCLE_EVENT = process.env.npm_lifecycle_event;
 
+// TODO(acdvorak): For better testability, export a class instead
 module.exports = {
   getNpmLifecycleEvent,
   setBabelEnv,
