@@ -40,7 +40,7 @@ function createCustomCssBundle(
       fsDirAbsolutePath,
       httpDirAbsolutePath,
       filenamePattern = '[name].css',
-      ...customOutputProps // TODO(acdvorak): Figure out how to disable eslint comma-dangle rule for this line
+      ...customOutputProps
     },
     plugins = [],
   }) {

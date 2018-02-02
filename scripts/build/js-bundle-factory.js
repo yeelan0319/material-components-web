@@ -37,7 +37,7 @@ function createCustomJsBundle(
       httpDirAbsolutePath,
       filenamePattern = '[name].js',
       library,
-      ...customOutputProps // TODO(acdvorak): Figure out how to disable eslint comma-dangle rule for this line
+      ...customOutputProps
     },
     plugins = [],
   }) {
