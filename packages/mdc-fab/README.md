@@ -63,8 +63,10 @@ CSS Class | Description
 --- | ---
 `mdc-fab` | Mandatory, for the button element
 `mdc-fab__icon` | Mandatory, for the icon element
+`mdc-fab__label` | Optional, for the text label element
 `mdc-fab--mini` | Optional, modifies the FAB to a smaller size
 `mdc-fab--exited` | Optional, animates the FAB out of view.<br>When this class is removed, the FAB will return to view.
+`mdc-fab--extended` | Optional, modifies the FAB to include both a `.mdc-fab__label` and `.mdc-fab__icon` elements
 
 > **A note about `:disabled`**, No disabled styles are defined for FABs. The FAB promotes action, and should not be displayed in a disabled state. If you want to present a FAB that does *not* perform an action, you should also present an explanation to the user.
 
