@@ -53,6 +53,7 @@ autoInit.register('MDCMenu', menu.MDCMenu);
 autoInit.register('MDCSelect', select.MDCSelect);
 autoInit.register('MDCSlider', slider.MDCSlider);
 autoInit.register('MDCToolbar', toolbar.MDCToolbar);
+autoInit.register('MDCTopAppBar', toolbar.MDCTopAppBar);
 
 // Export all components.
 export {
@@ -75,4 +76,5 @@ export {
   tabs,
   textField,
   toolbar,
+  topappbar,
 };
