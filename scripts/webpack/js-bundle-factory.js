@@ -17,7 +17,7 @@
 'use strict';
 
 const CopyrightBannerPlugin = require('./copyright-banner-plugin');
-const PathResolver = require('./path-resolver');
+const PathResolver = require('../build/path-resolver');
 
 const JS_SOURCE_MAP = true;
 const JS_DEVTOOL = JS_SOURCE_MAP ? 'source-map' : false;

@@ -16,9 +16,9 @@
 
 'use strict';
 
-const CssBundleFactory = require('../../scripts/build/css-bundle-factory');
+const CssBundleFactory = require('../../scripts/webpack/css-bundle-factory');
 const EnvConfig = require('../../scripts/build/env-config');
-const JsBundleFactory = require('../../scripts/build/js-bundle-factory');
+const JsBundleFactory = require('../../scripts/webpack/js-bundle-factory');
 const PathResolver = require('../../scripts/build/path-resolver');
 const StaticServer = require('../../scripts/build/static-server');
 

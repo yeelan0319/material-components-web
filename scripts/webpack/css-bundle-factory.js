@@ -19,7 +19,7 @@
 const CopyrightBannerPlugin = require('./copyright-banner-plugin');
 const CssCleanupPlugin = require('./css-cleanup-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const PathResolver = require('./path-resolver');
+const PathResolver = require('../build/path-resolver');
 const autoprefixer = require('autoprefixer');
 const glob = require('glob');
 
