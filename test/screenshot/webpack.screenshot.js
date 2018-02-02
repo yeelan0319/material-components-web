@@ -26,10 +26,20 @@ const JsBundleFactory = require('../../scripts/webpack/js-bundle-factory');
 const PluginFactory = require('../../scripts/webpack/plugin-factory');
 
 const environment = new Environment();
+environment.setBabelEnv();
+
 const pathResolver = new PathResolver();
 const globber = new Globber({pathResolver});
 const pluginFactory = new PluginFactory();
 const staticServer = new StaticServer({pathResolver});
+
+const MAIN_OUTPUT_DIR_ABS = pathResolver.getAbsolutePath('/test/screenshot/out/main');
+const MAIN_HTTP_DIR_ABS = '/out/main';
+
+const TEST_OUTPUT_DIR_ABS = pathResolver.getAbsolutePath('/test/screenshot/out/test');
+const TEST_HTTP_DIR_ABS = '/out/test';
+
+const RUN_SERVER = /^dev(:|$)/.test(environment.getNpmLifecycleEvent());
 
 const cssBundleFactory = new CssBundleFactory({
   pathResolver,
@@ -43,24 +53,12 @@ const jsBundleFactory = new JsBundleFactory({
   pluginFactory,
 });
 
-const MAIN_OUTPUT_DIR_ABS = pathResolver.getAbsolutePath('/test/screenshot/out/main');
-const MAIN_HTTP_DIR_ABS = '/out/main';
-
-const TEST_OUTPUT_DIR_ABS = pathResolver.getAbsolutePath('/test/screenshot/out/test');
-const TEST_HTTP_DIR_ABS = '/out/test';
-
-const RUN_SERVER = /^dev(:|$)/.test(environment.getNpmLifecycleEvent());
-
-environment.setBabelEnv();
-
 module.exports = [
   createMainCss(),
   createMainJs(),
   createTestCss(),
   createTestJs(),
 ];
-
-console.log(module.exports);
 
 if (RUN_SERVER) {
   staticServer.runLocalDevServer({
