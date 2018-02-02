@@ -33,10 +33,10 @@ const RUN_SERVER = /^dev(:|$)/.test(EnvConfig.getNpmLifecycleEvent());
 EnvConfig.setBabelEnv();
 
 module.exports = [
-  createMainCssBundle(),
-  createMainJsBundle(),
-  createTestCssBundle(),
-  createTestJsBundle(),
+  createMainCss(),
+  createMainJs(),
+  createTestCss(),
+  createTestJs(),
 ];
 
 if (RUN_SERVER) {
@@ -45,8 +45,8 @@ if (RUN_SERVER) {
   });
 }
 
-function createMainCssBundle() {
-  return CssBundleFactory.createMainCssBundle({
+function createMainCss() {
+  return CssBundleFactory.createMainCss({
     output: {
       fsDirAbsolutePath: MAIN_OUTPUT_DIR_ABS,
       httpDirAbsolutePath: MAIN_HTTP_DIR_ABS,
@@ -54,8 +54,8 @@ function createMainCssBundle() {
   });
 }
 
-function createMainJsBundle() {
-  return JsBundleFactory.createMainJsBundle({
+function createMainJs() {
+  return JsBundleFactory.createMainJs({
     output: {
       fsDirAbsolutePath: MAIN_OUTPUT_DIR_ABS,
       httpDirAbsolutePath: MAIN_HTTP_DIR_ABS,
@@ -63,8 +63,8 @@ function createMainJsBundle() {
   });
 }
 
-function createTestCssBundle() {
-  return CssBundleFactory.createCustomCssBundle({
+function createTestCss() {
+  return CssBundleFactory.createCustomCss({
     bundleName: 'test-css',
     chunkGlobConfig: {
       inputDirectory: '/test/screenshot',
@@ -77,8 +77,8 @@ function createTestCssBundle() {
   });
 }
 
-function createTestJsBundle() {
-  return JsBundleFactory.createCustomJsBundle({
+function createTestJs() {
+  return JsBundleFactory.createCustomJs({
     bundleName: 'test-js',
     chunkGlobConfig: {
       inputDirectory: '/test/screenshot',

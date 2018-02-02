@@ -28,11 +28,11 @@ const CSS_DEVTOOL = CSS_SOURCE_MAP ? 'source-map' : false;
 
 // TODO(acdvorak): For better testability, export a class instead
 module.exports = {
-  createCustomCssBundle,
-  createMainCssBundle,
+  createCustomCss,
+  createMainCss,
 };
 
-function createCustomCssBundle(
+function createCustomCss(
   {
     bundleName,
     chunks,
@@ -76,7 +76,7 @@ function createCustomCssBundle(
   };
 }
 
-function createMainCssBundle(
+function createMainCss(
   {
     output: {
       fsDirAbsolutePath,
@@ -84,7 +84,7 @@ function createMainCssBundle(
       ...customOutputProps
     },
   }) {
-  return createCustomCssBundle({
+  return createCustomCss({
     bundleName: 'main-css',
     chunks: {
       'mdc.button': PathResolver.getAbsolutePath('/packages/mdc-button/mdc-button.scss'),

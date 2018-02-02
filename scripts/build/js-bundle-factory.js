@@ -24,11 +24,11 @@ const JS_DEVTOOL = JS_SOURCE_MAP ? 'source-map' : false;
 
 // TODO(acdvorak): For better testability, export a class instead
 module.exports = {
-  createCustomJsBundle,
-  createMainJsBundle,
+  createCustomJs,
+  createMainJs,
 };
 
-function createCustomJsBundle(
+function createCustomJs(
   {
     bundleName,
     chunks,
@@ -82,7 +82,7 @@ function createCustomJsBundle(
   };
 }
 
-function createMainJsBundle(
+function createMainJs(
   {
     output: {
       fsDirAbsolutePath,
@@ -90,7 +90,7 @@ function createMainJsBundle(
       ...customOutputProps
     },
   }) {
-  return createCustomJsBundle({
+  return createCustomJs({
     bundleName: 'main-js',
     chunks: PathResolver.getAbsolutePath('/packages/material-components-web/index.js'),
     output: {
