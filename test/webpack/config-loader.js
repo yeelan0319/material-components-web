@@ -43,6 +43,7 @@ class EnvMocker {
     this.saved_.forEach((value, key) => {
       process.env[key] = value;
     });
+    this.saved_.clear();
   }
 }
 
