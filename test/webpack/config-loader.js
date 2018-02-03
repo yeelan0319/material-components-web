@@ -18,12 +18,15 @@ const fsx = require('fs-extra');
 const path = require('path');
 const util = require('util');
 
-const requireFresh = require('./require-fresh');
-
 const PROJECT_ROOT_ABSOLUTE_PATH = path.resolve(__dirname, '../../');
 
 function redactProjectRootPath(str) {
   return str.split(PROJECT_ROOT_ABSOLUTE_PATH).join('');
+}
+
+function requireFresh(module) {
+  delete require.cache[require.resolve(module)];
+  return require(module);
 }
 
 class EnvMocker {
