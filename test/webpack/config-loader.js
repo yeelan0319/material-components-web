@@ -15,9 +15,16 @@
  */
 
 const fsx = require('fs-extra');
+const path = require('path');
 const util = require('util');
 
 const requireFresh = require('./require-fresh');
+
+const PROJECT_ROOT_ABSOLUTE_PATH = path.resolve(__dirname, '../../');
+
+function redactProjectRootPath(str) {
+  return str.split(PROJECT_ROOT_ABSOLUTE_PATH).join('');
+}
 
 class EnvMocker {
   constructor() {
@@ -50,13 +57,13 @@ module.exports = class ConfigLoader {
     envMocker.mock('MDC_ENV', mdcEnv);
 
     const fsTextOpts = {encoding: 'utf8'};
-    const generatedWebpackConfig = util.inspect(requireFresh(configPath));
+    const generatedWebpackConfig = redactProjectRootPath(util.inspect(requireFresh(configPath)));
 
     if (bootstrapGolden) {
       fsx.writeFileSync(goldenPath, generatedWebpackConfig, fsTextOpts);
     }
 
-    const expectedWebpackConfig = fsx.readFileSync(goldenPath, fsTextOpts);
+    const expectedWebpackConfig = redactProjectRootPath(fsx.readFileSync(goldenPath, fsTextOpts));
 
     envMocker.restoreAll();
 
