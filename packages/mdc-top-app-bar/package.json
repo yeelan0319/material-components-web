@@ -1,5 +1,5 @@
 {
-  "name": "@material/topappbar",
+  "name": "@material/top-app-bar",
   "version": "0.0.0",
   "description": "The Material Components for the web top app bar component",
   "license": "Apache-2.0",
@@ -11,6 +11,7 @@
     "material components",
     "material design",
     "top app bar",
+    "top-app-bar",
     "topappbar"
   ],
   "dependencies": {
