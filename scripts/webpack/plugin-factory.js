@@ -29,7 +29,7 @@ module.exports = class PluginFactory {
     outputDirRelativePath,
     pathResolver,
     globber,
-  }) {
+  } = {}) {
     return new CssCleanupPlugin({
       outputDirRelativePath,
       pathResolver,
