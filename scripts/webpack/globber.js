@@ -71,17 +71,3 @@ module.exports = class Globber {
     return chunks;
   }
 };
-
-// eslint-disable
-
-/** @record */
-class GlobLib {
-  /**
-   * @param {string} pattern
-   * @param {!Object=} options
-   * @return {!Array<string>}
-   */
-  sync(pattern, options = {}) {}
-}
-
-// eslint-enable
