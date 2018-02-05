@@ -16,11 +16,14 @@
 
 'use strict';
 
+const express = require('express');
+const serveIndex = require('serve-index');
+
 module.exports = class StaticServer {
   constructor({
     pathResolver,
-    expressLib = require('express'),
-    serveIndexLib = require('serve-index'),
+    expressLib = express,
+    serveIndexLib = serveIndex,
   } = {}) {
     this.pathResolver_ = pathResolver;
     this.expressLib_ = expressLib;

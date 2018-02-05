@@ -16,13 +16,13 @@
 
 'use strict';
 
-const defaultPathLib = require('path');
-const defaultFsExtraLib = require('fs-extra');
+const path = require('path');
+const fsx = require('fs-extra');
 
 module.exports = class PathResolver {
   constructor({
-    pathLib = defaultPathLib,
-    fsExtraLib = defaultFsExtraLib,
+    pathLib = path,
+    fsExtraLib = fsx,
   } = {}) {
     /** @type {!PathLib} */
     this.pathLib_ = pathLib;
@@ -32,7 +32,7 @@ module.exports = class PathResolver {
   }
 
   /**
-   * Resolves zero or more path portions (relative to the project root) into a single absolute filesystem this.pathLib_.
+   * Resolves zero or more path portions (relative to the project root) into a single absolute filesystem path.
    *
    * Examples:
    *
@@ -48,7 +48,7 @@ module.exports = class PathResolver {
    * > getAbsolutePath()
    *     === '/Users/betty/mdc-web'
    *
-   * @param {...string} pathPartsRelativeToProjectRoot Zero or more portions of a filesystem this.pathLib_.
+   * @param {...string} pathPartsRelativeToProjectRoot Zero or more portions of a filesystem path.
    *   The first argument must be either a relative path from the project root (e.g., '/test/screenshot'),
    *   or an absolute path to an existing directory (e.g., '/Users/betty/mdc-web/test/screenshot').
    *   All subsequent arguments are concatenated onto the first argument, with each part separated by a single

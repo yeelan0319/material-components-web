@@ -16,6 +16,8 @@
 
 'use strict';
 
+const autoprefixer = require('autoprefixer');
+
 const CSS_SOURCE_MAP = true;
 const CSS_DEVTOOL = CSS_SOURCE_MAP ? 'source-map' : false;
 
@@ -24,7 +26,7 @@ module.exports = class CssBundleFactory {
     pathResolver,
     globber,
     pluginFactory,
-    autoprefixerLib = require('autoprefixer'),
+    autoprefixerLib = autoprefixer,
   } = {}) {
     /** @type {!PathResolver} */
     this.pathResolver_ = pathResolver;

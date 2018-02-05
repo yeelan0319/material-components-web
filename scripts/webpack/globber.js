@@ -16,10 +16,12 @@
 
 'use strict';
 
+const glob = require('glob');
+
 module.exports = class Globber {
   constructor({
     pathResolver,
-    globLib = require('glob'),
+    globLib = glob,
   } = {}) {
     /** @type {!PathResolver} */
     this.pathResolver_ = pathResolver;

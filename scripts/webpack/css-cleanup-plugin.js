@@ -16,12 +16,14 @@
 
 'use strict';
 
+const fsx = require('fs-extra');
+
 module.exports = class CssCleanupPlugin {
   constructor({
     outputDirRelativePath,
     pathResolver,
     globber,
-    fsExtraLib = require('fs-extra'),
+    fsExtraLib = fsx,
   } = {}) {
     this.outputDirRelativePath_ = outputDirRelativePath;
 
