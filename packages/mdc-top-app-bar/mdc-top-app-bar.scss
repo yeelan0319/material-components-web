@@ -35,17 +35,10 @@
   &__row {
     display: flex;
     position: relative;
-    align-items: center;
     box-sizing: border-box;
     width: 100%;
     height: auto;
     min-height: $mdc-top-app-bar-row-height;
-
-    // TODO: refactor this out when #23 is implemented
-    @media (max-width: $mdc-top-app-bar-mobile-landscape-width-breakpoint)
-      and (orientation: landscape) {
-      min-height: $mdc-top-app-bar-mobile-landscape-row-height;
-    }
 
     // TODO: refactor this out when #23 is implemented
     @media (max-width: $mdc-top-app-bar-mobile-breakpoint) {
@@ -57,7 +50,6 @@
     display: inline-flex;
     flex: 1;
     align-items: flex-start;
-    justify-content: center;
     min-width: 0;
     height: 100%;
     z-index: 1;
@@ -76,10 +68,10 @@
   &__title {
     @include mdc-typography(title);
     @include mdc-typography-overflow-ellipsis;
-    @include mdc-rtl-reflexive-box(margin, left, $mdc-top-app-bar-element-horizontal-padding-desktop);
+    @include mdc-rtl-reflexive-box(margin, left, $mdc-top-app-bar-title-left-padding);
 
-    align-self: center;
-    padding: $mdc-top-app-bar-element-vertical-padding 0;
+    padding-bottom: $mdc-top-app-bar-title-bottom-padding;
+    margin-top: auto;
     line-height: 1.5rem;
     z-index: 1;
   }
@@ -87,52 +79,103 @@
   &__icon {
     @include mdc-top-app-bar-icon_;
 
-    padding-right: $mdc-top-app-bar-element-horizontal-padding-desktop / 2;
-    padding-left: $mdc-top-app-bar-element-horizontal-padding-desktop / 2;
-  }
-
-  &__icon:last-of-type {
-    @include mdc-rtl-reflexive-property(padding, $mdc-top-app-bar-element-horizontal-padding-desktop / 2, $mdc-top-app-bar-element-horizontal-padding-desktop);
+    padding: $mdc-top-app-bar-icon-vertical-padding $mdc-top-app-bar-icon-horizontal-padding;
   }
 
   &__menu-icon {
     @include mdc-top-app-bar-icon_;
 
-    padding-right: $mdc-top-app-bar-element-horizontal-padding-desktop;
-    padding-left: $mdc-top-app-bar-element-horizontal-padding-desktop;
+    padding: $mdc-top-app-bar-icon-vertical-padding $mdc-top-app-bar-icon-horizontal-padding;
+  }
+
+  //// Auto add dense styles
+  //@media (max-width: $mdc-top-app-bar-mobile-landscape-width-breakpoint) {
+  //  .mdc-top-app-bar__row {
+  //    min-height: $mdc-top-app-bar-dense-row-height;
+  //  }
+  //
+  //  .mdc-top-app-bar__title {
+  //    padding-bottom: $mdc-top-app-bar-dense-title-bottom-padding;
+  //  }
+  //
+  //  .mdc-top-app-bar__icon {
+  //    padding: $mdc-top-app-bar-dense-icon-vertical-padding $mdc-top-app-bar-dense-icon-horizontal-padding;
+  //  }
+  //
+  //  .mdc-top-app-bar__menu-icon {
+  //    padding: $mdc-top-app-bar-dense-icon-vertical-padding $mdc-top-app-bar-dense-icon-horizontal-padding;
+  //  }
+  //}
+}
+
+// Variants
+
+.mdc-top-app-bar--dense {
+  @media (max-height: $mdc-top-app-bar-mobile-breakpoint) {
+    .mdc-top-app-bar__row {
+      min-height: $mdc-top-app-bar-dense-row-height;
+    }
+
+    .mdc-top-app-bar__title {
+      padding-bottom: $mdc-top-app-bar-dense-title-bottom-padding;
+    }
+
+    .mdc-top-app-bar__icon {
+      padding: $mdc-top-app-bar-dense-icon-vertical-padding $mdc-top-app-bar-dense-icon-horizontal-padding;
+    }
+
+    .mdc-top-app-bar__menu-icon {
+      padding: $mdc-top-app-bar-dense-icon-vertical-padding $mdc-top-app-bar-dense-icon-horizontal-padding;
+    }
   }
 }
 
-.mdc-top-app-bar__menu-icon + .mdc-top-app-bar__title {
-  @include mdc-rtl-reflexive-box(margin, left, $mdc-top-app-bar-title-margin-to-menu-icon-desktop);
-}
+.mdc-top-app-bar--prominent {
+  .mdc-top-app-bar__row {
+    min-height: $mdc-top-app-bar-prominent-row-height;
+  }
 
-@media (max-width: $mdc-top-app-bar-mobile-breakpoint) {
   .mdc-top-app-bar__title {
-    @include mdc-rtl-reflexive-box(margin, left, $mdc-top-app-bar-element-horizontal-padding-mobile);
+    padding-bottom: $mdc-top-app-bar-prominent-title-bottom-padding;
   }
 
   .mdc-top-app-bar__icon {
-    padding-right: $mdc-top-app-bar-element-horizontal-padding-mobile / 2;
-    padding-left: $mdc-top-app-bar-element-horizontal-padding-mobile / 2;
-  }
-
-  .mdc-top-app-bar__icon:last-of-type {
-    @include mdc-rtl-reflexive-property(padding, $mdc-top-app-bar-element-horizontal-padding-mobile / 2, $mdc-top-app-bar-element-horizontal-padding-mobile);
+    padding-bottom: $mdc-top-app-bar-prominent-icon-bottom-padding;
   }
 
   .mdc-top-app-bar__menu-icon {
-    padding-right: $mdc-top-app-bar-element-horizontal-padding-mobile;
-    padding-left: $mdc-top-app-bar-element-horizontal-padding-mobile;
-  }
-
-  .mdc-top-app-bar__menu-icon + .mdc-top-app-bar__title {
-    @include mdc-rtl-reflexive-box(margin, left, $mdc-top-app-bar-title-margin-to-menu-icon-mobile);
+    padding-bottom: $mdc-top-app-bar-prominent-icon-bottom-padding;
   }
 }
 
+.mdc-top-app-bar--prominent.mdc-top-app-bar--dense {
+  @media (max-width: $mdc-top-app-bar-mobile-breakpoint) {
+    .mdc-top-app-bar__row {
+      min-height: $mdc-top-app-bar-prominent-dense-row-height;
+    }
+
+    .mdc-top-app-bar__title {
+      padding-bottom: $mdc-top-app-bar-prominent-title-bottom-padding - 32;
+    }
+
+    .mdc-top-app-bar__icon {
+      padding-bottom: $mdc-top-app-bar-prominent-icon-bottom-padding - 32;
+    }
+
+    .mdc-top-app-bar__menu-icon {
+      padding-bottom: $mdc-top-app-bar-prominent-icon-bottom-padding - 32;
+    }
+  }
+}
+
+// States
+
 .mdc-top-app-bar--fixed {
-  @include mdc-elevation(4);
+  &.mdc-top-app-bar--scrolled {
+    @include mdc-elevation(4);
+    transition: mdc-elevation-transition-value();
+    will-change: $mdc-elevation-property, opacity;
+  }
 
   position: fixed;
   top: 0;
@@ -140,89 +183,11 @@
   z-index: 4;
 }
 
-.mdc-top-app-bar--flexible {
-  // bem linter is disabled because it cannot correctly reconcile mdc prefix for css variables.
-  // stylelint-disable-next-line plugin/selector-bem-pattern
-  --mdc-top-app-bar-ratio-to-extend-flexible: #{$mdc-top-app-bar-ratio-to-extend-flexible};
-
-  .mdc-top-app-bar__row:first-child {
-    height: $mdc-top-app-bar-row-height * $mdc-top-app-bar-ratio-to-extend-flexible;
-    height: calc(#{$mdc-top-app-bar-row-height} * var(--mdc-top-app-bar-ratio-to-extend-flexible, #{$mdc-top-app-bar-ratio-to-extend-flexible}));
-
-    @media (max-width: $mdc-top-app-bar-mobile-breakpoint) {
-      height: $mdc-top-app-bar-mobile-row-height * $mdc-top-app-bar-ratio-to-extend-flexible;
-      height: calc(#{$mdc-top-app-bar-mobile-row-height} * var(--mdc-top-app-bar-ratio-to-extend-flexible, #{$mdc-top-app-bar-ratio-to-extend-flexible}));
-    }
-
-    &::after {
-      // The style ensures the pseudo element will be defined and can easily be styled
-      position: absolute;
-      content: "";
-    }
-  }
-
-  // stylelint-disable plugin/selector-bem-pattern
-  // bem linter is disabled because it cannot handle multiple top level selector
-  &-default-behavior {
-    .mdc-top-app-bar__title {
-      @include mdc-typography(display1);
-
-      align-self: flex-end;
-      font-weight: #{map-get($mdc-typography-font-weight-values, normal)};
-      line-height: 1.5rem;
-    }
-
-    .mdc-top-app-bar__row:first-child::after {
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      transition: opacity .2s ease;
-      opacity: 1;
-    }
-
-    &.mdc-top-app-bar--flexible-space-minimized {
-      .mdc-top-app-bar__row:first-child::after {
-        opacity: 0;
-      }
-
-      .mdc-top-app-bar__title {
-        font-weight: #{map-get($mdc-typography-font-weight-values, medium)};
-      }
-    }
-  }
-}
-
-.mdc-top-app-bar--waterfall {
-  &.mdc-top-app-bar--fixed {
-    @include mdc-elevation(0);
-
-    transition: mdc-elevation-transition-value();
-    will-change: $mdc-elevation-property;
-
-    &.mdc-top-app-bar--flexible-space-minimized {
-      @include mdc-elevation(4);
-    }
-
-    &.mdc-top-app-bar--fixed-lastrow-only {
-      &.mdc-top-app-bar--flexible-space-minimized {
-        @include mdc-elevation(0);
-      }
-
-      &.mdc-top-app-bar--fixed-at-last-row {
-        @include mdc-elevation(4);
-      }
-    }
-  }
-}
-// postcss-bem-linter: end
-// stylelint-enable plugin/selector-bem-pattern
-
 .mdc-top-app-bar-fixed-adjust {
   margin-top: $mdc-top-app-bar-row-height;
 
   @media (max-width: $mdc-top-app-bar-mobile-landscape-width-breakpoint)
-    and (max-height: $mdc-top-app-bar-mobile-breakpoint) {
+  and (max-height: $mdc-top-app-bar-mobile-breakpoint) {
     margin-top: $mdc-top-app-bar-mobile-landscape-row-height;
   }
 
@@ -231,6 +196,57 @@
   }
 }
 
-.mdc-top-app-bar__section--shrink-to-fit {
-  flex: none;
+.mdc-top-app-bar--short {
+  height: 56px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 4;
+  transition: width 250ms linear;
+
+  @media (max-width: $mdc-top-app-bar-mobile-breakpoint) {
+    transition: width 200ms linear;
+  }
+
+  .mdc-top-app-bar__title {
+    padding-bottom: 16px;
+    transition: opacity 200ms linear;
+    opacity: 1;
+  }
+
+    .mdc-top-app-bar__menu-icon {
+    padding: 16px 16px 16px 16px;
+  }
+
+  .mdc-top-app-bar__icon {
+    transition: padding-right 150ms linear;
+    padding: 16px;
+  }
+}
+
+.mdc-top-app-bar--short-closed {
+  @include mdc-elevation(4);
+
+  width: 54px;
+  transition: width 300ms linear;
+  border-bottom-right-radius: 10px;
+
+  @media (max-width: $mdc-top-app-bar-mobile-breakpoint) {
+    transition: width 250ms linear;
+  }
+
+  .mdc-top-app-bar__title {
+    transition: opacity 100ms linear;
+    opacity: 0;
+  }
+
+  &.mdc-top-app-bar--short__double-icon{
+    width: 112px;
+  }
+
+  .mdc-top-app-bar__icon {
+    transition: padding-right 150ms linear;
+    padding: 16px 24px 16px 16px;
+  }
 }

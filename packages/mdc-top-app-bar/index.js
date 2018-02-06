@@ -14,10 +14,9 @@
  * limitations under the License.
  */
 
-import {MDCComponent} from '@material/base';
-
 import MDCTopAppBarFoundation from './foundation';
 import * as util from './util';
+import MDCComponent from '../mdc-base/component';
 
 export {MDCTopAppBarFoundation};
 export {util};
@@ -46,6 +45,10 @@ export class MDCTopAppBar extends MDCComponent {
 
   get fixedAdjustElement() {
     return this.fixedAdjustElement_;
+  }
+
+  set shortAppBar(isShort) {
+    this.foundation_.setAppBarType(isShort);
   }
 
   getDefaultFoundation() {

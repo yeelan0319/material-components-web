@@ -27,16 +27,22 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   </head>
   <body class="mdc-typography">
-    <header class="mdc-top-app-bar demo-top-app-bar">
+    <header class="mdc-top-app-bar demo-top-app-bar mdc-top-app-bar--short">
       <div class="mdc-top-app-bar__row">
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-          <a href="#" class="material-icons mdc-top-app-bar__menu-icon">menu</a>
+          <a class="material-icons mdc-top-app-bar__menu-icon">menu</a>
           <span class="mdc-top-app-bar__title">Title</span>
         </section>
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="top-app-bar">
-          <a href="#" class="material-icons mdc-top-app-bar__icon" aria-label="Download" alt="Download">file_download</a>
-          <a href="#" class="material-icons mdc-top-app-bar__icon" aria-label="Print this page" alt="Print this page">print</a>
+          <!--<a href="#" class="material-icons mdc-top-app-bar__icon" aria-label="Download" alt="Download">file_download</a>-->
+          <!--<a href="#" class="material-icons mdc-top-app-bar__icon" aria-label="Print this page" alt="Print this page">print</a>-->
           <a href="#" class="material-icons mdc-top-app-bar__icon" aria-label="Bookmark this page" alt="Bookmark this page">bookmark</a>
+          <div class="mdc-menu-anchor">
+            <div class="mdc-menu" tabindex="-1" id="demo-menu">
+              <ul class="mdc-menu__items mdc-list" role="menu" aria-hidden="true" style="transform: scale(1, 1);">
+              </ul>
+            </div>
+          </div>
         </section>
       </div>
     </header>
