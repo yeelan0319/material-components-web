@@ -32,3 +32,6 @@
   }
 }
 
+.mdc-drawer--temporary:not(.add_more_specificity) .mdc-drawer__header::before {
+  padding-top: 56px;
+}
