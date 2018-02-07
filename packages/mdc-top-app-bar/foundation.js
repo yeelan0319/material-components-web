@@ -56,61 +56,52 @@ export default class MDCTopAppBarFoundation extends MDCFoundation {
     this.alwaysClosed = false;
     this.isScrolled = false;
 
-    this.iconSection = document.getElementsByClassName('mdc-top-app-bar__section--align-end')[0];
-    this.totalIcons = document.getElementsByClassName('mdc-top-app-bar__icon').length;
-
     this.setAppBarType(this.adapter_.hasClass('mdc-top-app-bar--short'));
   }
 
   setAppBarType(isShort) {
     this.isShort = isShort;
+    this.totalIcons = document.getElementsByClassName('mdc-top-app-bar__icon').length;
     this.alwaysClosed = this.adapter_.hasClass('mdc-top-app-bar--short-closed');
     this.isScrolled = this.alwaysClosed;
 
-    if (isShort) {
-      if (!this.alwaysClosed) {
-        this.adapter_.registerScrollHandler(this.shortAppBarScrollHandler.bind(this));
-      }
-
+    if (this.isShort) {
       if (this.totalIcons > 0) {
         this.adapter_.addClass('mdc-top-app-bar--short__double-icon');
       }
-    } else {
-      this.adapter_.registerScrollHandler(this.topAppBarScrollHandler.bind(this));
-      this.adapter_.registerResizeHandler(this.topAppBarResizeHandler.bind(this));
     }
+    this.adapter_.registerScrollHandler(this.shortAppBarScrollHandler.bind(this));
   }
 
   destroy() {
     this.adapter_.deregisterScrollHandler(this.shortAppBarScrollHandler);
-    this.adapter_.deregisterScrollHandler(this.topAppBarScrollHandler);
   }
 
   shortAppBarScrollHandler() {
-    if (window.scrollY === 0 && this.isScrolled) {
-      this.adapter_.removeClass('mdc-top-app-bar--short-closed');
-      this.isScrolled = false;
-    } else if (!this.isScrolled && window.scrollY > 0) {
-      this.adapter_.addClass('mdc-top-app-bar--short-closed');
-      this.isScrolled = true;
-    }
-  }
-
-  topAppBarScrollHandler() {
-    if (window.scrollY === 0 && this.isScrolled) {
-      this.adapter_.removeClass('mdc-top-app-bar--scrolled');
-      this.isScrolled = false;
-    } else if (!this.isScrolled && window.scrollY > 0) {
-      this.adapter_.addClass('mdc-top-app-bar--scrolled');
-      this.isScrolled = true;
+    if (this.isShort) {
+      if (window.scrollY === 0 && this.isScrolled) {
+        this.adapter_.removeClass('mdc-top-app-bar--short-closed');
+        this.isScrolled = false;
+      } else if (!this.isScrolled && window.scrollY > 0) {
+        this.adapter_.addClass('mdc-top-app-bar--short-closed');
+        this.isScrolled = true;
+      }
+    } else {
+      if (window.scrollY === 0 && this.isScrolled) {
+        this.adapter_.removeClass('mdc-top-app-bar--scrolled');
+        this.isScrolled = false;
+      } else if (!this.isScrolled && window.scrollY > 0) {
+        this.adapter_.addClass('mdc-top-app-bar--scrolled');
+        this.isScrolled = true;
+      }
     }
   }
 
   topAppBarResizeHandler() {
-    const totalSpace = this.totalIcons * 48;
-
-    if (totalSpace > this.iconSection.getWidth()) {
-
-    }
+    // const totalSpace = this.totalIcons * 48;
+    //
+    // if (totalSpace > this.iconSection.getWidth()) {
+    //
+    // }
   }
 }

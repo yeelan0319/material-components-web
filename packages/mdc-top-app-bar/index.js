@@ -57,7 +57,7 @@ export class MDCTopAppBar extends MDCComponent {
       addClass: (className) => this.root_.classList.add(className),
       removeClass: (className) => this.root_.classList.remove(className),
       registerScrollHandler: (handler) => window.addEventListener('scroll', handler, util.applyPassive()),
-      deregisterScrollHandler: (handler) => window.removeEventListener('scroll', handler, util.applyPassive()),
+      deregisterScrollHandler: (handler) => window.removeEventListener('scroll', handler),
       registerResizeHandler: (handler) => window.addEventListener('resize', handler),
       deregisterResizeHandler: (handler) => window.removeEventListener('resize', handler),
       getViewportWidth: () => window.innerWidth,

@@ -27,13 +27,13 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   </head>
   <body class="mdc-typography">
-    <header class="mdc-top-app-bar demo-top-app-bar mdc-top-app-bar--short">
+    <header id="demo-top-app-bar" class="mdc-top-app-bar demo-top-app-bar">
       <div class="mdc-top-app-bar__row">
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
           <a class="material-icons mdc-top-app-bar__menu-icon">menu</a>
           <span class="mdc-top-app-bar__title">Title</span>
         </section>
-        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="top-app-bar">
+        <section id="iconSection" class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="top-app-bar">
           <!--<a href="#" class="material-icons mdc-top-app-bar__icon" aria-label="Download" alt="Download">file_download</a>-->
           <!--<a href="#" class="material-icons mdc-top-app-bar__icon" aria-label="Print this page" alt="Print this page">print</a>-->
           <a href="#" class="material-icons mdc-top-app-bar__icon" aria-label="Bookmark this page" alt="Bookmark this page">bookmark</a>
@@ -47,7 +47,7 @@
       </div>
     </header>
     <main>
-      <div class="mdc-top-app-bar-fixed-adjust">
+      <div id="demo-content">
         <p class="demo-paragraph">
           Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est.
         </p>
@@ -69,11 +69,87 @@
       </div>
     </main>
 
+    <div class="demo-controls-container">
+      <h3>Demo Controls</h3>
+      <div>
+        <input type="checkbox" id="prominent"/>
+        <label for="prominent">Prominent</label>
+      </div>
+      <div>
+        <input type="checkbox" id="dense"/>
+        <label for="dense">Dense</label>
+      </div>
+
+      <div>
+        <input type="checkbox" id="fixed"/>
+        <label for="fixed">Fixed</label>
+      </div>
+      <div>
+        <input type="checkbox" id="short"/>
+        <label for="short">Short</label>
+      </div>
+      <div>
+        <input type="checkbox" id="shortclosed" disabled/>
+        <label for="shortclosed">Always Closed (Short only)</label>
+      </div>
+    </div>
+
     <script src="/assets/material-components-web.js" async></script>
     <script type="text/javascript">
     demoReady(function() {
-      var appBar = new mdc.topAppBar.MDCTopAppBar(document.getElementsByClassName('demo-top-app-bar')[0]);
-      console.log(appBar);
+      var appBarElement = document.getElementById('demo-top-app-bar');
+      var appBar = mdc.topAppBar.MDCTopAppBar.attachTo(appBarElement);
+
+      var prominentCheckbox = document.getElementById('prominent');
+      var denseCheckbox = document.getElementById('dense');
+      var shortCheckbox = document.getElementById('short');
+      var shortClosedCheckbox = document.getElementById('shortclosed');
+      var fixedCheckbox = document.getElementById('fixed');
+
+      prominentCheckbox.addEventListener('change',function() {
+        this.checked ? appBarElement.classList.add('mdc-top-app-bar--prominent') : appBarElement.classList.remove('mdc-top-app-bar--prominent');
+        appBarElement.classList.remove('mdc-top-app-var--short');
+        appBarElement.classList.remove('mdc-top-app-var--short-closed');
+        appBar.shortAppBar = false;
+      });
+
+      denseCheckbox.addEventListener('change', function() {
+        this.checked ? appBarElement.classList.add('mdc-top-app-bar--dense') : appBarElement.classList.remove('mdc-top-app-bar--dense');
+        shortCheckbox.checked = false;
+        shortClosedCheckbox.checked = false;
+      });
+
+      shortCheckbox.addEventListener('change', function() {
+        this.checked ? appBarElement.classList.add('mdc-top-app-bar--short') : appBarElement.classList.remove('mdc-top-app-bar--short');
+        appBarElement.classList.remove('mdc-top-app-var--prominent');
+        appBarElement.classList.remove('mdc-top-app-var--dense');
+
+        if(this.checked){
+          prominentCheckbox.checked = false;
+          denseCheckbox.checked = false;
+          fixedCheckbox.checked = false;
+        } else {
+          shortClosedCheckbox.checked = false;
+          appBarElement.classList.remove('mdc-top-app-bar--short-closed');
+        }
+
+        appBar.shortAppBar = this.checked;
+        prominentCheckbox.disabled = this.checked;
+        denseCheckbox.disabled = this.checked;
+        fixedCheckbox.disabled = this.checked;
+        shortClosedCheckbox.disabled = !this.checked;
+      });
+
+      shortClosedCheckbox.addEventListener('change', function() {
+        this.checked ? appBarElement.classList.add('mdc-top-app-bar--short-closed') : appBarElement.classList.remove('mdc-top-app-bar--short-closed');
+      });
+
+      fixedCheckbox.addEventListener('change', function() {
+        this.checked ? appBarElement.classList.add('mdc-top-app-bar--fixed') : appBarElement.classList.remove('mdc-top-app-bar--fixed');
+        var adjustElement = document.getElementById('demo-content');
+        this.checked ? adjustElement.classList.add('mdc-top-app-bar-fixed-adjust') : adjustElement.classList.remove('mdc-top-app-bar-fixed-adjust');
+        shortCheckbox.checked = false;
+      });
     });
   </script>
   </body>
