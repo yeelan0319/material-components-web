@@ -88,30 +88,30 @@
     padding: $mdc-top-app-bar-icon-vertical-padding $mdc-top-app-bar-icon-horizontal-padding;
   }
 
-  //// Auto add dense styles
-  //@media (max-width: $mdc-top-app-bar-mobile-landscape-width-breakpoint) {
-  //  .mdc-top-app-bar__row {
-  //    min-height: $mdc-top-app-bar-dense-row-height;
-  //  }
-  //
-  //  .mdc-top-app-bar__title {
-  //    padding-bottom: $mdc-top-app-bar-dense-title-bottom-padding;
-  //  }
-  //
-  //  .mdc-top-app-bar__icon {
-  //    padding: $mdc-top-app-bar-dense-icon-vertical-padding $mdc-top-app-bar-dense-icon-horizontal-padding;
-  //  }
-  //
-  //  .mdc-top-app-bar__menu-icon {
-  //    padding: $mdc-top-app-bar-dense-icon-vertical-padding $mdc-top-app-bar-dense-icon-horizontal-padding;
-  //  }
-  //}
+  // Auto add dense styles
+  @media (max-width: $mdc-top-app-bar-mobile-landscape-width-breakpoint) {
+    .mdc-top-app-bar__row {
+      min-height: $mdc-top-app-bar-dense-row-height;
+    }
+
+    .mdc-top-app-bar__title {
+      padding-bottom: $mdc-top-app-bar-dense-title-bottom-padding;
+    }
+
+    .mdc-top-app-bar__icon {
+      padding: $mdc-top-app-bar-dense-icon-vertical-padding $mdc-top-app-bar-dense-icon-horizontal-padding;
+    }
+
+    .mdc-top-app-bar__menu-icon {
+      padding: $mdc-top-app-bar-dense-icon-vertical-padding $mdc-top-app-bar-dense-icon-horizontal-padding;
+    }
+  }
 }
 
 // Variants
 
 .mdc-top-app-bar--dense {
-  @media (max-height: $mdc-top-app-bar-mobile-breakpoint) {
+  @media (min-height: $mdc-top-app-bar-mobile-breakpoint) {
     .mdc-top-app-bar__row {
       min-height: $mdc-top-app-bar-dense-row-height;
     }
@@ -211,7 +211,7 @@
 
   .mdc-top-app-bar__title {
     padding-bottom: 16px;
-    transition: opacity 200ms linear;
+    transition: opacity 200ms cubic-bezier(0.4, 0.0, 0.2, 1);
     opacity: 1;
   }
 
@@ -220,7 +220,7 @@
   }
 
   .mdc-top-app-bar__icon {
-    transition: padding-right 150ms linear;
+    transition: padding-right 150ms cubic-bezier(0.4, 0.0, 0.2, 1);
     padding: 16px;
   }
 }
@@ -241,7 +241,7 @@
     opacity: 0;
   }
 
-  &.mdc-top-app-bar--short__double-icon{
+  &.mdc-top-app-bar--short__double-icon {
     width: 112px;
   }
 
