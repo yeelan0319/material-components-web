@@ -72,8 +72,13 @@ export default class MDCTopAppBarFoundation extends MDCFoundation {
       if (this.totalIcons > 0) {
         this.adapter_.addClass('mdc-top-app-bar--short__double-icon');
       }
-      this.adapter_.registerScrollHandler(this.boundShortScroll);
+      if (this.alwaysClosed) {
+        this.adapter_.deregisterScrollHandler(this.boundShortScroll);
+      } else {
+        this.adapter_.registerScrollHandler(this.boundShortScroll);
+      }
       this.adapter_.deregisterScrollHandler(this.boundTopScroll);
+
 
     } else {
       this.adapter_.deregisterScrollHandler(this.boundShortScroll);
@@ -88,7 +93,7 @@ export default class MDCTopAppBarFoundation extends MDCFoundation {
   }
 
   shortAppBarScrollHandler() {
-    if (window.scrollY === 0 && this.isScrolled) {
+    if (window.scrollY === 0 && this.isScrolled && !this.alwaysClosed) {
       this.adapter_.removeClass('mdc-top-app-bar--short-closed');
       this.isScrolled = false;
     } else if (!this.isScrolled && window.scrollY > 0) {
@@ -105,13 +110,5 @@ export default class MDCTopAppBarFoundation extends MDCFoundation {
       this.adapter_.addClass('mdc-top-app-bar--scrolled');
       this.isScrolled = true;
     }
-  }
-
-  topAppBarResizeHandler() {
-    // const totalSpace = this.totalIcons * 48;
-    //
-    // if (totalSpace > this.iconSection.getWidth()) {
-    //
-    // }
   }
 }

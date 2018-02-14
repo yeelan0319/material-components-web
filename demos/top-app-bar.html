@@ -178,6 +178,7 @@
 
       shortClosedCheckbox.addEventListener('change', function() {
         this.checked ? appBarElement.classList.add('mdc-top-app-bar--short-closed') : appBarElement.classList.remove('mdc-top-app-bar--short-closed');
+        appBar.shortAppBar = true;
       });
 
       fixedCheckbox.addEventListener('change', function() {
