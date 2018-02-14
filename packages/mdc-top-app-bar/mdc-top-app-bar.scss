@@ -89,7 +89,8 @@
   }
 
   // Auto add dense styles
-  @media (max-width: $mdc-top-app-bar-mobile-landscape-width-breakpoint) {
+  @media (max-width: $mdc-top-app-bar-mobile-landscape-width-breakpoint)
+    and (min-width: $mdc-top-app-bar-mobile-breakpoint) {
     .mdc-top-app-bar__row {
       min-height: $mdc-top-app-bar-dense-row-height;
     }
