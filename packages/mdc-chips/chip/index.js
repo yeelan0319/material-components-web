@@ -33,6 +33,8 @@ class MDCChip extends MDCComponent {
   constructor(...args) {
     super(...args);
 
+    /** @private {?Element} */
+    this.trailingIconEl_;
     /** @private {!MDCRipple} */
     this.ripple_ = new MDCRipple(this.root_);
   }
@@ -43,6 +45,10 @@ class MDCChip extends MDCComponent {
    */
   static attachTo(root) {
     return new MDCChip(root);
+  }
+
+  initialize() {
+    this.trailingIconEl_ = this.root_.querySelector(strings.TRAILING_ICON_SELECTOR);
   }
 
   destroy() {
@@ -65,6 +71,16 @@ class MDCChip extends MDCComponent {
       addClass: (className) => this.root_.classList.add(className),
       removeClass: (className) => this.root_.classList.remove(className),
       hasClass: (className) => this.root_.classList.contains(className),
+      registerTrailingIconInteractionHandler: (evtType, handler) => {
+        if (this.trailingIconEl_) {
+          this.trailingIconEl_.addEventListener(evtType, handler);
+        }
+      },
+      deregisterTrailingIconInteractionHandler: (evtType, handler) => {
+        if (this.trailingIconEl_) {
+          this.trailingIconEl_.removeEventListener(evtType, handler);
+        }
+      },
       registerInteractionHandler: (evtType, handler) => this.root_.addEventListener(evtType, handler),
       deregisterInteractionHandler: (evtType, handler) => this.root_.removeEventListener(evtType, handler),
       notifyInteraction: () => this.emit(strings.INTERACTION_EVENT, {chip: this}, true /* shouldBubble */),
