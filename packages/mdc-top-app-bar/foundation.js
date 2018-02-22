@@ -66,14 +66,13 @@ class MDCTopAppBarFoundation extends MDCFoundation {
   }
 
   init() {
-    this.adapter_.registerNavigationIconInteractionHandler('click', this.navClickHandler_);
-
     const isShortTopAppBar = this.adapter_.hasClass(cssClasses.SHORT_CLASS);
 
     if (isShortTopAppBar) {
-      this.adapter_.registerScrollHandler(this.scrollHandler_);
-      this.styleShortAppBar();
+      this.initShortTopAppBar();
     }
+
+    this.adapter_.registerNavigationIconInteractionHandler('click', this.navClickHandler_);
   }
 
   destroy() {
@@ -84,7 +83,13 @@ class MDCTopAppBarFoundation extends MDCFoundation {
   /**
    * Used to set the initial style of the short top app bar
    */
-  styleShortAppBar() {
+  initShortTopAppBar() {
+    const isAlwaysCollapsed = this.adapter_.hasClass(cssClasses.SHORT_CLOSED_CLASS);
+
+    if (!isAlwaysCollapsed) {
+      this.adapter_.registerScrollHandler(this.scrollHandler_);
+    }
+
     if (this.adapter_.totalActionItems() > 0) {
       this.adapter_.addClass(cssClasses.RIGHT_ACTION_ITEM_CLASS);
     } else {
