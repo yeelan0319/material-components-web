@@ -159,17 +159,27 @@
 
     <div class="demo-controls-container">
       <h3>Demo Controls</h3>
-      <div>
-        <input type="checkbox" id="rtl-checkbox"/>
-        <label for="rtl-checkbox">RTL</label>
-      </div>
-      <div>
-        <input type="checkbox" id="short-checkbox"/>
-        <label for="short-checkbox">Short</label>
-      </div>
-      <div>
-        <input type="checkbox" id="no-right-item-checkbox"/>
-        <label for="no-right-item-checkbox">No Right Item</label>
+      <div class="demo-row">
+        <div class="demo-col">
+          <div>
+            <input type="checkbox" id="rtl-checkbox"/>
+            <label for="rtl-checkbox">RTL</label>
+          </div>
+          <div>
+            <input type="checkbox" id="prominent-checkbox"/>
+            <label for="prominent-checkbox">Prominent</label>
+          </div>
+        </div>
+        <div class="demo-col">
+        <div>
+          <input type="checkbox" id="short-checkbox"/>
+          <label for="short-checkbox">Short</label>
+        </div>
+        <div>
+          <input type="checkbox" id="no-right-item-checkbox"/>
+          <label for="no-right-item-checkbox">No Right Item</label>
+        </div>
+        </div>
       </div>
     </div>
 
@@ -188,6 +198,7 @@
         var shortCheckbox = document.getElementById('short-checkbox');
         var noRightItemCheckbox = document.getElementById('no-right-item-checkbox');
         var rtlCheckbox = document.getElementById('rtl-checkbox');
+        var prominentCheckbox = document.getElementById('prominent-checkbox');
 
         appBarEl.addEventListener('MDCTopAppBar:nav', function() {
           drawer.open = true;
@@ -216,7 +227,11 @@
 
         rtlCheckbox.addEventListener('change', function()  {
           this.checked ? document.body.setAttribute("dir", "rtl") : document.body.removeAttribute("dir");
-        })
+        });
+
+        prominentCheckbox.addEventListener('change', function()  {
+          this.checked ? appBarEl.classList.add('mdc-top-app-bar--prominent') : appBarEl.classList.remove('mdc-top-app-bar--prominent');
+        });
       });
   </script>
   </body>

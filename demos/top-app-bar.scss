@@ -50,3 +50,15 @@
   background-color: white;
   padding: 10px;
 }
+
+.demo-col {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+}
+
+.demo-row {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: row;
+}
