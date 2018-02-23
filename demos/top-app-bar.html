@@ -164,12 +164,16 @@
         <label for="rtl-checkbox">RTL</label>
       </div>
       <div>
+        <input type="checkbox" id="no-right-item-checkbox"/>
+        <label for="no-right-item-checkbox">No Right Item</label>
+      </div>
+      <div>
         <input type="checkbox" id="short-checkbox"/>
         <label for="short-checkbox">Short</label>
       </div>
       <div>
-        <input type="checkbox" id="no-right-item-checkbox"/>
-        <label for="no-right-item-checkbox">No Right Item</label>
+        <input type="checkbox" id="always-closed-checkbox" disabled/>
+        <label for="always-closed-checkbox">Always Closed (Short Only)</label>
       </div>
     </div>
 
@@ -188,6 +192,7 @@
         var shortCheckbox = document.getElementById('short-checkbox');
         var noRightItemCheckbox = document.getElementById('no-right-item-checkbox');
         var rtlCheckbox = document.getElementById('rtl-checkbox');
+        var alwaysClosedCheckbox = document.getElementById('always-closed-checkbox');
 
         appBarEl.addEventListener('MDCTopAppBar:nav', function() {
           drawer.open = true;
@@ -199,9 +204,19 @@
           appBar.destroy();
           appBar = mdc.topAppBar.MDCTopAppBar.attachTo(appBarEl);
 
-          if(!this.checked){
+          if (!this.checked){
             appBarEl.classList.remove('mdc-top-app-bar--short-collapsed');
+            alwaysClosedCheckbox.checked = false;
           }
+
+          alwaysClosedCheckbox.disabled = !this.checked;
+        });
+
+        alwaysClosedCheckbox.addEventListener('change', function() {
+          this.checked ? appBarEl.classList.add('mdc-top-app-bar--short-collapsed') : appBarEl.classList.remove('mdc-top-app-bar--short-collapsed');
+
+          appBar.destroy();
+          appBar = mdc.topAppBar.MDCTopAppBar.attachTo(appBarEl);
         });
 
         noRightItemCheckbox.addEventListener('change', function()  {

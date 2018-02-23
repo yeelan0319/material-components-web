@@ -86,14 +86,15 @@ class MDCTopAppBarFoundation extends MDCFoundation {
   initShortTopAppBar() {
     const isAlwaysCollapsed = this.adapter_.hasClass(cssClasses.SHORT_CLOSED_CLASS);
 
-    if (!isAlwaysCollapsed) {
-      this.adapter_.registerScrollHandler(this.scrollHandler_);
-    }
-
     if (this.adapter_.totalActionItems() > 0) {
       this.adapter_.addClass(cssClasses.RIGHT_ACTION_ITEM_CLASS);
     } else {
       this.adapter_.removeClass(cssClasses.RIGHT_ACTION_ITEM_CLASS);
+    }
+
+    if (!isAlwaysCollapsed) {
+      this.adapter_.registerScrollHandler(this.scrollHandler_);
+      this.shortAppBarScrollHandler();
     }
   }
 
