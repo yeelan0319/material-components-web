@@ -266,13 +266,13 @@ rules:
         - /fieldset/
   # Styles for components should never need the universal selector.
   selector-max-universal: 0
-  # Ensure any defined symbols are prefixed with "mdc-"
-  custom-media-pattern: ^mdc-.+
-  custom-property-pattern: ^mdc-.+
+  # Ensure any defined symbols are prefixed with "hmdc-"
+  custom-media-pattern: ^h*mdc-.+
+  custom-property-pattern: ^h*mdc-.+
   selector-class-pattern:
-    - ^mdc-.+
+    - ^h*mdc-.+
     - resolveNestedSelectors: true
-  selector-id-pattern: ^mdc-.+
+  selector-id-pattern: ^h*mdc-.+
   # Names are more semantic than numbers
   font-weight-notation: named-where-possible
   # http://www.paulirish.com/2010/the-protocol-relative-url/
@@ -316,11 +316,11 @@ rules:
   # SCSS naming patterns, just like our CSS conventions above.
   # (note for $-vars we use a leading underscore for "private" variables)
   scss/dollar-variable-pattern:
-    - ^_?mdc-.+
+    - ^_?hmdc-.+
     -
       ignore: local
-  scss/at-function-pattern: ^mdc-.+
-  scss/at-mixin-pattern: ^mdc-.+
+  scss/at-function-pattern: ^hmdc-.+
+  scss/at-mixin-pattern: ^hmdc-.+
   # Prevents unneeded nesting selectors
   scss/selector-no-redundant-nesting-selector: true
   # Since leading underscores are not needed, they can be omitted

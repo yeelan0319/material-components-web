@@ -1,0 +1,17 @@
+{
+  "name": "sample-customized-mdc",
+  "version": "0.0.1",
+  "description": "A sample repository for building customized brand using material component for the web library",
+  "license": "Apache-2.0",
+  "keywords": [
+    "MDC",
+    "customize"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yeelan0319/sample-customized-mdc.git"
+  },
+  "dependencies": {
+    "material-components-web": "^0.31.0"
+  }
+}

@@ -1,0 +1,12 @@
+// stylelint-disable selector-class-pattern
+// Used by ready.js to test whether the CSS has finished loading.
+.demo-ready-detect {
+  position: relative;
+}
+
+// Import MDC
+@import "node_modules/material-components-web/dist/material-components-web.min.css";
+
+// Import HMDC modules
+@import "../hmdc-button/hmdc-button";
+

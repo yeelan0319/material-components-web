@@ -102,67 +102,13 @@ module.exports = class {
     return this.createCustomCss({
       bundleName: 'main-css-combined',
       chunks: {
-        'material-components-web': getAbsolutePath('/packages/material-components-web/material-components-web.scss'),
+        'hmdc': getAbsolutePath('/packages/hmdc/hmdc.scss'),
       },
       output: {
         fsDirAbsolutePath,
         httpDirAbsolutePath,
       },
       plugins: [
-        this.pluginFactory_.createCopyrightBannerPlugin(),
-        ...plugins,
-      ],
-    });
-  }
-
-  createMainCssALaCarte(
-    {
-      output: {
-        fsDirAbsolutePath,
-        httpDirAbsolutePath,
-      },
-      plugins = [],
-    }) {
-    const getAbsolutePath = (...args) => this.pathResolver_.getAbsolutePath(...args);
-
-    return this.createCustomCss({
-      bundleName: 'main-css-a-la-carte',
-      chunks: {
-        'mdc.button': getAbsolutePath('/packages/mdc-button/mdc-button.scss'),
-        'mdc.card': getAbsolutePath('/packages/mdc-card/mdc-card.scss'),
-        'mdc.checkbox': getAbsolutePath('/packages/mdc-checkbox/mdc-checkbox.scss'),
-        'mdc.chips': getAbsolutePath('/packages/mdc-chips/mdc-chips.scss'),
-        'mdc.dialog': getAbsolutePath('/packages/mdc-dialog/mdc-dialog.scss'),
-        'mdc.drawer': getAbsolutePath('/packages/mdc-drawer/mdc-drawer.scss'),
-        'mdc.elevation': getAbsolutePath('/packages/mdc-elevation/mdc-elevation.scss'),
-        'mdc.fab': getAbsolutePath('/packages/mdc-fab/mdc-fab.scss'),
-        'mdc.form-field': getAbsolutePath('/packages/mdc-form-field/mdc-form-field.scss'),
-        'mdc.grid-list': getAbsolutePath('/packages/mdc-grid-list/mdc-grid-list.scss'),
-        'mdc.icon-toggle': getAbsolutePath('/packages/mdc-icon-toggle/mdc-icon-toggle.scss'),
-        'mdc.layout-grid': getAbsolutePath('/packages/mdc-layout-grid/mdc-layout-grid.scss'),
-        'mdc.line-ripple': getAbsolutePath('/packages/mdc-line-ripple/mdc-line-ripple.scss'),
-        'mdc.linear-progress': getAbsolutePath('/packages/mdc-linear-progress/mdc-linear-progress.scss'),
-        'mdc.list': getAbsolutePath('/packages/mdc-list/mdc-list.scss'),
-        'mdc.menu': getAbsolutePath('/packages/mdc-menu/mdc-menu.scss'),
-        'mdc.radio': getAbsolutePath('/packages/mdc-radio/mdc-radio.scss'),
-        'mdc.ripple': getAbsolutePath('/packages/mdc-ripple/mdc-ripple.scss'),
-        'mdc.select': getAbsolutePath('/packages/mdc-select/mdc-select.scss'),
-        'mdc.slider': getAbsolutePath('/packages/mdc-slider/mdc-slider.scss'),
-        'mdc.snackbar': getAbsolutePath('/packages/mdc-snackbar/mdc-snackbar.scss'),
-        'mdc.switch': getAbsolutePath('/packages/mdc-switch/mdc-switch.scss'),
-        'mdc.tabs': getAbsolutePath('/packages/mdc-tabs/mdc-tabs.scss'),
-        'mdc.textfield': getAbsolutePath('/packages/mdc-textfield/mdc-text-field.scss'),
-        'mdc.theme': getAbsolutePath('/packages/mdc-theme/mdc-theme.scss'),
-        'mdc.toolbar': getAbsolutePath('/packages/mdc-toolbar/mdc-toolbar.scss'),
-        'mdc.top-app-bar': getAbsolutePath('/packages/mdc-top-app-bar/mdc-top-app-bar.scss'),
-        'mdc.typography': getAbsolutePath('/packages/mdc-typography/mdc-typography.scss'),
-      },
-      output: {
-        fsDirAbsolutePath,
-        httpDirAbsolutePath,
-      },
-      plugins: [
-        this.pluginFactory_.createCopyrightBannerPlugin(),
         ...plugins,
       ],
     });
@@ -172,6 +118,7 @@ module.exports = class {
     const getAbsolutePath = (...args) => this.pathResolver_.getAbsolutePath(...args);
 
     return extractTextPlugin.extract({
+      fallback: 'style-loader',
       use: [
         {
           loader: 'css-loader',
@@ -190,7 +137,7 @@ module.exports = class {
           loader: 'sass-loader',
           options: {
             sourceMap: true,
-            includePaths: [getAbsolutePath('/packages/material-components-web/node_modules')],
+            includePaths: [getAbsolutePath('node_modules')],
           },
         },
       ],

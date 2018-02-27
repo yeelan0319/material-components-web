@@ -1,0 +1,12 @@
+@import "@material/ripple/common";
+@import "@material/ripple/mixins";
+@import "@material/button/mixins";
+@import "@material/button/variables";
+@import "../hmdc-theme/color-palette";
+
+// postcss-bem-linter: define button
+.hmdc-button.mdc-button--raised {
+  @include mdc-button-filled-accessible($hmdc-color-red-500);
+}
+
+// postcss-bem-linter: end
